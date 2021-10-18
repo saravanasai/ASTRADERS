@@ -5,7 +5,7 @@ include_once "./assets/css_links.php";
 include_once "./config.php";
 
 
-
+ 
 
 
     //SECTION FOR FETCHING THE DATA FROM agents_to_area_view by Agents id
@@ -19,7 +19,7 @@ include_once "./config.php";
     // end SECTION FOR FETCHING THE DATA FROM agents_to_area_view by Agents id
 
  
-  
+    
    
 
 
@@ -39,8 +39,7 @@ include_once "./config.php";
             <div class="card-header">
                  COLLECTION AMOUNT BY INDIVIDUAL
             </div>
-           
-          
+                        
             <div class="card-body table-responsive p-0">
                 <table class="table table-striped ">
                   <thead>
@@ -63,10 +62,7 @@ include_once "./config.php";
                     <?php echo $agents_overall_cl_detail['DISTRICT_NAME'];?>
                     </td>
                     <td>
-                    <button type="button" class="btn btn-sm btn-success agentcollection"  id='<?php echo $agents_overall_cl_detail["AGENT_ID"] ?>'>
-                    <i class="fa fa-book px-2"></i>
-                         Details
-                       </button>
+                      <a class="btn btn-sm btn-success  singleagentdetails" href="<?php echo "?status=singleAgentTodayTransaction&Agent_id=".$agents_overall_cl_detail["AGENT_ID"]; ?>"><i class="fas fa-binoculars px-1"></i>Get Details</a>
                     </td>
                   </tr>
                   <?php } ?>
@@ -79,7 +75,7 @@ include_once "./config.php";
           </div>
     <!-- /.content -->
     </div>
-
+                 
 <?php
 include_once "./assets/js_links.php";
 ?>

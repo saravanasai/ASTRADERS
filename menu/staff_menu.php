@@ -389,7 +389,10 @@ elseif ($chk == "singleAgentcollection") {
 elseif ($chk == "Reports") {
   include_once "./pages/Reports/Reports.php";
 }
-
+elseif($chk=="singleAgentTodayTransaction")
+{
+  include_once "./pages/singleAgentTodayTransaction/singleAgentTodayTransaction.php";
+}
 
 
 

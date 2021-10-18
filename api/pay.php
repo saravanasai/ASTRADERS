@@ -1,12 +1,9 @@
 <?php 
  include_once "./config.php";
-
  header('Content-Type: application/json');
-
- 
  if(isset($_POST['paid_to']))
  {
-     //section to check agent exits or not 
+    //section to check agent exits or not 
    $paid_to=$_POST['paid_to'];
 
    $sql="SELECT * FROM `agents` WHERE `AGENT_ID`=:id";
