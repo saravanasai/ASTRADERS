@@ -35,6 +35,7 @@ $collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <thead>
                     <tr>
                         <th style="width: 10px">S.NO</th>
+                        <th style="width: 10px">CUS ID</th>
                         <th>NAME</th>
                         <th>PHONE NO</th>
                         <th>DISRICT</th>
@@ -54,6 +55,7 @@ $collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($collection_list_view_fetch as $sno => $collection_list_view) {
                             echo '<tr>
                      <td>' . ++$sno . '</td>
+                     <td>' . $collection_list_view["CUSTOMER_ID"] . '</td>
                      <td>' . $collection_list_view["CUSTOMER_FIRST_NAME"] . '</td>
                      <td>
                        ' . $collection_list_view["CUSTOMER_PHONE_NUMBER"] . '

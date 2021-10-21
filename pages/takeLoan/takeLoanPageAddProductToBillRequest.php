@@ -6,63 +6,47 @@ include "../../config.php";
 if (isset($_POST["productId"])) {
 
     $product_id = $_POST["productId"];
+    $customer_id = $_POST["customer_id"];
+    $productQuantity = $_POST["productQuantity"];
 
-    if(!$product_id=="")
-    {
-        $sql = "SELECT *
-        FROM products
-        WHERE PRODUCT_ID=:id";
-    
+    if (!$product_id == "" && !$customer_id == "" && !$productQuantity == "") {
+        $sql = "INSERT INTO orderItemMaster(OR_OF_CUS,OR_OF_PR_ID,OR_OF_PR_QUANTITY) VALUES (:cusid,:prid,:prquantity)";
+
         $stmt = $conn->prepare($sql);
-        $stmt->bindParam("id",$product_id);
-    
-        $stmt->execute();
-        $product_add_to_bill_details_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-          
-                   
-    
-         if(count($product_add_to_bill_details_fetch)>0)
-         {
-            foreach ($product_add_to_bill_details_fetch as $key=> $product_list_add_to_bill) {
-    
-                echo '  <tr>
-                        <td>'.++$key.'</td>
-                        <td>'.$product_list_add_to_bill["PRODUCT_NAME"].'</td>
-                        <td>'.$product_list_add_to_bill["PRODUCT_MODEL_NO"].'</td>
-                        <td><input type="text" class="form-control form-control-border " id="productQuantity" placeholder="Quantity" required></td>
-                        <td>'.$product_list_add_to_bill["PRODUCT_PRICE"].'</td>
-                        <td><input type="text" class="form-control form-control-border " id="productDiscount" placeholder="Discount" value="0"></td>
-                        <td><input type="text" class="form-control form-control-border" id="productTotalAmount" placeholder="Total Amount" value="0" disabled></td>
-                        <input type="hidden" id="ProductIdOnBill" value="'.$product_list_add_to_bill["PRODUCT_ID"].'">
-                        <input type="hidden" id="ProductPriceOnBill" value="'.$product_list_add_to_bill["PRODUCT_PRICE"].'">
-                        <input type="hidden" id="ProductPrice" value="'.$product_list_add_to_bill["PRODUCT_PRICE"].'">
+        $stmt->bindParam("prid", $product_id);
+        $stmt->bindParam("cusid", $customer_id);
+        $stmt->bindParam("prquantity", $productQuantity);
+        if ($stmt->execute()) {
+            $sql = "SELECT * FROM products,orderItemMaster WHERE orderItemMaster.OR_OF_PR_ID=products.PRODUCT_ID AND OR_BILL_STATUS=1 AND OR_OF_CUS=:cusid";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam("cusid",$customer_id);
+            if ($stmt->execute()) {
+                $product_add_to_bill_details_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if (count($product_add_to_bill_details_fetch) > 0) {
+                     $total_amount=0;
+                     $templete="";
+                    foreach ($product_add_to_bill_details_fetch as $key => $product_list_add_to_bill) {
+                        $total_amount+=$product_list_add_to_bill["PRODUCT_PRICE"] * $product_list_add_to_bill["OR_OF_PR_QUANTITY"];
+                        $templete.='<tr>
+                            <td>' . ++$key . '</td>
+                            <td>' . $product_list_add_to_bill["PRODUCT_NAME"] . '</td>
+                            <td>' . $product_list_add_to_bill["PRODUCT_MODEL_NO"] . '</td>
+                            <td>' . $product_list_add_to_bill["OR_OF_PR_QUANTITY"] . '</td>
+                            <td>' . $product_list_add_to_bill["PRODUCT_PRICE"]. '</td>
+                            <td>' . $product_list_add_to_bill["PRODUCT_PRICE"] * $product_list_add_to_bill["OR_OF_PR_QUANTITY"] . '</td>
+                            <td><button class="btn btn-danger btn-sm deleteProductFromBill"  id="'.$product_list_add_to_bill["OR_IT_ID"].'"><i class="fas fa-trash-alt px-1"></i>Delete</button></td>
                         </tr>';
-        
-            }
-    
-         }
-         else
-         {
-             
-             echo'<tr class="text-danger">
-             <td>SORRY!</td>
-             <td>SOMETHING</td>
-             <td>WENT</td>
-             <td>WRONG ON </td>
-             <td>DATABASE</td>
-             </tr>';
-         }
+                    }
+                    $templete.='<input type="hidden" id="grand_total" value='.$total_amount.' >';
+                    echo $templete;
+                } else {
 
-    }
-    else
-    {
+                    echo "SOMETHING WENT WRONG";
+                }
+            }
+        }
+    } else {
         echo 0;
     }
-
-
-   
-
-    
-
 }
 // end section to fetch product by keyword from search

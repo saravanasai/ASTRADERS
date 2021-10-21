@@ -204,6 +204,7 @@
                   products.PRODUCT_MODEL_NO,
                   products.PRODUCT_PRICE,
                   loanMaster.LN_PRODUCT_QUANTITY,
+                  loanMaster.LOAN_ID,
                    loanTransaction.TR_AMOUNT_PAID,
                    loanTransaction.TR_AMOUNT_BALANCE,
                    loanTransaction.TR_DATE,
@@ -393,3 +394,21 @@ AND areas.AREA_DISTRICT=agents_to_area.AREA_TO_DISTRICT
 AND agents_to_area.AREA_TO_DISTRICT=districts.DISTRICT_ID
 AND (agents_to_area.AREA_TO_AGENT=agents.AGENT_ID
 OR `AREA_TO_AGENT`IS NULL);
+
+
+
+
+
+//CREATEION OF OEDERITEM TABLE 
+
+CREATE TABLE orderItemMaster (
+    OR_IT_ID BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    OR_TO_LN_ID BIGINT DEFAULT NULL COMMENT "THIS ORDER ITEM IS BELONGS TO",
+    OR_OF_CUS BIGINT,
+    OR_OF_PR_ID BIGINT,
+    OR_OF_PR_QUANTITY BIGINT,
+    OR_BILL_STATUS INT DEFAULT 1 COMMENT "THIS SHOWS THE ORDER ITEMS OF CURRENT BILL",
+	FOREIGN KEY (OR_OF_CUS) REFERENCES customermaster(CUSTOMER_ID),
+    FOREIGN KEY (OR_OF_PR_ID) REFERENCES products(PRODUCT_ID),
+    FOREIGN KEY (OR_TO_LN_ID) REFERENCES  loanMaster(LOAN_ID)
+);

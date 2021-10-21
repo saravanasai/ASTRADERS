@@ -1,63 +1,64 @@
 let total_amount; //gloabal declration
 
 $(function () {
-  console.log("take loan");
   $(".productTable").hide();
-  $(".paymentForm").hide();
+  // $(".paymentForm").hide();
   $(".submitLoan").hide();
 
   //section to add product to bill
-  $("body").on("click", "#addProductToBill", function () {
+  $("body").on("click", ".addProductToBill", function () {
     $(".productTable").hide();
 
-    let add_to_bill_product_id = $("#loanToProductId").val();
-
+    let product_id = $(this).attr('id');
+    let customer_id = $("#customerSubmitId").val();
+    let productQuantity = $("#productQuantity"+product_id).val();
+     
     $.ajax({
       type: "post",
       url: "pages/takeLoan/takeLoanPageAddProductToBillRequest.php",
       data: {
-        productId: add_to_bill_product_id,
+        productId:product_id,
+        customer_id :customer_id ,
+        productQuantity :productQuantity 
       },
       success: function (data) {
+        $(".addToBill").empty();
         $(".addToBill").html(data);
         $("#searchBar").val("");
+        let grand_total=$("#grand_total").val();
+        console.log(grand_total);
+        $(".grandTotalDetailView").html(grand_total);
       },
     });
   });
   //end section to add product to bill
 
-  //section to calulate the total price of the by quatity
-  $("body").on("keyup", "#productQuantity", function () {
-    //to reset the value
-    $("#productQuantity").removeClass("is-invalid");
-    $("#productDiscount").removeClass("is-invalid");
+  //section to delete product on bill
+  $("body").on("click", ".deleteProductFromBill", function () {
+    
+    let delete_Product_id = $(this).attr('id');
+    let customer_id = $("#customerSubmitId").val();
+    
 
-    //variable deeleration
-    let quantity = $("#productQuantity").val();
-    let product_price = $("#ProductPriceOnBill").val();
+    $.ajax({
+      type: "post",
+      url: "pages/takeLoan/takeLoanPageDeleteProductOnBillRequest.php",
+      data: {
+        delete_Product_id:delete_Product_id,
+        customer_id:customer_id
+       
 
-    //checking for quantity
-    if (!$.isNumeric(quantity) || quantity == "") {
-      $("#productQuantity").addClass("is-invalid");
-      $("#productTotalAmount").val(0);
-
-      total_amount = 0;
-      $(".grandTotalDetailView").html(total_amount);
-    } else {
-      $("#productQuantity").addClass("is-valid");
-
-      total_amount = quantity * product_price;
-      $("#productTotalAmount").val(total_amount);
-      $("#productDiscount").val("0");
-      $(".grandTotalDetailView").html(total_amount);
-    }
-
-    //section to validate the total amount is not zero
-    if (total_amount > 0) {
-      $(".paymentForm").show();
-    }
-    // end section to validate the total amount is not zero
+      },
+      success: function (data) {
+        $(".addToBill").empty();
+        $(".addToBill").html(data);
+        $("#searchBar").val("");
+        let grand_total=$('#grand_total').val();
+        $(".grandTotalDetailView").html(grand_total);
+      },
+    });
   });
+  //end section to delete product on bill
 
   //section to handle discount from total amount
 
@@ -65,25 +66,26 @@ $(function () {
     //to reset value
     $("#productDiscount").removeClass("is-invalid");
    
-    let quantity = $("#productQuantity").val();
-    let product_price = $("#ProductPrice").val();
-    let product_total_amount =quantity*product_price;
+    let iniztial_payment = $("#iniztialPayment").val();
     let discount_amount = $("#productDiscount").val();
+    let grand_total=$('#grand_total').val();
+    $(".grandTotalDetailView").html(grand_total);
 
     if (!$.isNumeric(discount_amount)) {
       $("#productDiscount").addClass("is-invalid");
       $("#productTotalAmount").val("0");
     } else {
-      $("#productDiscount").addClass("is-valid");
-      let final_payable_amount = product_total_amount - discount_amount;
+      let final_payable_amount = grand_total - discount_amount -iniztial_payment;
       $("#productTotalAmount").val(final_payable_amount);
       $(".grandTotalDetailView").html(final_payable_amount);
       $(".discountPaymentDetailView").html(discount_amount);
+      $("#balanceAmount").val(final_payable_amount);
+      $(".balanceDetailView").html(final_payable_amount);
     }
   });
   //end section to handle discount from total amount
 
-  // END OF section to calulate the total price of the by quatity
+
   //section to calculate the balance amount to after inizial payment
   $("body").on("keyup", "#iniztialPayment", function () {
     //to make error zero for initizal payment
@@ -91,9 +93,10 @@ $(function () {
     $(".submitLoan").hide();
 
     let iniztial_payment = $("#iniztialPayment").val();
-    let discount = $("#productDiscount").val();
-    if (iniztial_payment <= total_amount && !iniztial_payment == "") {
-      let balance_payment = total_amount - iniztial_payment - discount;
+    let grand_total=$('#grand_total').val();
+    let discount=$('#productDiscount').val();
+    if (Number(iniztial_payment) <= Number(grand_total)-Number(discount) && !iniztial_payment == "") {
+      let balance_payment = grand_total - iniztial_payment-discount;
       $("#balanceAmount").val(balance_payment);
       $(".balanceDetailView").html(balance_payment);
       $(".iniztialPaymentDetailView").html(iniztial_payment);
@@ -111,11 +114,12 @@ $(function () {
 
   $("body").on("click", ".submitLoan", function () {
     let customer_id = $("#customerSubmitId").val();
-    let product_id = $("#ProductIdOnBill").val();
-    let product_quantity = $("#productQuantity").val();
-    let total_amount = $("#productTotalAmount").val();
+    let product_id = 1;
+    let product_quantity = 1;
+    let total_amount = $("#grand_total").val();
     let initizal_amount = $("#iniztialPayment").val();
-    let balance_amount = total_amount - initizal_amount;
+    let discount=$('#productDiscount').val();
+    let balance_amount = total_amount - initizal_amount -discount;
     let loan_status = 1;
 
     if (balance_amount == 0) {
@@ -141,7 +145,7 @@ $(function () {
 
         if (!data == 1) {
           //section for showing error
-          swal("OPPS!", "SOMETHING WENT WRONG", "danger").then(() => {
+          swal("OOPS!", "SOMETHING WENT WRONG", "danger").then(() => {
             window.location.href = "index.php?";
           });
         } else {
@@ -158,7 +162,7 @@ $(function () {
 });
 
 $("#searchBar").keyup(function () {
-  $(".paymentForm").hide();
+ 
   let search_key = $("#searchBar").val();
   $(".productTable").show();
 

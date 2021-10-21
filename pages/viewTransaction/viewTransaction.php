@@ -68,12 +68,12 @@ if (isset($_GET["cus_id_transaction"])) {
                 <div class="col-sm-4 invoice-col">
                     From
                     <address>
-                    <strong>AS TRADERS</strong><br>
-                    118 Prashant Nagar,korit road<br>
-                    Nandurbar,425412<br>
-                    Phone: 8156005006<br>
-                    Email: ajshaikboy@gmail.com
-                  </address>
+                        <strong>AS TRADERS</strong><br>
+                        118 Prashant Nagar,korit road<br>
+                        Nandurbar,425412<br>
+                        Phone: 8156005006<br>
+                        Email: ajshaikboy@gmail.com
+                    </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
@@ -98,7 +98,6 @@ if (isset($_GET["cus_id_transaction"])) {
                 <!-- /.col -->
             </div>
             <!-- /.row -->
-
             <!-- Table row -->
             <div class="row">
                 <div class="col-12 table-responsive">
@@ -106,12 +105,9 @@ if (isset($_GET["cus_id_transaction"])) {
                         <thead>
                             <tr>
                                 <th>S.NO</th>
-                                <th>PRODUCT NAME</th>
-                                <th>PRODUCT MODEL</th>
-                                <th>PRODUCT QUANTITY</th>
-                                <th>PRODUCT PRICE</th>
+                                <th>INVOICE</th>
                                 <th>TOTAL AMOUNT</th>
-                                <th>PAID</th>
+                                <th>PAID INITIAL</th>
                                 <th>AMOUNT BALANACE</th>
                                 <th>DATE</th>
                                 <th>TIME</th>
@@ -119,28 +115,19 @@ if (isset($_GET["cus_id_transaction"])) {
                         </thead>
                         <tbody>
                             <!-- section for view transaction -->
-                            <?php
-
+                            <?php    
                             foreach ($single_customer_transaction_details_fetch as $sno => $single_customer_transaction_details) {
-
                                 echo '<tr>
                                  <td>' . ++$sno . '</td>
-                                 <td>' . $single_customer_transaction_details["PRODUCT_NAME"] . '</td>
-                                 <td>' . $single_customer_transaction_details["PRODUCT_MODEL_NO"] . '</td>
-                                 <td>' . $single_customer_transaction_details["LN_PRODUCT_QUANTITY"] . '</td>
-                                 <td>' . $single_customer_transaction_details["PRODUCT_PRICE"] . '</td>
-                               
+                                 <td><button class="btn btn-sm btn-success  invoiceDetails"  id="'.$single_customer_transaction_details["LOAN_ID"].'"><i class="fas fa-binoculars px-1"></i>Invoice</button></td> 
                                  <td>' . $single_customer_transaction_details["TR_AMOUNT_PAID_INITIAL"] . '</td>
-                                 <td>'.$single_customer_transaction_details["TR_AMOUNT_PAID"].'</td>
+                                 <td>' . $single_customer_transaction_details["TR_AMOUNT_PAID"] . '</td>
                                  <td>' . $single_customer_transaction_details["TR_AMOUNT_BALANCE"] . '</td>
                                  <td>' . $single_customer_transaction_details["TR_DATE"] . '</td>
-                                 <td>' . $single_customer_transaction_details["TR_TIME"] . '</td>
-                                 
+                                 <td>' . $single_customer_transaction_details["TR_TIME"] . '</td>    
                                  </tr>';
                             }
-
-
-
+                            
                             ?>
                             <!-- end section for view transaction -->
                         </tbody>

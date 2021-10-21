@@ -30,10 +30,6 @@ if (isset($_POST["Login"])) {
   }
 }
 
-
-
-
-
 ?>
 <link rel="stylesheet" href="./css/style1.css">
 
@@ -44,7 +40,8 @@ if (isset($_POST["Login"])) {
   <img src="./image/AS TRADERS.png" alt="" style="width: 460; height:auto; margin-left:475px; margin-top:30px;">
 <form id="accesspanel" action="" method="post">
   <h1 id="litheader">AS TRADERS</h1>
-  
+  <?php 
+  date_default_timezone_set('Asia/Calcutta'); ?>
   <div class="inset">
   <h4 id="litheader"><?php echo htmlspecialchars($error) ?></h4>
     <p>

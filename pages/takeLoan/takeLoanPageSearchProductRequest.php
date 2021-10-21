@@ -28,8 +28,9 @@ if (isset($_POST["keyword"])) {
                         <td>'.++$key.'</td>
                         <td>'.$product_list["PRODUCT_NAME"].'</td>
                         <td>'.$product_list["PRODUCT_MODEL_NO"].'</td>
+                        <td><input type="text" class="form-control form-control-border " id="productQuantity'.$product_list["PRODUCT_ID"].'" placeholder="Quantity" required></td>
                         <td>'.$product_list["PRODUCT_PRICE"].'</td>
-                        <td><button class="btn btn-success" id="addProductToBill">ADD</button></td>
+                        <td><button class="btn btn-success btn-sm addProductToBill"  id="'.$product_list["PRODUCT_ID"].'"><i class="fas fa-cart-plus px-1"></i>ADD</button></td>
                         <input type="hidden" id="loanToProductId" value="'.$product_list["PRODUCT_ID"].'">
                         </tr>';
         

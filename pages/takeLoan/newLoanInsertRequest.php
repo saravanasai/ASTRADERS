@@ -45,10 +45,28 @@ include "../../config.php";
         $stmt->bindParam("balanceamount",$loan_balance_amount);
         $stmt->bindParam("loanstatus",$loan_status);
              
-
+           
        try{
-        $stmt->execute();
-          echo 1;
+          if($stmt->execute())
+          {
+            $last_id = $conn->lastInsertId();
+            $sql="UPDATE `orderItemMaster` SET `OR_TO_LN_ID`=:ln_id,`OR_BILL_STATUS`=0 WHERE `OR_OF_CUS`=:id AND `OR_BILL_STATUS`=1";
+            $stmt=$conn->prepare($sql);
+            $stmt->bindParam('ln_id',$last_id);
+            $stmt->bindParam('id',$customer_id);
+            try{
+              $stmt->execute();
+              echo 1;
+            }
+            catch(PDOException $e)
+            {
+               echo $e;
+            }
+
+
+          }
+        
+          
        }
        catch(PDOException $e)
        {

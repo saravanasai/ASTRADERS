@@ -393,6 +393,10 @@ elseif($chk=="singleAgentTodayTransaction")
 {
   include_once "./pages/singleAgentTodayTransaction/singleAgentTodayTransaction.php";
 }
+elseif($chk=="inVoiceOfCustomer")
+{
+  include_once "./pages/inVoiceOfCustomer/inVoiceOfCustomer.php";
+}
 
 
 

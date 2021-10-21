@@ -5,7 +5,7 @@ include_once "./assets/css_links.php";
 include_once "./config.php";
 //SECTION FOR FETCHING THE DATA FROM CUSTOMERS MASTER TABLE
 
-$sql = "SELECT * FROM `customerMasterView` ";
+$sql = "SELECT * FROM `customerMasterView` WHERE  CUSTOMER_STATUS=1 ";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $customer_Master_view_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -147,8 +147,8 @@ if (isset($_POST["customerupdateForm"])) {
                         <?php
                         foreach ($customer_Master_view_list_fecthed as $sno => $customer_Master_view_list) {
                              
-                            $statusColor="success";
-                            $statusText="ACTIVE";
+                            $statusColor="danger";
+                            $statusText="DELETE";
                             $takeloanbuttonstatus="";
                             $deactivateRedirection="";
                             if($customer_Master_view_list["CUSTOMER_STATUS"]==0)
@@ -194,7 +194,6 @@ if (isset($_POST["customerupdateForm"])) {
                      </button>
                     
                      </td>
-
                    </tr>';
                         }
                         ?>

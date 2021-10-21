@@ -57,6 +57,7 @@
 <script src="pages/singleAgentcollection/singleAgentcollection.js"></script>
 <script src="pages/Reports/Reports.js"></script>
 <script src="pages/singleAgentTodayTransaction/singleAgentTodayTransaction.js"></script>
+<script src="pages/viewTransaction/viewTransaction.js"></script>
 
 
 

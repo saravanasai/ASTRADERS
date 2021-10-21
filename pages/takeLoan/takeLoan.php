@@ -66,9 +66,8 @@
             <div class="invoice p-3 mb-3">
               <!-- title row -->
               <div class="row">
-                <div class="col-md-6">
-                  <h4>
-                  <h4 class="display-8">SEARCH PRODUCT</h4>
+                <div class="col-md-4">
+                  <h4 class="display-12">SEARCH PRODUCT</h4>
                  <div class="row">
                 <div class="col-md-8">
                     <form >
@@ -87,7 +86,7 @@
         </div>
                <!-- column for to product table -->
               
-               <div class="col-md-6 productTable">
+               <div class="col-md-8 productTable">
                   <h4>
                   <h4 class="display-8">CHOOSE PORDUCT</h4>
                  <div class="row">
@@ -99,7 +98,8 @@
                     <tr>
                       <th style="width: 10px">S.NO</th>
                       <th>NAME</th>
-                      <th> MODEL</th>
+                      <th>MODEL</th>
+                      <th>QUANTITY</th>
                       <th>PRICE</th>
                       <th style="width: 40px">ADD</th>
                     </tr>
@@ -167,8 +167,8 @@
                       <th>MODEL</th>
                       <th>QUANTITY</th>
                       <th>PRICE</th>
-                      <th>DISCOUNT(optional)</th>
                       <th>TOTAL</th>
+                      <th>ACTION</th>
                     </tr>
                     </thead>
                     <tbody class="addToBill">
@@ -184,7 +184,7 @@
                 <!-- accepted payments column -->
                 <div class="col-6">
                   <!-- section for customer loan details form -->
-                  <div class="card card-success paymentForm">
+                  <div class="card card-danger paymentForm">
               <div class="card-header">
                 <h3 class="card-title">PAYMENT DETAILS</h3>
               </div>
@@ -192,10 +192,16 @@
               <!-- form start -->
               <form class="form-horizontal">
                 <div class="card-body">
+                <div class="form-group row">
+                    <label for="productDiscount" class="col-sm-6 col-form-label">DISCOUNT</label>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control" id="productDiscount" value="0" placeholder="DISCOUNT">
+                    </div>
+                  </div>
                   <div class="form-group row">
                     <label for="iniztialPayment" class="col-sm-6 col-form-label">INIZIAL PAYMENT</label>
                     <div class="col-sm-6">
-                      <input type="text" class="form-control" id="iniztialPayment" placeholder="INIZTIAL PAYMENT">
+                      <input type="text" class="form-control" value="0" id="iniztialPayment" placeholder="INIZTIAL PAYMENT">
                     </div>
                   </div>
                   <div class="form-group row">
