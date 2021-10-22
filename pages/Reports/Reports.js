@@ -1,11 +1,6 @@
 
 $(function () {});
- $('#viewReportTable').DataTable({
-  dom: 'Bfrtip',
-  buttons: [
-  'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5'
-      ]
-  });
+
 //hidding things while loading the page 
 //resseting the  validation feilds 
 $('#report_to_district_error').hide();
@@ -88,17 +83,12 @@ $('body').on('click','#get_report',function () {
                 $('#report_insert').html(data.report);
                 $('#report_total').val(data.total);
                 $('#report_balance').val(data.balance);
-                //section for response of request
-
-                // if (data == 1) {
-                //   swal("Good job!", "You Created Customer Id", "success").then(() => {
-                //     window.location.href = "index.php?status=takeLoan&CUS_ID=0";
-                //   });
-                // } else {
-                //   swal("ALERT!", "CUSTOMER ALREADY EXITS", "warning").then(() => {
-                //     window.location.href = "index.php?status=addCustomer";
-                //   });
-                // }
+                $('#viewReportTable').DataTable({
+                  dom: 'Bfrtip',
+                  buttons: [
+                  'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5'
+                      ]
+                  });
               },
             });
   }
