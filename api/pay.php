@@ -1,9 +1,12 @@
 <?php 
  include_once "./config.php";
+
  header('Content-Type: application/json');
+
+ 
  if(isset($_POST['paid_to']))
  {
-    //section to check agent exits or not 
+     //section to check agent exits or not 
    $paid_to=$_POST['paid_to'];
 
    $sql="SELECT * FROM `agents` WHERE `AGENT_ID`=:id";
@@ -11,9 +14,10 @@
    $stmt->bindParam('id',$paid_to);
    $stmt->execute();
    $response=$stmt->fetchAll(PDO::FETCH_ASSOC);
-            
+            //  echo $response[0]['AGENT_STATUS'];
           if(count($response)>0)
           {
+             
                if($response[0]['AGENT_STATUS']=="ACTIVE")
                {
                    //section for validating all other feild for payment
@@ -25,7 +29,7 @@
                    {
                         if(!empty($amountPaid)&&is_numeric($amountPaid))
                         {
-                            if(!empty($blanaceAmount)||is_numeric($blanaceAmount))
+                            if(!empty($blanaceAmount)&&is_numeric($blanaceAmount)||true)
                             {
                                 if(!empty($loanId)&&is_numeric($loanId))
                                 {
