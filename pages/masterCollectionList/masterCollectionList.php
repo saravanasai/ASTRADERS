@@ -39,14 +39,10 @@ $collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>NAME</th>
                         <th>PHONE NO</th>
                         <th>DISRICT</th>
-                        <th>PRODUCT</th>
                         <th>TOTAL AMOUNT</th>
                         <th>BALANCE AMOUNT</th>
                         <th>DATE</th>
                         <th style="width: 40px">ACTION</th>
-                        
-
-
                     </tr>
                 </thead>
                 <tbody>
@@ -63,9 +59,6 @@ $collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
                      <td>
                      ' . $collection_list_view["DISTRICT_NAME"] . '
                    </td>
-                   <td>
-                   ' . $collection_list_view["PRODUCT_NAME"] . '
-                 </td>
                  <td>
                  ' . $collection_list_view["LN_TAB_TOTAL_AMOUNT"] . '
                </td>
@@ -77,7 +70,7 @@ $collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
            </td>
                     
                      <td>
-                     <a href="index.php?status=payLoan&LOAN_ID='.$collection_list_view["LOAN_ID"].'&CUS_ID='.$collection_list_view["CUSTOMER_ID"].'" class="btn btn-success">PAY NOW</a>
+                     <a href="index.php?status=payLoan&LOAN_ID=' . $collection_list_view["LOAN_ID"] . '&CUS_ID=' . $collection_list_view["CUSTOMER_ID"] . '" class="btn btn-success">PAY NOW</a>
                     </td>
                  </tr>';
                         }
@@ -98,7 +91,8 @@ $collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!-- MODEL -->
 <!-- Modal -->
 <div id="model">
-    <div class="modal fade" id="modal-lg" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modal-lg" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
