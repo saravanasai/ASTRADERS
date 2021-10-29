@@ -122,9 +122,9 @@ $today_collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                  <td>' . $today_collection_list["TR_AMOUNT_BALANCE"] . '</td>
                                  <td>' . $today_collection_list["TR_DATE"] . '</td>
                                  <td>' . $today_collection_list["TR_TIME"] . '</td>
-                                 <td> <button type="button" class="btn btn-sm btn-success transactionViewModel" data-toggle="modal" id=' . $today_collection_list["TR_ID"] . ' data-target="#modal-lg">
+                                 <td> <button type="button" class="btn btn-sm btn-success transactionViewModel" data-toggle="modal" id=' . $today_collection_list["TR_LN_ID"] . ' data-target="#modal-lg" data-id="'.$today_collection_list["CUSTOMER_ID"].'">
                                  EDIT
-                                 <input type="hidden" id="editAreaDistrictId" value="'.$today_collection_list["TR_ID"].'">
+                                 <input type="hidden" id="editAreaDistrictId"  value="'.$today_collection_list["CUSTOMER_ID"].'">
                                  </button></td>
                                  
                                  </tr>';

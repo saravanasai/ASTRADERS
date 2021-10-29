@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 19, 2021 at 04:04 PM
+-- Generation Time: Oct 29, 2021 at 02:32 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -461,7 +461,7 @@ INSERT INTO `collectionList` (`COLLECTION_ID`, `COLLECTION_LN_ID`, `COLLECTION_T
 (170, 170, 152, 19, '1600', 100, '1000', '2021-09-30', 1, '2'),
 (171, 171, 153, 3, '2700', 200, '1500', '2021-10-14', 1, '2'),
 (172, 172, 154, 14, '2300', 200, '1700', '2021-10-14', 1, '1'),
-(173, 173, 155, 18, '700', 100, '400', '2021-10-07', 1, '1'),
+(173, 173, 155, 18, '700', 500, '0', '2021-10-14', 0, '1'),
 (174, 174, 156, 18, '700', 100, '500', '2021-09-30', 1, '1'),
 (175, 175, 157, 12, '1300', 100, '1000', '2021-09-30', 1, '1'),
 (176, 176, 158, 1, '1400', 100, '1300', '2021-09-23', 1, 'ON STORE'),
@@ -696,7 +696,9 @@ INSERT INTO `collectionList` (`COLLECTION_ID`, `COLLECTION_LN_ID`, `COLLECTION_T
 (407, 407, 1, 1, '1200', 100, '1100', '2021-10-26', 1, 'ON STORE'),
 (408, 408, 1, 1, '3350', 1000, '2000', '2021-11-02', 1, 'ON STORE'),
 (409, 409, 1, 1, '1200', 100, '1100', '2021-10-26', 1, 'ON STORE'),
-(410, 410, 1, 1, '5000', 100, '4850', '2021-10-26', 1, 'ON STORE');
+(410, 410, 1, 1, '5000', 100, '4850', '2021-10-26', 1, 'ON STORE'),
+(411, 411, 375, 1, '1950', 200, '1700', '2021-11-04', 1, 'ON STORE'),
+(412, 412, 376, 1, '3900', 100, '3800', '2021-11-03', 1, 'ON STORE');
 
 --
 -- Triggers `collectionList`
@@ -1169,7 +1171,9 @@ INSERT INTO `customermaster` (`CUSTOMER_ID`, `CUSTOMER_FIRST_NAME`, `CUSTOMER_LA
 (371, 'à®•à¯à®²à®¾à®ªà¯', 'à®¨à®¿à®•à®¿à®²à¯ à®µà®šà®µà®¾', '', '', '', 20, 8, 'KADKIPADA', 1),
 (372, 'à®¤à®¤à¯à®¤à¯', 'à®¨à®¨à¯à®¤à®¾ à®•à®¾à®µà®¿à®¤à¯', '', '', '', 20, 8, 'KADKIPADA', 1),
 (373, 'à®šà®¾à®¯à®¾', 'à®ªà®¾à®ªà¯', '', '', '', 20, 9, 'PIMPLA', 1),
-(374, 'Randall', 'Mullins', '656565', 'byge@mailinator.com', '522', 25, 48, 'Officia consequuntur', 1);
+(374, 'Randall', 'Mullins', '656565', 'byge@mailinator.com', '522', 25, 48, 'Officia consequuntur', 1),
+(375, 'SAI', 'TEST ACCOUNT ', '', '', '', 1, 33, 'dfasdfadfadfasdf', 1),
+(376, 'TEST ACCOUNT', 'TEST', '', '', '', 1, 33, 'test account ', 1);
 
 -- --------------------------------------------------------
 
@@ -1403,7 +1407,7 @@ INSERT INTO `loanMaster` (`LOAN_ID`, `LN_TO_CUSTOMER`, `LN_TO_PRODUCT`, `LN_PROD
 (110, 8, 5, 1, '1300', '0', '1000', 1, '2021-09-10', '2021-09-10 06:31:41', 'ON STORE'),
 (111, 103, 13, 1, '4400', '300', '3650', 1, '2021-09-11', '2021-09-10 16:53:49', 'ON STORE'),
 (112, 103, 19, 1, '1600', '0', '1450', 1, '2021-09-11', '2021-09-10 16:54:47', 'ON STORE'),
-(113, 104, 17, 1, '3000', '200', '2600', 1, '2021-09-11', '2021-09-10 16:56:29', 'ON STORE'),
+(113, 104, 17, 1, '3000', '200', '2400', 1, '2021-09-11', '2021-09-10 16:56:29', 'ON STORE'),
 (114, 105, 5, 1, '1300', '100', '900', 1, '2021-09-11', '2021-09-10 16:58:20', 'ON STORE'),
 (115, 106, 5, 1, '1300', '100', '900', 1, '2021-09-11', '2021-09-10 16:59:33', 'ON STORE'),
 (116, 107, 5, 1, '1300', '100', '1100', 1, '2021-09-11', '2021-09-10 17:02:19', 'ON STORE'),
@@ -1463,7 +1467,7 @@ INSERT INTO `loanMaster` (`LOAN_ID`, `LN_TO_CUSTOMER`, `LN_TO_PRODUCT`, `LN_PROD
 (170, 152, 19, 1, '1600', '500', '1000', 1, '2021-09-16', '2021-09-16 06:55:27', 'ON STORE'),
 (171, 153, 3, 1, '2700', '0', '1500', 1, '2021-09-16', '2021-09-16 06:57:14', 'ON STORE'),
 (172, 154, 14, 1, '2300', '0', '1700', 1, '2021-09-16', '2021-09-16 07:36:07', 'ON STORE'),
-(173, 155, 18, 1, '700', '100', '500', 1, '2021-09-16', '2021-09-16 07:37:26', 'ON STORE'),
+(173, 155, 18, 1, '700', '100', '0', 0, '2021-09-16', '2021-09-16 07:37:26', 'ON STORE'),
 (174, 156, 18, 1, '700', '100', '500', 1, '2021-09-16', '2021-09-16 07:39:35', 'ON STORE'),
 (175, 157, 12, 1, '1300', '200', '1000', 1, '2021-09-16', '2021-09-16 07:41:16', 'ON STORE'),
 (176, 158, 1, 1, '1400', '100', '1300', 1, '2021-09-16', '2021-09-16 07:42:49', 'ON STORE'),
@@ -1694,7 +1698,9 @@ INSERT INTO `loanMaster` (`LOAN_ID`, `LN_TO_CUSTOMER`, `LN_TO_PRODUCT`, `LN_PROD
 (401, 374, 8, 2, '2700', '500', '2200', 1, '2021-10-08', '2021-10-08 07:40:10', 'ON STORE'),
 (408, 1, 1, 1, '3350', '350', '2000', 1, '2021-10-19', '2021-10-19 12:12:22', 'ON STORE'),
 (409, 1, 1, 1, '1200', '100', '1100', 1, '2021-10-19', '2021-10-19 12:13:08', 'ON STORE'),
-(410, 1, 1, 1, '5000', '100', '4850', 1, '2021-10-19', '2021-10-19 12:35:18', 'ON STORE');
+(410, 1, 1, 1, '5000', '100', '4850', 1, '2021-10-19', '2021-10-19 12:35:18', 'ON STORE'),
+(411, 375, 1, 1, '1950', '50', '1700', 1, '2021-10-21', '2021-10-21 04:35:19', 'ON STORE'),
+(412, 376, 1, 1, '3900', '100', '3800', 1, '2021-10-27', '2021-10-27 05:06:27', 'ON STORE');
 
 --
 -- Triggers `loanMaster`
@@ -2229,8 +2235,8 @@ INSERT INTO `loanTransaction` (`TR_ID`, `TR_LN_ID`, `TR_OF_CUSTOMER`, `TR_TO_PRO
 (468, 183, 165, 1, 1400, 200, 1200, '2021-09-24', '02:26:05', 0, '1'),
 (469, 111, 103, 13, 4400, 150, 3950, '2021-09-24', '02:28:42', 0, '1'),
 (470, 112, 103, 19, 1600, 150, 1450, '2021-09-24', '02:28:57', 0, '1'),
-(471, 113, 104, 17, 3000, 200, 2600, '2021-09-24', '02:29:05', 1, '1'),
-(472, 173, 155, 18, 700, 100, 500, '2021-09-24', '02:29:26', 1, '1'),
+(471, 113, 104, 17, 3000, 200, 2600, '2021-09-24', '02:29:05', 0, '1'),
+(472, 173, 155, 18, 700, 100, 500, '2021-09-24', '02:29:26', 0, '1'),
 (473, 175, 157, 12, 1300, 100, 1000, '2021-09-24', '02:29:37', 0, '1'),
 (474, 177, 159, 16, 2400, 200, 2100, '2021-09-24', '02:29:51', 0, '1'),
 (475, 179, 161, 17, 3100, 100, 2800, '2021-09-24', '02:30:27', 0, '1'),
@@ -2493,7 +2499,7 @@ INSERT INTO `loanTransaction` (`TR_ID`, `TR_LN_ID`, `TR_OF_CUSTOMER`, `TR_TO_PRO
 (731, 258, 236, 24, 6000, 600, 5400, '2021-10-01', '02:30:51', 0, '1'),
 (732, 111, 103, 13, 4400, 300, 3650, '2021-10-01', '02:32:30', 0, '1'),
 (733, 113, 104, 17, 3000, 200, 2400, '2021-10-01', '02:32:54', 0, '1'),
-(734, 173, 155, 18, 700, 100, 400, '2021-10-01', '02:33:25', 0, '1'),
+(734, 173, 155, 18, 700, 100, 2300, '2021-10-01', '02:33:25', 0, '1'),
 (735, 174, 156, 18, 700, 100, 500, '2021-10-01', '02:33:33', 0, '1'),
 (736, 177, 159, 16, 2400, 100, 2000, '2021-10-01', '02:33:49', 0, '1'),
 (737, 179, 161, 17, 3100, 100, 2700, '2021-10-01', '02:34:14', 0, '1'),
@@ -2787,19 +2793,23 @@ INSERT INTO `loanTransaction` (`TR_ID`, `TR_LN_ID`, `TR_OF_CUSTOMER`, `TR_TO_PRO
 (1025, 4, 4, 12, 1300, 100, 700, '2021-10-07', '11:26:11', 0, '2'),
 (1026, 1, 1, 1, 1500, 100, 900, '2021-10-07', '12:09:28', 0, 'ON STORE'),
 (1027, 6, 6, 17, 3100, 100, 1900, '2021-10-07', '12:35:04', 0, 'ON STORE'),
-(1028, 1, 1, 1, 1500, 100, 800, '2021-10-07', '13:16:22', 1, 'ON STORE'),
-(1029, 1, 1, 1, 1500, 100, 700, '2021-10-07', '14:42:38', 1, 'ON STORE'),
-(1030, 1, 1, 1, 1500, 700, 0, '2021-10-07', '14:43:07', 1, 'ON STORE'),
-(1031, 401, 374, 8, 2700, 500, 2200, '2021-10-08', '13:10:10', 1, 'ON STORE'),
-(1032, 2, 2, 5, 1300, 1000, 0, '2021-10-08', '13:10:57', 1, 'ON STORE'),
-(1033, 404, 1, 1, 2600, 500, 2000, '2021-10-19', '16:49:48', 1, 'ON STORE'),
-(1034, 405, 1, 1, 2400, 400, 1900, '2021-10-19', '17:35:43', 1, 'ON STORE'),
-(1035, 406, 1, 1, 1300, 300, 1000, '2021-10-19', '17:38:30', 1, 'ON STORE'),
-(1036, 407, 1, 1, 1200, 100, 1100, '2021-10-19', '17:41:31', 1, 'ON STORE'),
-(1037, 408, 1, 1, 3350, 350, 3000, '2021-10-19', '17:42:22', 1, 'ON STORE'),
-(1038, 409, 1, 1, 1200, 100, 1100, '2021-10-19', '17:43:08', 1, 'ON STORE'),
-(1039, 408, 1, 1, 3350, 1000, 2000, '2021-10-19', '18:00:04', 1, 'ON STORE'),
-(1040, 410, 1, 1, 5000, 100, 4850, '2021-10-19', '18:05:18', 1, 'ON STORE');
+(1028, 1, 1, 1, 1500, 100, 800, '2021-10-07', '13:16:22', 0, 'ON STORE'),
+(1029, 1, 1, 1, 1500, 100, 700, '2021-10-07', '14:42:38', 0, 'ON STORE'),
+(1030, 1, 1, 1, 1500, 700, 0, '2021-10-07', '14:43:07', 0, 'ON STORE'),
+(1031, 401, 374, 8, 2700, 500, 2200, '2021-10-08', '13:10:10', 0, 'ON STORE'),
+(1032, 2, 2, 5, 1300, 1000, 0, '2021-10-08', '13:10:57', 0, 'ON STORE'),
+(1033, 404, 1, 1, 2600, 500, 2000, '2021-10-19', '16:49:48', 0, 'ON STORE'),
+(1034, 405, 1, 1, 2400, 400, 1900, '2021-10-19', '17:35:43', 0, 'ON STORE'),
+(1035, 406, 1, 1, 1300, 300, 1000, '2021-10-19', '17:38:30', 0, 'ON STORE'),
+(1036, 407, 1, 1, 1200, 100, 1100, '2021-10-19', '17:41:31', 0, 'ON STORE'),
+(1037, 408, 1, 1, 3350, 350, 3000, '2021-10-19', '17:42:22', 0, 'ON STORE'),
+(1038, 409, 1, 1, 1200, 100, 1100, '2021-10-19', '17:43:08', 0, 'ON STORE'),
+(1039, 408, 1, 1, 3350, 1000, 2000, '2021-10-19', '18:00:04', 0, 'ON STORE'),
+(1040, 410, 1, 1, 5000, 100, 4850, '2021-10-19', '18:05:18', 0, 'ON STORE'),
+(1041, 411, 375, 1, 1950, 50, 1900, '2021-10-21', '10:05:19', 0, 'ON STORE'),
+(1042, 411, 375, 1, 1950, 200, 1700, '2021-10-21', '10:09:06', 0, 'ON STORE'),
+(1043, 412, 376, 1, 3900, 100, 3800, '2021-10-27', '10:36:27', 0, 'ON STORE'),
+(1044, 173, 155, 18, 700, 500, 0, '2021-10-27', '13:02:35', 0, '1');
 
 --
 -- Triggers `loanTransaction`
@@ -2854,7 +2864,11 @@ INSERT INTO `orderItemMaster` (`OR_IT_ID`, `OR_TO_LN_ID`, `OR_OF_CUS`, `OR_OF_PR
 (5, 408, 1, 18, 1, 0),
 (6, 409, 1, 2, 1, 0),
 (7, 410, 1, 2, 2, 0),
-(8, 410, 1, 11, 2, 0);
+(8, 410, 1, 11, 2, 0),
+(9, 411, 375, 2, 1, 0),
+(10, 411, 375, 18, 1, 0),
+(11, 412, 376, 16, 1, 0),
+(12, 412, 376, 11, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -2878,7 +2892,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`PRODUCT_ID`, `PRODUCT_NAME`, `PRODUCT_BRAND`, `PRODUCT_MODEL_NO`, `PRODUCT_PRICE`, `PRODUCT_QUANTITY`, `PRODUCT_STATUS`, `PRODUCT_CREATED`) VALUES
-(1, 'FAN', 1, 'SPEEDO', 1500, -3, 1, NULL),
+(1, 'FAN', 1, 'SPEEDO', 1500, -5, 1, NULL),
 (2, 'SMALL FAN ', 2, '24inc', 1200, -1, 1, NULL),
 (3, 'BULLET', 3, 'BULLET FAN', 2700, 1, 1, NULL),
 (4, 'MIXER', 4, 'LOTES', 2700, 4, 1, NULL),
@@ -3339,7 +3353,9 @@ INSERT INTO `sales` (`SALE_ID`, `SALE_PRODUCT`, `SALE_PRODUCT_TO_CUSTOMER`, `SAL
 (405, 1, 1, 1, 1200, 100, 1100, '2021-10-19', '2021-10-19 12:11:31'),
 (406, 1, 1, 1, 3350, 350, 3000, '2021-10-19', '2021-10-19 12:12:22'),
 (407, 1, 1, 1, 1200, 100, 1100, '2021-10-19', '2021-10-19 12:13:08'),
-(408, 1, 1, 1, 5000, 100, 4850, '2021-10-19', '2021-10-19 12:35:18');
+(408, 1, 1, 1, 5000, 100, 4850, '2021-10-19', '2021-10-19 12:35:18'),
+(409, 1, 375, 1, 1950, 50, 1900, '2021-10-21', '2021-10-21 04:35:19'),
+(410, 1, 376, 1, 3900, 100, 3800, '2021-10-27', '2021-10-27 05:06:27');
 
 --
 -- Triggers `sales`
@@ -3357,6 +3373,7 @@ DELIMITER ;
 --
 CREATE TABLE `todayTransactionView` (
 `TR_ID` bigint(20)
+,`TR_LN_ID` bigint(20)
 ,`TR_AMOUNT_PAID` bigint(20)
 ,`TR_AMOUNT_BALANCE` bigint(20)
 ,`TR_DATE` date
@@ -3416,7 +3433,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `todayTransactionView`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `todayTransactionView`  AS SELECT `loanTransaction`.`TR_ID` AS `TR_ID`, `loanTransaction`.`TR_AMOUNT_PAID` AS `TR_AMOUNT_PAID`, `loanTransaction`.`TR_AMOUNT_BALANCE` AS `TR_AMOUNT_BALANCE`, `loanTransaction`.`TR_DATE` AS `TR_DATE`, `loanTransaction`.`TR_COMMIT_STATUS` AS `TR_COMMIT_STATUS`, `customermaster`.`CUSTOMER_ID` AS `CUSTOMER_ID`, `customermaster`.`CUSTOMER_FIRST_NAME` AS `CUSTOMER_FIRST_NAME`, `customermaster`.`CUSTOMER_PHONE_NUMBER` AS `CUSTOMER_PHONE_NUMBER`, `districts`.`DISTRICT_NAME` AS `DISTRICT_NAME`, `areas`.`AREA_NAME` AS `AREA_NAME`, `areas`.`AREA_ID` AS `AREA_ID`, `districts`.`DISTRICT_ID` AS `DISTRICT_ID`, `products`.`PRODUCT_NAME` AS `PRODUCT_NAME`, `loanTransaction`.`TR_TIME` AS `TR_TIME`, `loanTransaction`.`TR_DONE_ON` AS `TR_DONE_ON` FROM ((((`customermaster` join `loanTransaction`) join `areas`) join `districts`) join `products`) WHERE `loanTransaction`.`TR_OF_CUSTOMER` = `customermaster`.`CUSTOMER_ID` AND `districts`.`DISTRICT_ID` = `customermaster`.`CUSTOMER_DISTRICT` AND `areas`.`AREA_ID` = `customermaster`.`CUSTOMER_CITY` AND `products`.`PRODUCT_ID` = `loanTransaction`.`TR_TO_PRODUCT` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `todayTransactionView`  AS SELECT `loanTransaction`.`TR_ID` AS `TR_ID`, `loanTransaction`.`TR_LN_ID` AS `TR_LN_ID`, `loanTransaction`.`TR_AMOUNT_PAID` AS `TR_AMOUNT_PAID`, `loanTransaction`.`TR_AMOUNT_BALANCE` AS `TR_AMOUNT_BALANCE`, `loanTransaction`.`TR_DATE` AS `TR_DATE`, `loanTransaction`.`TR_COMMIT_STATUS` AS `TR_COMMIT_STATUS`, `customermaster`.`CUSTOMER_ID` AS `CUSTOMER_ID`, `customermaster`.`CUSTOMER_FIRST_NAME` AS `CUSTOMER_FIRST_NAME`, `customermaster`.`CUSTOMER_PHONE_NUMBER` AS `CUSTOMER_PHONE_NUMBER`, `districts`.`DISTRICT_NAME` AS `DISTRICT_NAME`, `areas`.`AREA_NAME` AS `AREA_NAME`, `areas`.`AREA_ID` AS `AREA_ID`, `districts`.`DISTRICT_ID` AS `DISTRICT_ID`, `products`.`PRODUCT_NAME` AS `PRODUCT_NAME`, `loanTransaction`.`TR_TIME` AS `TR_TIME`, `loanTransaction`.`TR_DONE_ON` AS `TR_DONE_ON` FROM ((((`customermaster` join `loanTransaction`) join `areas`) join `districts`) join `products`) WHERE `loanTransaction`.`TR_OF_CUSTOMER` = `customermaster`.`CUSTOMER_ID` AND `districts`.`DISTRICT_ID` = `customermaster`.`CUSTOMER_DISTRICT` AND `areas`.`AREA_ID` = `customermaster`.`CUSTOMER_CITY` AND `products`.`PRODUCT_ID` = `loanTransaction`.`TR_TO_PRODUCT` ;
 
 --
 -- Indexes for dumped tables
@@ -3566,13 +3583,13 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `collectionList`
 --
 ALTER TABLE `collectionList`
-  MODIFY `COLLECTION_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=411;
+  MODIFY `COLLECTION_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=413;
 
 --
 -- AUTO_INCREMENT for table `customermaster`
 --
 ALTER TABLE `customermaster`
-  MODIFY `CUSTOMER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=375;
+  MODIFY `CUSTOMER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=377;
 
 --
 -- AUTO_INCREMENT for table `districts`
@@ -3584,13 +3601,13 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `loanMaster`
 --
 ALTER TABLE `loanMaster`
-  MODIFY `LOAN_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=411;
+  MODIFY `LOAN_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=413;
 
 --
 -- AUTO_INCREMENT for table `loanTransaction`
 --
 ALTER TABLE `loanTransaction`
-  MODIFY `TR_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1041;
+  MODIFY `TR_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1045;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -3602,7 +3619,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `orderItemMaster`
 --
 ALTER TABLE `orderItemMaster`
-  MODIFY `OR_IT_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `OR_IT_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -3614,7 +3631,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `SALE_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=409;
+  MODIFY `SALE_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=411;
 
 --
 -- Constraints for dumped tables

@@ -278,6 +278,7 @@
         CREATE VIEW todayTransactionView AS
                   SELECT 
                    loanTransaction.TR_ID,
+                   loanTransaction.TR_LN_ID,
                    loanTransaction.TR_AMOUNT_PAID,
                    loanTransaction.TR_AMOUNT_BALANCE,
                    loanTransaction.TR_DATE,
