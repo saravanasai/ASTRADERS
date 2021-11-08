@@ -253,30 +253,67 @@ include_once("./pages/commondata.php");
                   </li>
                   <!-- end of a FIFTH navigation section-->
                   <!-- SIXITH menu for dashboard -->
+                    <li class="nav-item has-treeview ">
+                      <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-landmark"></i>
+                        <p>
+                          LOAN MASTER
+                          <i class="right fas fa-angle-left"></i>
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="<?php echo '?status=newLoan' ?>" class="nav-link">
+                            <i class="nav-icon fas fa-handshake"></i>
+                            <p>NEW LOAN</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="<?php echo '?status=payLoan' ?>" class="nav-link">
+                            <i class="nav-icon far fa-money-bill-alt"></i>
+                            <p>PAY LOAN</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="<?php echo '?status=payLoan' ?>" class="nav-link">
+                            <i class="nav-icon far fa-money-bill-alt"></i>
+                            <p>LOAN CLOSED LIST</p>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                  <!-- end of a SIXTH navigation section-->
+                  <!-- SIXITH menu for dashboard -->
                   <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link active">
-                      <i class="nav-icon fas fa-landmark"></i>
-                      <p>
-                        LOAN MASTER
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                        <a href="<?php echo '?status=newLoan' ?>" class="nav-link">
-                          <i class="nav-icon fas fa-handshake"></i>
-                          <p>NEW LOAN</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="<?php echo '?status=payLoan' ?>" class="nav-link">
-                          <i class="nav-icon far fa-money-bill-alt"></i>
-                          <p>PAY LOAN</p>
-                        </a>
-                      </li>
+                      <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-file-invoice"></i>
+                        <p>
+                          REPORT MASTER
+                          <i class="right fas fa-angle-left"></i>
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="<?php echo '?status=AgentReport' ?>" class="nav-link">
+                            <i class="nav-icon fas fa-user-tie"></i>
+                            <p>AGENT REPORT</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="<?php echo '?status=payLoan' ?>" class="nav-link">
+                            <i class="nav-icon fas fa-coins"></i>
+                            <p>TOTAL SALES REPORT</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="<?php echo '?status=payLoan' ?>" class="nav-link">
+                            <i class="nav-icon fas fa-calendar-week"></i>
+                            <p>AGENT DATEWISE REPORT</p>
+                          </a>
+                        </li>
 
-                    </ul>
-                  </li>
+                      </ul>
+                    </li>
                   <!-- end of a SIXTH navigation section-->
                   <!-- SEVENTH menu for dashboard -->
                   <li class="nav-item has-treeview ">
@@ -397,7 +434,10 @@ elseif($chk=="inVoiceOfCustomer")
 {
   include_once "./pages/inVoiceOfCustomer/inVoiceOfCustomer.php";
 }
-
+elseif($chk=="AgentReport")
+{
+  include_once "./pages/AgentReport/AgentReport.php";
+}
 
 
 

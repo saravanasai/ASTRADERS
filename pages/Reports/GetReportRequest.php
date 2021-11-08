@@ -37,6 +37,7 @@
             </tr>';
            
         }
+        
         $data=["report"=>$report,"total"=>$total_amount,"balance"=>$total_balance];
         echo json_encode($data);
     }
