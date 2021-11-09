@@ -95,7 +95,6 @@ $today_collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>CUSTOMER ID</th>
                         <th>AREA</th>
                         <th>DISRICT</th>
-                        <th>PRODUCT NAME</th>
                         <th>AMOUNT PAID</th>
                         <th>BALANCE AMOUNT</th>
                         <th>DATE</th>
@@ -116,8 +115,6 @@ $today_collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                  <td>' . $today_collection_list["CUSTOMER_ID"] . '</td>
                                  <td>' . $today_collection_list["AREA_NAME"] . '</td>
                                  <td>' . $today_collection_list["DISTRICT_NAME"] . '</td>
-                               
-                                 <td>' . $today_collection_list["PRODUCT_NAME"] . '</td>
                                  <td>'.$today_collection_list["TR_AMOUNT_PAID"].'</td>
                                  <td>' . $today_collection_list["TR_AMOUNT_BALANCE"] . '</td>
                                  <td>' . $today_collection_list["TR_DATE"] . '</td>

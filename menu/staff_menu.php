@@ -274,12 +274,12 @@ include_once("./pages/commondata.php");
                             <p>PAY LOAN</p>
                           </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                           <a href="<?php echo '?status=payLoan' ?>" class="nav-link">
                             <i class="nav-icon far fa-money-bill-alt"></i>
                             <p>LOAN CLOSED LIST</p>
                           </a>
-                        </li>
+                        </li> -->
                       </ul>
                     </li>
                   <!-- end of a SIXTH navigation section-->
@@ -300,15 +300,15 @@ include_once("./pages/commondata.php");
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="<?php echo '?status=payLoan' ?>" class="nav-link">
+                          <a href="<?php echo '?status=totalSalesReport' ?>" class="nav-link">
                             <i class="nav-icon fas fa-coins"></i>
                             <p>TOTAL SALES REPORT</p>
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a href="<?php echo '?status=payLoan' ?>" class="nav-link">
+                          <a href="<?php echo '?status=unPaidListReport' ?>" class="nav-link">
                             <i class="nav-icon fas fa-calendar-week"></i>
-                            <p>AGENT DATEWISE REPORT</p>
+                            <p>UNPAID REPORT</p>
                           </a>
                         </li>
 
@@ -438,7 +438,14 @@ elseif($chk=="AgentReport")
 {
   include_once "./pages/AgentReport/AgentReport.php";
 }
-
+elseif($chk=="totalSalesReport")
+{
+  include_once "./pages/totalSalesReport/totalSalesReport.php";
+}
+elseif($chk=="unPaidListReport")
+{
+  include_once "./pages/unPaidListReport/unPaidListReport.php";
+}
 
 
 ?>

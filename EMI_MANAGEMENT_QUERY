@@ -301,7 +301,20 @@
                          AND districts.DISTRICT_ID=customermaster.CUSTOMER_DISTRICT AND
                          areas.AREA_ID=customermaster.CUSTOMER_CITY AND products.PRODUCT_ID=loanTransaction.TR_TO_PRODUCT;
 
+   
+   //craeting the salesReportview 
 
+   CREATE VIEW salesReportView AS
+    SELECT
+    sales.SALE_ID,
+    sales.SALE_TOTAL_AMOUNT,
+    sales.SALE_PRODUCT_INITIAL_PAYMENT,
+    sales.SALE_ON_DATE,
+    customermaster.CUSTOMER_FIRST_NAME,
+    customermaster.CUSTOMER_LAST_NAME,
+    customermaster.CUSTOMER_ID
+    FROM sales,customermaster
+    WHERE sales.SALE_PRODUCT_TO_CUSTOMER=customermaster.CUSTOMER_ID;
 
 
 
