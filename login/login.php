@@ -22,6 +22,7 @@ if (isset($_POST["Login"])) {
 
   if ($count > 0) {
     $_SESSION["admin"] = $username;
+    
     header("location:../index.php");
   }
   else
