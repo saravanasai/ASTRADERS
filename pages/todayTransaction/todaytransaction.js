@@ -1,5 +1,4 @@
 $(function () {
-  console.log("today");
   //section to handle the day close function
   $("body").on("click", "#dayClose", function () {
     swal({

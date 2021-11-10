@@ -9,7 +9,7 @@ include("../../config.php");
 
 //section for fetching and showing the todayTransaction view data in model
 if (isset($_POST["customer_id"])) {
-
+    
     $cus_id = $_POST["customer_id"];
     $ln_id = $_POST["ln_id"];
     $sql = "SELECT * FROM `loanTransaction` WHERE TR_OF_CUSTOMER=:id AND TR_COMMIT_STATUS=0 AND TR_LN_ID=:ld_id ORDER BY TR_DATE ASC";

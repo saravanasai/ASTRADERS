@@ -15,6 +15,7 @@ if (isset($_GET["Agent_id"])) {
   $stmt->bindParam('id',$agent_id);
   $stmt->execute();
   $agent_transaction_details_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  // var_dump($agent_transaction_details_fetch);
   }catch(PDOException $e)
   {
     var_dump($e);
@@ -35,7 +36,51 @@ if (isset($_GET["Agent_id"])) {
   }
 
   // end section for getting the detials of  customer transaction from todaytransactionview table
+  //section to handle update of the transaction
 
+  if(isset($_POST["buttonUpdateTransaction"]))
+  {
+      
+      $tr_amount_paid_now=$_POST["updatedNewAmount"];
+      $tr_last_balance=$_POST["lastBalance"];
+      $tr_of_cus_id=$_POST["transactionUpdateToCusId"];
+      $tr_amount_balance_now=$tr_last_balance-$tr_amount_paid_now;
+
+      $sql=" UPDATE `loanTransaction` SET `TR_AMOUNT_PAID`=:amountpaid,`TR_AMOUNT_BALANCE`=:amountBalance WHERE `TR_OF_CUSTOMER`=:id AND `TR_COMMIT_STATUS`=1";
+   
+      $stmt = $conn->prepare($sql);
+      $stmt->bindParam("id",$tr_of_cus_id);
+      $stmt->bindParam("amountpaid",$tr_amount_paid_now);
+      $stmt->bindParam("amountBalance",$tr_amount_balance_now);
+          
+          try{
+               
+           $stmt->execute();
+             
+           echo '<script>
+           swal("UPDATED", "THE COLLECTION DETAILS", "success").then(()=>{
+             window.location.href = "./index.php?status=singleAgentcollection"; 
+           });
+        </script>';
+
+          }catch(PDOException $e)
+          {
+           echo '<script>
+           swal("SOMETHING WENT WRONG", "NO CHANGES MADE", "error").then(()=>{
+             window.location.href = "./index.php"; 
+           });
+        </script>';
+          }
+            
+     
+       
+
+
+  }
+
+
+
+//end section to handle update of the transaction
 
 }
 
@@ -86,7 +131,7 @@ if (isset($_GET["Agent_id"])) {
                                  <td>' . $transaction_details["AREA_NAME"] . '</td>
                                  <td>' . $transaction_details["PRODUCT_NAME"] . '</td>                        
                                  <td>'.$transaction_details["TR_AMOUNT_PAID"].'</td>
-                                 <td> <button type="button" class="btn btn-sm btn-success transactionViewModel" data-toggle="modal" id=' . $transaction_details["CUSTOMER_ID"] . ' data-target="#modal-lg">
+                                 <td> <button type="button" class="btn btn-sm btn-success singleAgenttransactionViewModel" data-toggle="modal" id=' . $transaction_details["TR_LN_ID"] . ' data-target="#singleAgentTransactionEditModel" data-id="'.$transaction_details["CUSTOMER_ID"].'">
                                  EDIT
                                  <input type="hidden" id="editAreaDistrictId" value="'.$transaction_details["CUSTOMER_ID"].'">
                                  </button></td>
@@ -109,12 +154,12 @@ if (isset($_GET["Agent_id"])) {
      <!-- MODEL -->
      <!-- Modal -->
      <div id="model">
-       <div class="modal fade" id="modal-lg" data-backdrop="static" tabindex="-1" role="dialog"
+       <div class="modal fade" id="singleAgentTransactionEditModel" data-backdrop="static" tabindex="-1" role="dialog"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">
            <div class="modal-content">
              <div class="modal-header">
-               <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+               <h5 class="modal-title" id="staticBackdropLabel">TRANSACTION EDIT</h5>
                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                  <span aria-hidden="true">&times;</span>
                </button>
