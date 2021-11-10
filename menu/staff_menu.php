@@ -274,12 +274,7 @@ include_once("./pages/commondata.php");
                             <p>PAY LOAN</p>
                           </a>
                         </li>
-                        <!-- <li class="nav-item">
-                          <a href="<?php echo '?status=payLoan' ?>" class="nav-link">
-                            <i class="nav-icon far fa-money-bill-alt"></i>
-                            <p>LOAN CLOSED LIST</p>
-                          </a>
-                        </li> -->
+                        
                       </ul>
                     </li>
                   <!-- end of a SIXTH navigation section-->

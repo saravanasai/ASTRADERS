@@ -33,7 +33,7 @@ $Total_Today_collection_count = $stmt_Today_collection_count->fetch(PDO::FETCH_C
 //End section for getting the Count of Today Collection
     //code...
 } catch (PDOException $e) {
-    echo $e;
+    // echo $e;
 }
 
 

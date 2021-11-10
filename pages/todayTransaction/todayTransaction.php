@@ -25,18 +25,16 @@ $today_collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
    if(isset($_POST["buttonUpdateTransaction"]))
    {
-       $tr_id=$_POST["transactionUpdateId"];
+       
        $tr_amount_paid_now=$_POST["updatedNewAmount"];
        $tr_last_balance=$_POST["lastBalance"];
+       $tr_of_cus_id=$_POST["transactionUpdateToCusId"];
        $tr_amount_balance_now=$tr_last_balance-$tr_amount_paid_now;
 
-          $tr_id++;
-           var_dump($tr_amount_balance_now);
-
-       $sql=" UPDATE `loanTransaction` SET `TR_AMOUNT_PAID`=:amountpaid,`TR_AMOUNT_BALANCE`=:amountBalance WHERE `TR_ID`=:id";
+       $sql=" UPDATE `loanTransaction` SET `TR_AMOUNT_PAID`=:amountpaid,`TR_AMOUNT_BALANCE`=:amountBalance WHERE `TR_OF_CUSTOMER`=:id AND `TR_COMMIT_STATUS`=1";
     
        $stmt = $conn->prepare($sql);
-       $stmt->bindParam("id",$tr_id);
+       $stmt->bindParam("id",$tr_of_cus_id);
        $stmt->bindParam("amountpaid",$tr_amount_paid_now);
        $stmt->bindParam("amountBalance",$tr_amount_balance_now);
            

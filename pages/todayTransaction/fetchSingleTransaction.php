@@ -22,6 +22,7 @@ if (isset($_POST["customer_id"])) {
 
 
     $single_Transaction_Detail_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
+     var_dump($single_Transaction_Detail_fetch);
     $count = count($single_Transaction_Detail_fetch);
     --$count;
 
@@ -58,8 +59,7 @@ if (isset($_POST["customer_id"])) {
 
     <div class="card-footer">
       <button type="submit" class="btn btn-warning float-right" id="buttonUpdateTransaction" name="buttonUpdateTransaction"  >UPDATE</button>
-      
-      <input type="hidden"  name="transactionUpdateId" value="' . $single_Transaction_Detail_fetch[$count]["TR_ID"] . '">
+      <input type="hidden"  name="transactionUpdateToCusId" value="' . $single_Transaction_Detail_fetch[$count]["TR_OF_CUSTOMER"] . '">
     </div>
   </form>';
 }

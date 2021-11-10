@@ -3,7 +3,9 @@
     //adding a database config file
     include_once ("./config.php");
    
-   //section to fetch districts form databse 
+    try {
+        
+        //section to fetch districts form databse 
    $sql = "SELECT * FROM salesReportView";
    $stmt = $conn->prepare($sql);
    $stmt->execute();
@@ -16,6 +18,11 @@
         $total_sales+=$sale['SALE_TOTAL_AMOUNT'];
         $net_cash+=$sale['SALE_PRODUCT_INITIAL_PAYMENT'];
     }
+    } catch (PDOException $e) {
+        //throw $th;
+        echo $e;
+    }
+   
    
    
  ?>
@@ -123,8 +130,7 @@
                             <td></td>
                             <td></td>
                         </tr>
-                        <?php 
-                      
+                        <?php  
                       foreach($sales_report_fecthed  as $sno=> $salses_list)
                       {
                        echo '<tr>
