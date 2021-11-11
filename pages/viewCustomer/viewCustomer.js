@@ -58,7 +58,7 @@ $(function () {
         },
         success: function (data) {
           if (data == 1) {
-            swal("STATUS CHANGE", "THANK YOU", "success").then(() => {
+            swal("CUSTOMER DELETED SUCCESSFULLY", "THANK YOU", "success").then(() => {
               window.location.href = "./index.php?status=viewCustomer";
             });
           }

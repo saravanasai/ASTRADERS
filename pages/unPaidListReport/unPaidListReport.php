@@ -2,22 +2,27 @@
     include_once("./assets/css_links.php");
     //adding a database config file
     include_once ("./config.php");
-   
+   //section to fetch districts form databse 
+   $sql_to_fetch_district = "SELECT * FROM districts";
+   $stmt_to_fetch_district = $conn->prepare($sql_to_fetch_district);
+   $stmt_to_fetch_district->execute();
+   $district_list_fecthed = $stmt_to_fetch_district->fetchAll(PDO::FETCH_ASSOC);
+   //end section to fetch districts form databse  
    //section to fetch collection unpaidList report form databse 
-   $sql = "SELECT * FROM collectionListView";
+   $sql = "SELECT * FROM collectionListView Where `COLLECTION_ON_DATE`<CURRENT_DATE";
    $stmt = $conn->prepare($sql);
    $stmt->execute();
    $collection_report_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
    //end section to fetch collection unpaidList report form databse  
+   $total_amount=0;
    $total_balance=0;
    
     foreach ($collection_report_fecthed as $key => $collection) {
         
-        $total_balance+=$collection['SALE_TOTAL_AMOUNT'];
+        $total_amount+=$collection['LN_TAB_TOTAL_AMOUNT'];
+        $total_balance+=$collection['LN_TAB_BALANCE_AMOUNT'];
         
-    }
-   
-   
+    } 
  ?>
 <!-- styles for loader -->
 <style>
@@ -60,43 +65,60 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="container">
-                <!-- <div class="row">
-                    <div class="col col-md-3">
-                        <div class="form-group">
-                            <label>FROM DATE:</label>
-                            <div class="input-group date"  >
-                                <input type="date" id="from_date_sale_report" class="form-control">
-                                <div class="input-group-append" >
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-md-3">
-                        <div class="form-group">
-                            <label>TO DATE:</label>
-                            <div class="input-group date" >
-                                <input type="date" class="form-control"  id="to_date_sale_report">
-                                <div class="input-group-append">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-md-3">
-                        <div class="form-group">
-                            <label for="report_total">TOTAL BALANCE AMOUNT</label>
-                            <input type="text" class="form-control" id="sales_report_total" value="<?php echo $total_balance; ?>" placeholder="TOTAL BALANCE AMOUNT" disabled>
-                        </div>
-                    </div>
-                    <div class="col col-md-3">
-                        <div class="form-group">
-                            <label for="report_total">CASH ON</label>
-                            <input type="text" class="form-control" id="sales_report_on_cash" value="<?php echo $net_cash; ?>" placeholder="TOTAL" disabled>
-                        </div>
-                    </div>
-                </div> -->
-               <h3>UNPAID LIST REPORT</h3> 
+            <section class="content-header">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col col-md-3">
+            <div class="form-group">
+              <label>SELECT DISTRICT</label>
+              <span id="unpaid_report_to_district_error" class="error invalid-feedback">Please Choose District</span>
+              <select class="form-control " id="unpaid_report_to_district" style="width: 100%;" tabindex="-1"
+                aria-hidden="true">
+                <option selected="selected" value="0">CHOOSE THE DISTRICT</option>
+                <?php 
+                      
+                      foreach($district_list_fecthed as $district_list)
+                      {
+                        echo '
+                        <option value="'.$district_list["DISTRICT_ID"].'">'.$district_list["DISTRICT_NAME"].'</option>';
+                      }
+                     ?>
+              </select>
+            </div>
+          </div>
+          <div class="col col-md-3">
+            <div class="form-group">
+              <label>SELECT AREA</label>
+              <span id="unpaid_report_to_area_error" class="error invalid-feedback">Please Choose Area</span>
+              <select class="form-control  inputDisabled " id="unpaid_report_to_area" style="width: 100%;" tabindex="-1"
+                aria-hidden="true" disabled>
+                <option selected="selected" value="0">CHOOSE THE AREA</option>
+              </select>
+            </div>
+          </div>
+          <div class="col col-md-1">
+            <div class="form-group mt-4 p-1">
+              <button type="button" id="unpaid_get_report" class="btn btn-success"><i class="fas fa-search mt-1 p-1"></i></button>
+            </div>
+          </div>
+          <div class="col col-md-3">
+          <div class="form-group">
+              <label for="report_total">TOTAL AMOUNT</label>
+              <input type="text" class="form-control" id="report_total" value="<?php echo $total_amount ?>" placeholder="TOTAL AMOUNT" disabled>
+            </div>
+          </div>
+          <div class="col col-md-2">
+          <div class="form-group">
+              <label for="report_balance">BALANCE AMOUNT</label>
+              <input type="text" class="form-control" id="report_balance" value="<?php echo $total_balance ?>" placeholder="BALANCE AMOUNT" disabled>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+               <!-- <h3>UNPAID LIST REPORT</h3> -->
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -110,13 +132,15 @@
                             <th>S.NO</th>
                             <th>CUSTOMER ID</th>
                             <th>F-NAME</th>
+                            <th>DISTRICT</th>
+                            <th>AREA</th>
                             <th>TOTAL AMOUNT</th>
                             <th>BALANCE AMOUNT</th>
                             <th>DUE DATE</th>
                             <th>STATUS</th>
                         </tr>
                     </thead>
-                    <tbody id="sales_report_insert">
+                    <tbody id="unpaid_list_report_insert">
                         <?php 
                        
                        $status="";
@@ -155,6 +179,8 @@
                         <td>'.++$sno.'</td>
                         <td>'.$collection_list['CUSTOMER_ID'].'</td>
                         <td>'.$collection_list['CUSTOMER_FIRST_NAME'].'</td>
+                        <td>'.$collection_list['DISTRICT_NAME'].'</td>
+                        <td>'.$collection_list['AREA_NAME'].'</td>
                         <td>'.$collection_list['LN_TAB_TOTAL_AMOUNT'].'</td>
                         <td>'.$collection_list['COLLECTION_BALANCE_AMOUNT'].'</td>
                         <td>'.$collection_list['COLLECTION_ON_DATE'].'</td>
