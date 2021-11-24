@@ -44,10 +44,9 @@
                     //     echo json_encode($response_data[$i]);
                     //  }
                      $response=array("collectionlist"=>$response_data);
-                     //language problem updated 
-                    //  $response=array("collectionlist"=> mb_convert_encoding($response_data, 'UTF-8', 'UTF-8'));
-                    //  ;
-                     echo json_encode($response);
+                     echo json_encode($response,JSON_INVALID_UTF8_IGNORE);
+                      echo json_last_error_msg();
+                      die();
                     }
                  
                  else
