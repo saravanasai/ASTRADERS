@@ -30,6 +30,7 @@
                  //section for fecthing the collection list 
                 //  $sql="SELECT * FROM `collectionListView` WHERE `LN_TAB_BALANCE_AMOUNT`>0  AND `DISTRICT_ID`=:district AND  `COLLECTION_ON_DATE`=CURRENT_DATE  AND  `AREA_ID`  IN (".$agent_areas.")";
                  $sql="SELECT * FROM `collectionListView` WHERE `LN_TAB_BALANCE_AMOUNT`>0  AND `DISTRICT_ID`=:district  AND  `AREA_ID`  IN (".$agent_areas.")";
+                 
                  $stmt=$conn->prepare($sql);
                  $stmt->bindParam("district",$agent_district);
                  $stmt->execute();
