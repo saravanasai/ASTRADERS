@@ -306,7 +306,12 @@ include_once("./pages/commondata.php");
                             <p>UNPAID REPORT</p>
                           </a>
                         </li>
-
+                        <li class="nav-item">
+                          <a href="<?php echo '?status=zeroBalanceList' ?>" class="nav-link">
+                            <i class="nav-icon fas fa-list-ol"></i>
+                            <p>ZERO BALANCE LIST</p>
+                          </a>
+                        </li>
                       </ul>
                     </li>
                   <!-- end of a SIXTH navigation section-->
@@ -440,6 +445,10 @@ elseif($chk=="totalSalesReport")
 elseif($chk=="unPaidListReport")
 {
   include_once "./pages/unPaidListReport/unPaidListReport.php";
+}
+elseif($chk=="zeroBalanceList")
+{
+  include_once "./pages/zeroBalanceList/zeroBalanceList.php";
 }
 
 

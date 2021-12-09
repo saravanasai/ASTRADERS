@@ -57,7 +57,7 @@ if (isset($_POST["updateForm"])) {
 
     if ($validation_status) {
 
-        $sql = "UPDATE products SET PRODUCT_NAME=:name,PRODUCT_BRAND=:brand,PRODUCT_MODEL_NO=:model,PRODUCT_PRICE=:price,PRODUCT_QUANTITY=:quantity WHERE PRODUCT_ID=:id";
+        $sql = "UPDATE products SET PRODUCT_NAME=:name,PRODUCT_BRAND=:brand,PRODUCT_MODEL_NO=:model,PRODUCT_PRICE=:price,PRODUCT_QUANTITY=PRODUCT_QUANTITY+:quantity WHERE PRODUCT_ID=:id";
         $stmt=$conn->prepare($sql);
         $stmt->bindParam("id",$product_update_to_id);
         $stmt->bindParam("name",$product_update_name);

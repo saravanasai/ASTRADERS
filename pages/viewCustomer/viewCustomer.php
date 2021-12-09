@@ -5,7 +5,7 @@ include_once "./assets/css_links.php";
 include_once "./config.php";
 //SECTION FOR FETCHING THE DATA FROM CUSTOMERS MASTER TABLE
 
-$sql = "SELECT * FROM `customerMasterView` WHERE  CUSTOMER_STATUS=1 ";
+$sql = "SELECT * FROM `customerMasterView` WHERE  CUSTOMER_STATUS=1  ORDER BY `customerMasterView`.`CUSTOMER_ID` ASC";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $customer_Master_view_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -59,11 +59,11 @@ if (isset($_POST["customerupdateForm"])) {
 
 
     //section for updating the area information to database
-
+     
 
     if ($validation_status) {
 
-        $sql = "UPDATE `customermaster` SET 
+        $sql = "UPDATE `customerMasterView` SET 
         `CUSTOMER_FIRST_NAME`=:customerFirstName,
         `CUSTOMER_LAST_NAME`=:customerLastName,
         `CUSTOMER_PHONE_NUMBER`=:customerPhoneNumber,
@@ -84,6 +84,9 @@ if (isset($_POST["customerupdateForm"])) {
         $stmt->bindParam("customerAddress", $customer_address_update);
 
         if ($stmt->execute()) {
+             
+            var_dump($customer_area_update);
+
             echo '<script>
               swal("UPDATED", "THE CUSTOMER DETAILS", "success").then(()=>{
                 window.location.href = "./index.php?status=viewCustomer"; 
@@ -216,7 +219,7 @@ if (isset($_POST["customerupdateForm"])) {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">EDIT CUSTOMER DETAIL</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

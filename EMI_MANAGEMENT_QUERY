@@ -316,7 +316,25 @@
     FROM sales,customermaster
     WHERE sales.SALE_PRODUCT_TO_CUSTOMER=customermaster.CUSTOMER_ID;
 
+   // creation of view collectionZeroBalance List view
+    
+       CREATE VIEW customerZeroBalanceListView AS
+                SELECT 
+                 customermaster.CUSTOMER_ID,
+                 customermaster.CUSTOMER_FIRST_NAME,
+                 customermaster.CUSTOMER_LAST_NAME,
+                 customermaster.CUSTOMER_PHONE_NUMBER,
+                 districts.DISTRICT_NAME,
+                 areas.AREA_NAME,
+                 areas.AREA_ID,
+                 districts.DISTRICT_ID,
+                 customermaster.CUSTOMER_STATUS,
+                 collectionList.COLLECTION_BALANCE_AMOUNT
+                 FROM customermaster,districts,areas,collectionList
+                 WHERE districts.DISTRICT_ID=customermaster.CUSTOMER_DISTRICT 
+                 AND areas.AREA_ID=customermaster.CUSTOMER_CITY AND customermaster.CUSTOMER_ID=collectionList.COLLECTION_TO_CUSTOMER AND collectionList.COLLECTION_BALANCE_AMOUNT=0; 
 
+   // endof creation of view collectionZeroBalance List view 
 
 
 //TRIGGER TO UPDATE VALUE ON LOAN_MASTER TABLE IF TRANSACTION TABLE ALTERED

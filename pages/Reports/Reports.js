@@ -5,6 +5,8 @@ $(function () {});
 //resseting the  validation feilds 
 $('#report_to_district_error').hide();
 $('#report_to_area_error').hide();
+ 
+ 
 
 
 //section of fetching the area data by choosing the district

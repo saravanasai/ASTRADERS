@@ -1,12 +1,10 @@
 $(function () {
   //section of fetching the area data by choosing the district
-
   $("body").on("change", "select#customerDistrictUpdate", function () {
     let district_id = $("select#customerDistrictUpdate").val();
     console.log(district_id);
 
     //ajax requesting to server
-
     $.ajax({
       type: "post",
       url: "pages/addCustomer/areaFetchRequest.php",

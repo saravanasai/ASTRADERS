@@ -41,6 +41,11 @@
                                      $status="danger";
                                      $unpaidFor=$difference_date."-days";
                                  }
+                                 else
+                                 {
+                                    $status="danger";
+                                    $unpaidFor=$difference_date."-days";
+                                 }
             $report.='
             <tr>
                         <td>'.++$sno.'</td>

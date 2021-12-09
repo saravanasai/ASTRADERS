@@ -9,25 +9,36 @@ $(function () {
   $("body").on("click", ".addProductToBill", function () {
     $(".productTable").hide();
 
-    let product_id = $(this).attr('id');
+    let product_id = $(this).attr("id");
     let customer_id = $("#customerSubmitId").val();
-    let productQuantity = $("#productQuantity"+product_id).val();
-     
+    let productQuantity = $("#productQuantity" + product_id).val();
+
     $.ajax({
       type: "post",
       url: "pages/takeLoan/takeLoanPageAddProductToBillRequest.php",
       data: {
-        productId:product_id,
-        customer_id :customer_id ,
-        productQuantity :productQuantity 
+        productId: product_id,
+        customer_id: customer_id,
+        productQuantity: productQuantity,
       },
       success: function (data) {
         $(".addToBill").empty();
         $(".addToBill").html(data);
         $("#searchBar").val("");
-        let grand_total=$("#grand_total").val();
+        let grand_total = $("#grand_total").val();
         console.log(grand_total);
         $(".grandTotalDetailView").html(grand_total);
+        //request section to product tabel to less product Quantity on adding to bill
+        $.ajax({
+          type: "post",
+          url: "pages/takeLoan/ProductQuantityLessRequest.php",
+          data: {
+            productId: product_id,
+            productQuantity: productQuantity,
+          },
+          success: function (data) { },
+        });
+        //end request section to product tabel to less product Quantity on adding to bill
       },
     });
   });
@@ -35,28 +46,44 @@ $(function () {
 
   //section to delete product on bill
   $("body").on("click", ".deleteProductFromBill", function () {
-    
-    let delete_Product_id = $(this).attr('id');
+    let delete_Product_id = $(this).attr("id");
     let customer_id = $("#customerSubmitId").val();
-    
 
+
+    //request section to product tabel to add product Quantity on adding to bill
     $.ajax({
       type: "post",
-      url: "pages/takeLoan/takeLoanPageDeleteProductOnBillRequest.php",
+      url: "pages/takeLoan/ProductQuantityAddRequest.php",
       data: {
-        delete_Product_id:delete_Product_id,
-        customer_id:customer_id
-       
-
+        delete_Product_id: delete_Product_id,
+        customer_id: customer_id,
       },
       success: function (data) {
-        $(".addToBill").empty();
-        $(".addToBill").html(data);
-        $("#searchBar").val("");
-        let grand_total=$('#grand_total').val();
-        $(".grandTotalDetailView").html(grand_total);
+
+        $.ajax({
+          type: "post",
+          url: "pages/takeLoan/takeLoanPageDeleteProductOnBillRequest.php",
+          data: {
+            delete_Product_id: delete_Product_id,
+            customer_id: customer_id,
+          },
+          success: function (data) {
+            $(".addToBill").empty();
+            $(".addToBill").html(data);
+            $("#searchBar").val("");
+            let grand_total = $("#grand_total").val();
+            $(".grandTotalDetailView").html(grand_total);
+
+          }
+        });
+
       },
     });
+
+    //end request section to product tabel to add product Quantity on adding to bill
+
+
+
   });
   //end section to delete product on bill
 
@@ -65,17 +92,18 @@ $(function () {
   $("body").on("change", "#productDiscount", function () {
     //to reset value
     $("#productDiscount").removeClass("is-invalid");
-   
+
     let iniztial_payment = $("#iniztialPayment").val();
     let discount_amount = $("#productDiscount").val();
-    let grand_total=$('#grand_total').val();
+    let grand_total = $("#grand_total").val();
     $(".grandTotalDetailView").html(grand_total);
 
     if (!$.isNumeric(discount_amount)) {
       $("#productDiscount").addClass("is-invalid");
       $("#productTotalAmount").val("0");
     } else {
-      let final_payable_amount = grand_total - discount_amount -iniztial_payment;
+      let final_payable_amount =
+        grand_total - discount_amount - iniztial_payment;
       $("#productTotalAmount").val(final_payable_amount);
       $(".grandTotalDetailView").html(final_payable_amount);
       $(".discountPaymentDetailView").html(discount_amount);
@@ -85,7 +113,6 @@ $(function () {
   });
   //end section to handle discount from total amount
 
-
   //section to calculate the balance amount to after inizial payment
   $("body").on("keyup", "#iniztialPayment", function () {
     //to make error zero for initizal payment
@@ -93,10 +120,13 @@ $(function () {
     $(".submitLoan").hide();
 
     let iniztial_payment = $("#iniztialPayment").val();
-    let grand_total=$('#grand_total').val();
-    let discount=$('#productDiscount').val();
-    if (Number(iniztial_payment) <= Number(grand_total)-Number(discount) && !iniztial_payment == "") {
-      let balance_payment = grand_total - iniztial_payment-discount;
+    let grand_total = $("#grand_total").val();
+    let discount = $("#productDiscount").val();
+    if (
+      Number(iniztial_payment) <= Number(grand_total) - Number(discount) &&
+      !iniztial_payment == ""
+    ) {
+      let balance_payment = grand_total - iniztial_payment - discount;
       $("#balanceAmount").val(balance_payment);
       $(".balanceDetailView").html(balance_payment);
       $(".iniztialPaymentDetailView").html(iniztial_payment);
@@ -118,8 +148,8 @@ $(function () {
     let product_quantity = 1;
     let total_amount = $("#grand_total").val();
     let initizal_amount = $("#iniztialPayment").val();
-    let discount=$('#productDiscount').val();
-    let balance_amount = total_amount - initizal_amount -discount;
+    let discount = $("#productDiscount").val();
+    let balance_amount = total_amount - initizal_amount - discount;
     let loan_status = 1;
 
     if (balance_amount == 0) {
@@ -162,7 +192,6 @@ $(function () {
 });
 
 $("#searchBar").keyup(function () {
- 
   let search_key = $("#searchBar").val();
   $(".productTable").show();
 

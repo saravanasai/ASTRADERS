@@ -64,6 +64,7 @@
 <script src="pages/AgentReport/AgentReport.js"></script>
 <script src="pages/totalSalesReport/totalSalesReport.js"></script>
 <script src="pages/unPaidListReport/unPaidListReport.js"></script>
+<script src="pages/zeroBalanceList/zeroBalanceList.js"></script>
 
 
 
