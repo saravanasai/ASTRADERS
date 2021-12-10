@@ -307,6 +307,12 @@ include_once("./pages/commondata.php");
                           </a>
                         </li>
                         <li class="nav-item">
+                          <a href="<?php echo '?status=monthlyAgentReport' ?>" class="nav-link">
+                            <i class="nav-icon fas fa-clipboard-list"></i>
+                            <p>MONTHLY AGENT REPORT</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
                           <a href="<?php echo '?status=zeroBalanceList' ?>" class="nav-link">
                             <i class="nav-icon fas fa-list-ol"></i>
                             <p>ZERO BALANCE LIST</p>
@@ -450,6 +456,9 @@ elseif($chk=="zeroBalanceList")
 {
   include_once "./pages/zeroBalanceList/zeroBalanceList.php";
 }
-
+elseif($chk=="monthlyAgentReport")
+{
+  include_once "./pages/monthlyAgentReport/monthlyAgentReport.php";
+}
 
 ?>

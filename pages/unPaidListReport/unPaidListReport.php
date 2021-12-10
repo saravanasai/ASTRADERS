@@ -130,14 +130,16 @@
                     <thead>
                         <tr role="row">
                             <th>S.NO</th>
-                            <th>CUSTOMER ID</th>
+                            <th>CUS-ID</th>
                             <th>F-NAME</th>
                             <th>DISTRICT</th>
                             <th>AREA</th>
-                            <th>TOTAL AMOUNT</th>
-                            <th>BALANCE AMOUNT</th>
+                            <th>T-AMOUNT</th>
+                            <th>B-AMOUNT</th>
                             <th>DUE DATE</th>
-                            <th>STATUS</th>
+                            <th>DAYS</th>
+                            <th>ACTION</th>
+                            <th>REMARK</th>
                         </tr>
                     </thead>
                     <tbody id="unpaid_list_report_insert">
@@ -185,8 +187,13 @@
                         <td>'.$collection_list['COLLECTION_BALANCE_AMOUNT'].'</td>
                         <td>'.$collection_list['COLLECTION_ON_DATE'].'</td>
                         <td><span class="badge bg-'.$status.'">'.$unpaidFor.'</span></td>
+                        <td><button type="button" class="btn btn-sm btn-primary addRemarksToUnpaid" data-toggle="modal" id='.$collection_list['CUSTOMER_ID']. ' data-target="#modal-remark">
+                        <i class="fas fa-sticky-note px-1"></i>NOTE
+                        </button>
+                        </td>
+                        <td>'.$collection_list['CUSTOMER_REMARK'].'</td>
                         </tr>';
-                        
+                         
                       }
                      ?>
                     </tbody>
@@ -194,6 +201,34 @@
             </div>
             <!-- /.content -->
         </div>
+
+        <!-- Modal -->
+<div id="model">
+    <div class="modal fade" id="modal-remark" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">ADD REMARKS FOR </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <div class="form-group">
+                        <label>ADD REMARKS</label>
+                        <textarea class="form-control" rows="3" id="remarks_to_unpaid_user_text" placeholder="Enter ..."></textarea>
+                      </div>
+                </div>
+                <input type="hidden" id="remarkToCustomer">
+                <div class="modal-footer">
+                    <button type="button" id="remark_add_btn" class="btn btn-sm btn-outline-primary"><i class="fas fa-plus px-1"></i>ADD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
         <?php
   include_once("./assets/js_links.php");
 ?>

@@ -4,7 +4,6 @@ $(function () {
     dom: "Bfrtip",
     buttons: ["copyHtml5", "excelHtml5", "pdfHtml5", "csvHtml5"],
   });
-  
   //section of fetching the area data by choosing the district
   $("#unpaid_report_to_district").change(function () {
     let district_id = $("select#unpaid_report_to_district").val();
@@ -23,6 +22,30 @@ $(function () {
     });
   });
   // end section of fetching the area data by choosing the district
+
+  //section for open model for update remarks to user
+$("body").on('click','#remark_add_btn',function () {
+   
+  let customer_id=$('#remarkToCustomer').val();
+  let remarks=$('#remarks_to_unpaid_user_text').val();
+    alert("ok");
+  $.ajax({
+   type: "post",
+   url: "pages/unPaidListReport/unpaidListRemarkRequest.php",
+   data: { id: customer_id ,remarks:remarks},
+   success: function (data) {
+     if(data==1)
+     {
+      swal("STATUS UPDATED", "THANK YOU", "success").then(() => {
+        window.location.href = "./index.php?status=unPaidListReport";
+      });
+     }
+   },
+ });
+});
+// end section for open model for update remarks to user
+   
+
 });
 //section for creating the new customer for loan
 $('body').on('click','#unpaid_get_report',function () {
@@ -93,4 +116,13 @@ $('body').on('click','#unpaid_get_report',function () {
    });
 }
 });
-//section for adding customer
+//section for adding customer 
+
+//section for open model for psuh id of user to that model
+$(".addRemarksToUnpaid").click(function () {
+  let customer_id = $(this).attr("id");
+   $('#remarkToCustomer').val(customer_id);
+});
+// end section for open model for psuh id of user to that model
+
+

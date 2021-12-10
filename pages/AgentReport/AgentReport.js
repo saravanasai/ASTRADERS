@@ -115,7 +115,7 @@ $("body").on("change", "#to_date", function () {
       },
       success: function (data) {
         // let response=JSON.parse(data);
-        console.log(data);
+        // console.log(data);
         $("#agent_report_insert").empty();
         $("#viewAgentReportTable").DataTable().destroy();
         //data will be a html templete generated with data on server side

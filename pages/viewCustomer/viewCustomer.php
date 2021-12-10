@@ -85,7 +85,7 @@ if (isset($_POST["customerupdateForm"])) {
 
         if ($stmt->execute()) {
              
-            var_dump($customer_area_update);
+            
 
             echo '<script>
               swal("UPDATED", "THE CUSTOMER DETAILS", "success").then(()=>{
