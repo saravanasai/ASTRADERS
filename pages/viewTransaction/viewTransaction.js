@@ -1,6 +1,15 @@
 
 $(function()
 {
+
+    
+    $('#singleCustomerTransactionTable').DataTable({
+        dom: 'B',
+        buttons: [
+        'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5'
+            ]
+        });
+
     //getting the invoice details from orderItemmaster table
     $('body').on('click','.invoiceDetails',function()
     {

@@ -42,6 +42,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/datetime/1.1.1/js/dataTables.dateTime.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <!--link of custom file input -->
 <script src="pages/newAgent/newAgent.js"></script>
 <script src="pages/viewagent/viewAgent.js"></script>
@@ -66,6 +67,7 @@
 <script src="pages/unPaidListReport/unPaidListReport.js"></script>
 <script src="pages/zeroBalanceList/zeroBalanceList.js"></script>
 <script src="pages/monthlyAgentReport/monthlyAgentReport.js"></script>
+
 
 
 

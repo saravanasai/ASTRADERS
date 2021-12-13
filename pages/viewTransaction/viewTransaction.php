@@ -101,16 +101,17 @@ if (isset($_GET["cus_id_transaction"])) {
             <!-- Table row -->
             <div class="row">
                 <div class="col-12 table-responsive">
-                    <table class="table table-head-fixed table-striped table-bordered printTable">
+                    <table class="table table-head-fixed table-striped table-bordered printTable" id="singleCustomerTransactionTable">
                         <thead>
                             <tr>
                                 <th>S.NO</th>
-                                <th>INVOICE</th>
+                                <th>INVOICE NO</th>
                                 <th>TOTAL AMOUNT</th>
-                                <th>PAID INITIAL</th>
+                                <th>PAID </th>
                                 <th>AMOUNT BALANACE</th>
                                 <th>DATE</th>
                                 <th>TIME</th>
+                                <th>BILL</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,12 +120,13 @@ if (isset($_GET["cus_id_transaction"])) {
                             foreach ($single_customer_transaction_details_fetch as $sno => $single_customer_transaction_details) {
                                 echo '<tr>
                                  <td>' . ++$sno . '</td>
-                                 <td><button class="btn btn-sm btn-success  invoiceDetails"  id="'.$single_customer_transaction_details["LOAN_ID"].'"><i class="fas fa-binoculars px-1"></i>Invoice</button></td> 
+                                 <td>'.$single_customer_transaction_details["LOAN_ID"].'</td> 
                                  <td>' . $single_customer_transaction_details["TR_AMOUNT_PAID_INITIAL"] . '</td>
                                  <td>' . $single_customer_transaction_details["TR_AMOUNT_PAID"] . '</td>
                                  <td>' . $single_customer_transaction_details["TR_AMOUNT_BALANCE"] . '</td>
                                  <td>' . $single_customer_transaction_details["TR_DATE"] . '</td>
-                                 <td>' . $single_customer_transaction_details["TR_TIME"] . '</td>    
+                                 <td>' . $single_customer_transaction_details["TR_TIME"] . '</td> 
+                                 <td><button class="btn btn-sm btn-success  invoiceDetails"  id="'.$single_customer_transaction_details["LOAN_ID"].'"><i class="fas fa-binoculars px-1"></i>Invoice</button></td>    
                                  </tr>';
                             }
                             
@@ -148,12 +150,13 @@ if (isset($_GET["cus_id_transaction"])) {
 
             <!-- this row will not appear when printing -->
             <div class="row no-print">
-                <div class="col-12">
-
-                    <button type="button" class="btn btn-primary float-right printButton" style="margin-right: 5px;">
+                <div class="col-12 mt-3">
+                    <a  href="?status=zeroBalanceList" class="btn btn-sm btn-info float-right text-white" style="margin-right: 5px;">
+                    <i class="fas fa-backward px-2"></i> Back
+                    </a>
+                    <button type="button" class="btn btn-sm btn-primary float-right printButton" style="margin-right: 5px;">
                         <i class="fas fa-download"></i> Generate PDF
                     </button>
-
                 </div>
             </div>
         </div>
