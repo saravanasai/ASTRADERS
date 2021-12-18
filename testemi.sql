@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 13, 2021 at 10:10 AM
+-- Generation Time: Dec 18, 2021 at 06:03 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -20,34 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `testemi`
 --
-
-DELIMITER $$
---
--- Procedures
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spLoop` ()  BEGIN 
-   DECLARE n int;
-   DECLARE i int DEFAULT 0;
-   DECLARE str  VARCHAR(255) DEFAULT '';
-   SET n=10;
-  fLoop: LOOP 
-  
-       IF i=n THEN 
-          LEAVE fLoop;
-       ELSE 
-          SET i=i+1; 
-          SET  str = CONCAT(str,i,',');
-          ITERATE  fLoop;      
-       END IF;
-       
-   END LOOP;
-   
-  SELECT str;
-  
-
-END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -1377,7 +1349,7 @@ CREATE TABLE `customermaster` (
 --
 
 INSERT INTO `customermaster` (`CUSTOMER_ID`, `CUSTOMER_FIRST_NAME`, `CUSTOMER_LAST_NAME`, `CUSTOMER_PHONE_NUMBER`, `CUSTOMER_EMAIL`, `CUSTOMER_ADHAR_NO`, `CUSTOMER_DISTRICT`, `CUSTOMER_CITY`, `CUSTOMER_ADDRESS`, `CUSTOMER_REMARK`, `CUSTOMER_STATUS`) VALUES
-(5, 'ANKUSH', 'CHAKEN BHEEL', '', '', '', 20, 9, 'AYANA PLOAT', 'ON REMARK', 1),
+(5, 'ANKUSH', 'CHAKEN BHEEL', '', '', '', 1, 33, 'AYANA PLOAT', 'ON REMARK', 1),
 (6, 'PAVBHA', 'MANGA BHEEL', '', '', '', 1, 33, 'AAYANA PLOAT', 'ON REMARK', 1),
 (7, 'NIRMALA BHAI', 'BANSHI LAL', '', '', '', 1, 33, 'AAYANA PLOAT', 'ON REMARK', 1),
 (9, 'VIJAY', 'PINTU BHEEL', '', '', '', 1, 33, 'AAYANA PLOAT', 'ON REMARK', 1),
@@ -2256,11 +2228,17 @@ CREATE TABLE `customerMasterView` (
 ,`CUSTOMER_FIRST_NAME` varchar(50)
 ,`CUSTOMER_LAST_NAME` varchar(50)
 ,`CUSTOMER_PHONE_NUMBER` varchar(255)
+,`CUSTOMER_EMAIL` varchar(50)
+,`CUSTOMER_ADHAR_NO` varchar(50)
+,`CUSTOMER_DISTRICT` int(11)
+,`CUSTOMER_CITY` int(11)
+,`CUSTOMER_ADDRESS` varchar(50)
+,`CUSTOMER_REMARK` varchar(255)
+,`CUSTOMER_STATUS` int(11)
 ,`DISTRICT_NAME` varchar(50)
 ,`AREA_NAME` varchar(50)
 ,`AREA_ID` int(11)
 ,`DISTRICT_ID` int(11)
-,`CUSTOMER_STATUS` int(11)
 );
 
 -- --------------------------------------------------------
@@ -3496,7 +3474,7 @@ INSERT INTO `loanTransaction` (`TR_ID`, `TR_LN_ID`, `TR_OF_CUSTOMER`, `TR_TO_PRO
 (119, 9, 9, 17, 3100, 200, 2600, '2021-09-10', '16:25:45', 0, '2'),
 (120, 10, 10, 19, 1600, 200, 1300, '2021-09-10', '16:25:54', 0, '2'),
 (121, 11, 11, 5, 1300, 100, 1100, '2021-09-10', '16:26:03', 0, '2'),
-(122, 12, 12, 13, 4500, 500, 4000, '2021-09-10', '16:26:16', 0, '2'),
+(122, 12, 12, 13, 4500, 0, 1900, '2021-09-10', '16:26:16', 1, '2'),
 (123, 14, 13, 5, 1300, 100, 1200, '2021-09-10', '16:26:27', 0, '2'),
 (124, 15, 14, 5, 1300, 200, 1000, '2021-09-10', '16:26:48', 0, '2'),
 (125, 16, 15, 5, 1300, 100, 1000, '2021-09-10', '16:26:57', 0, '2'),
@@ -8377,7 +8355,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `customerMasterView`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customerMasterView`  AS SELECT `customermaster`.`CUSTOMER_ID` AS `CUSTOMER_ID`, `customermaster`.`CUSTOMER_FIRST_NAME` AS `CUSTOMER_FIRST_NAME`, `customermaster`.`CUSTOMER_LAST_NAME` AS `CUSTOMER_LAST_NAME`, `customermaster`.`CUSTOMER_PHONE_NUMBER` AS `CUSTOMER_PHONE_NUMBER`, `districts`.`DISTRICT_NAME` AS `DISTRICT_NAME`, `areas`.`AREA_NAME` AS `AREA_NAME`, `areas`.`AREA_ID` AS `AREA_ID`, `districts`.`DISTRICT_ID` AS `DISTRICT_ID`, `customermaster`.`CUSTOMER_STATUS` AS `CUSTOMER_STATUS` FROM ((`customermaster` join `districts`) join `areas`) WHERE `districts`.`DISTRICT_ID` = `customermaster`.`CUSTOMER_DISTRICT` AND `areas`.`AREA_ID` = `customermaster`.`CUSTOMER_CITY` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `customerMasterView`  AS SELECT `customermaster`.`CUSTOMER_ID` AS `CUSTOMER_ID`, `customermaster`.`CUSTOMER_FIRST_NAME` AS `CUSTOMER_FIRST_NAME`, `customermaster`.`CUSTOMER_LAST_NAME` AS `CUSTOMER_LAST_NAME`, `customermaster`.`CUSTOMER_PHONE_NUMBER` AS `CUSTOMER_PHONE_NUMBER`, `customermaster`.`CUSTOMER_EMAIL` AS `CUSTOMER_EMAIL`, `customermaster`.`CUSTOMER_ADHAR_NO` AS `CUSTOMER_ADHAR_NO`, `customermaster`.`CUSTOMER_DISTRICT` AS `CUSTOMER_DISTRICT`, `customermaster`.`CUSTOMER_CITY` AS `CUSTOMER_CITY`, `customermaster`.`CUSTOMER_ADDRESS` AS `CUSTOMER_ADDRESS`, `customermaster`.`CUSTOMER_REMARK` AS `CUSTOMER_REMARK`, `customermaster`.`CUSTOMER_STATUS` AS `CUSTOMER_STATUS`, `districts`.`DISTRICT_NAME` AS `DISTRICT_NAME`, `areas`.`AREA_NAME` AS `AREA_NAME`, `areas`.`AREA_ID` AS `AREA_ID`, `districts`.`DISTRICT_ID` AS `DISTRICT_ID` FROM ((`customermaster` join `districts`) join `areas`) WHERE `districts`.`DISTRICT_ID` = `customermaster`.`CUSTOMER_DISTRICT` AND `areas`.`AREA_ID` = `customermaster`.`CUSTOMER_CITY` ;
 
 -- --------------------------------------------------------
 

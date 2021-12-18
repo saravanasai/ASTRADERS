@@ -42,8 +42,6 @@ $(function () {
     var new_balance = old_amount - new_amount;
 
     if (
-      new_amount > old_amount ||
-      new_amount == "" ||
       !$.isNumeric(new_amount)
     ) {
       $("#updatedNewAmount").addClass("is-invalid");

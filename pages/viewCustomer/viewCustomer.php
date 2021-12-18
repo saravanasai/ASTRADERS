@@ -83,9 +83,18 @@ if (isset($_POST["customerupdateForm"])) {
         $stmt->bindParam("customerArea", $customer_area_update);
         $stmt->bindParam("customerAddress", $customer_address_update);
 
-        if ($stmt->execute()) {
+        if (true) {
              
-            
+             
+          try {
+              //code...
+              $stmt->execute();
+          } catch (PDOException $Exception) {
+              
+             var_dump($Exception);
+          }
+             
+
 
             echo '<script>
               swal("UPDATED", "THE CUSTOMER DETAILS", "success").then(()=>{

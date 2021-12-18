@@ -175,17 +175,13 @@ CREATE VIEW collectionListView AS
    
     //VIEW CREATION  VIEW FOR CUSTOMERMASTER VIEW
 
-                   CREATE VIEW customerMasterView AS
+               CREATE VIEW customerMasterView AS
                   SELECT 
-                 customermaster.CUSTOMER_ID,
-                 customermaster.CUSTOMER_FIRST_NAME,
-                 customermaster.CUSTOMER_LAST_NAME,
-                 customermaster.CUSTOMER_PHONE_NUMBER,
+                 customermaster.*,
                  districts.DISTRICT_NAME,
                  areas.AREA_NAME,
                  areas.AREA_ID,
-                 districts.DISTRICT_ID,
-                 customermaster.CUSTOMER_STATUS
+                 districts.DISTRICT_ID
                  FROM customermaster,districts,areas
                  WHERE districts.DISTRICT_ID=customermaster.CUSTOMER_DISTRICT 
                  AND areas.AREA_ID=customermaster.CUSTOMER_CITY; 
