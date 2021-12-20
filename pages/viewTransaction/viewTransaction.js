@@ -4,7 +4,7 @@ $(function()
 
     
     $('#singleCustomerTransactionTable').DataTable({
-        dom: 'B',
+        dom: 'Bip',
         buttons: [
         'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5'
             ]

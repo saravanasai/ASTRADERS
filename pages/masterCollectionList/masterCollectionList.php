@@ -70,7 +70,7 @@ $collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
            </td>
                     
                      <td>
-                     <a href="index.php?status=payLoan&LOAN_ID=' . $collection_list_view["LOAN_ID"] . '&CUS_ID=' . $collection_list_view["CUSTOMER_ID"] . '" class="btn btn-success">PAY NOW</a>
+                     <a href="index.php?status=payLoan&LOAN_ID=' . $collection_list_view["LOAN_ID"] . '&CUS_ID=' . $collection_list_view["CUSTOMER_ID"] . '" class="btn btn-success btn-sm"><i class="fas fa-calculator px-1"></i>PAY NOW</a>
                     </td>
                  </tr>';
                         }

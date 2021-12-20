@@ -154,11 +154,11 @@ foreach ($products_list_fecthed as $sno => $product_list) {
                      <td>
                      <button type="button" class="btn btn-sm btn-warning productViewModel" data-toggle="modal" id=' . $product_list["PRODUCT_ID"] . ' data-target="#modal-lg">
 
-                       EDIT
+                     <i class="far fa-edit"></i> EDIT
                       </button>
                      </td>
                      <td>
-                     <button type="button" class="btn btn-sm btn-danger deleteProduct"  id=' . $product_list["PRODUCT_ID"] . '>DELETE
+                     <button type="button" class="btn btn-sm btn-danger deleteProduct"  id=' . $product_list["PRODUCT_ID"] . '><i class="fas fa-trash-alt px-1"></i>DELETE
                      </button>
                     </td>
                  </tr>';

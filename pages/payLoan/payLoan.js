@@ -100,7 +100,7 @@ $("#loanPayUpdateButton").click(function(){
                              if(data==1)
                              {
                               swal("LOAN CLOSED", "THANK YOU", "success").then(() => {
-                                window.location.href = "./index.php";
+                                window.location.href = "./index.php?status=payLoan";
                               });
                              }
 

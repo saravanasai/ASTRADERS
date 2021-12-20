@@ -23,14 +23,17 @@ if (isset($_POST["keyword"])) {
          if(count($product_search_details_fetch)>0)
          {
             foreach ($product_search_details_fetch as $key=> $product_list) {
-    
+                
+                  $stock_remaining_status=($product_list['PRODUCT_QUANTITY']<=0)?'disabled':'';
+                  $in_stock=($product_list['PRODUCT_QUANTITY']<=0)?' ! Out Of Stock':'';
+
                 echo '  <tr>
                         <td>'.++$key.'</td>
                         <td>'.$product_list["PRODUCT_NAME"].'</td>
-                        <td>'.$product_list["PRODUCT_MODEL_NO"].'</td>
-                        <td><input type="text" class="form-control form-control-border " id="productQuantity'.$product_list["PRODUCT_ID"].'" placeholder="Quantity" required></td>
+                        <td>'.$product_list["PRODUCT_MODEL_NO"].'<span class="text-danger p-l-1">'.$in_stock.'</span> </td>
+                        <td><input type="text" class="form-control form-control-border " '.$stock_remaining_status.'  id="productQuantity'.$product_list["PRODUCT_ID"].'" placeholder="Quantity" required></td>
                         <td>'.$product_list["PRODUCT_PRICE"].'</td>
-                        <td><button class="btn btn-success btn-sm addProductToBill"  id="'.$product_list["PRODUCT_ID"].'"><i class="fas fa-cart-plus px-1"></i>ADD</button></td>
+                        <td><button class="btn btn-success btn-sm addProductToBill" '.$stock_remaining_status.'  id="'.$product_list["PRODUCT_ID"].'"><i class="fas fa-cart-plus px-1"></i>ADD</button></td>
                         <input type="hidden" id="loanToProductId" value="'.$product_list["PRODUCT_ID"].'">
                         </tr>';
         

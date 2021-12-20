@@ -57,7 +57,7 @@
       </div>
       <div class="form-group" >
       <label>PRODUCT BRAND*</label>
-      <select class="form-control select2bs4 select2-hidden-accessible" id="productBrandUpdate" name="productBrandUpdate" style="width: 100%;"  tabindex="-1" aria-hidden="true">
+      <select class="form-control " id="productBrandUpdate" name="productBrandUpdate" style="width: 100%;"  tabindex="-1" aria-hidden="true">
       <option selected="selected" value='.$singleProduct["PRODUCT_BRAND"].'>'.$singleProduct["BRAND_NAME"].'</option>
         
         "'.$brand_list_append.'"

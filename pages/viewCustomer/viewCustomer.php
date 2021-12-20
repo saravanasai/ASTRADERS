@@ -145,7 +145,7 @@ if (isset($_POST["customerupdateForm"])) {
                         <th>CUSTOMER ID</th>
                         <th>FIRST NAME</th>
                         <th>LAST NAME</th>
-                        <th>PH NUMBER</th>
+                        <!-- <th>PH NUMBER</th> -->
                         <th>AREA NAME</th>
                         <th>DISTRICT NAME</th>
                         <th style="width: 40px">ACTION</th>
@@ -178,9 +178,7 @@ if (isset($_POST["customerupdateForm"])) {
                      <td>
                        ' . $customer_Master_view_list["CUSTOMER_LAST_NAME"] . '
                      </td>
-                     <td>
-                       ' . $customer_Master_view_list["CUSTOMER_PHONE_NUMBER"] . '
-                     </td>
+                     
                      <td>
                      ' . $customer_Master_view_list["AREA_NAME"] . '
                      </td>
@@ -189,20 +187,20 @@ if (isset($_POST["customerupdateForm"])) {
                      </td>
                      <td>
                      <button type="button" class="btn btn-sm btn-warning customerViewModel" data-toggle="modal" id='.$customer_Master_view_list["CUSTOMER_ID"]. ' data-target="#modal-lg">
-                      EDIT
+                     <i class="far fa-edit"></i> EDIT
                       
                       </button>
                      </td>
                      <td>
-                     <button type="button" class="btn btn-sm btn-'.$statusColor.' deleteCustomer"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '>'.$statusText.'
+                     <button type="button" class="btn btn-sm btn-'.$statusColor.' deleteCustomer"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '> <i class="fas fa-trash-alt px-1"></i>'.$statusText.'
                      </button>
                      </td>
                      <td>
-                     <button type="button" class="btn btn-sm btn-success loanTransaction"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '>TRANSACTION
+                     <button type="button" class="btn btn-sm btn-success loanTransaction"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '><i class="fas fa-download px-1"></i>TRANSACTION
                      </button>
                      </td>
                      <td>
-                     <button type="button" class="btn btn-sm btn-success takeLoanRedirect'.$deactivateRedirection.' '.$takeloanbuttonstatus.'"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '>TAKE LOAN
+                     <button type="button" class="btn btn-sm btn-success takeLoanRedirect'.$deactivateRedirection.' '.$takeloanbuttonstatus.'"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '><i class="fas fa-paper-plane px-1"></i>TAKE LOAN
                      </button>
                     
                      </td>
@@ -246,4 +244,9 @@ if (isset($_POST["customerupdateForm"])) {
 
 <?php
 include_once "./assets/js_links.php";
+
+// echo "<td>
+// ' . $customer_Master_view_list["CUSTOMER_PHONE_NUMBER"] . '
+// </td>";
+
 ?>
