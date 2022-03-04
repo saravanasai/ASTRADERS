@@ -53,8 +53,8 @@
                     </div>
                     <div class="col col-md-4">
                         <div class="form-group">
-                          <label for="agentAdharNumber">AGENT ADHAR NUMBER*</label>
-                          <input type="text" class="form-control" id="agentAdharNumber" placeholder="Adhar Number">
+                          <label for="password">Password*</label>
+                          <input type="text" class="form-control" id="agentPassword" placeholder="Agent Password">
                         </div>
                     </div>
                    
@@ -63,6 +63,13 @@
                  
                  
                       <div class="row">
+
+                      <div class="col col-md-4">
+                        <div class="form-group">
+                          <label for="agentAdharNumber">AGENT ADHAR NUMBER*</label>
+                          <input type="text" class="form-control" id="agentAdharNumber" placeholder="Adhar Number">
+                        </div>
+                    </div>
                           <div class="col col-md-4">
                             <div class="form-group">
                               <label>DISTRICT TO AGENT*</label>
@@ -79,7 +86,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col col-md-8">
+                        <div class="col col-md-4">
                                <div class="text-danger" id="error_area"></div>
                             <div class="select2-danger" >
                               <div class="form-group">

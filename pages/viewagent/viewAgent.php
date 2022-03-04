@@ -24,6 +24,7 @@ if (isset($_POST["updateForm"])) {
     $agent_adhar_number_update = $_POST["agentAdharNumberUpdate"];
     $agent_address_update = $_POST["agentAddressUpdate"];
     $agent_city_update=$_POST["agentCityUpdate"];
+    $agentPasswordUpdate=$_POST["agentPasswordUpdate"];
 
     
     //section for validating the updated agent information
@@ -55,7 +56,7 @@ if (isset($_POST["updateForm"])) {
 
     if ($validation_status) {
 
-        $sql = "UPDATE agents SET AGENT_NAME=:name,AGENT_ADDRESS=:address,AGENT_ADHAR_NO=:adharNumber,AGENT_PHONE_NUMBER=:phoneNumber,AGENT_FOR_CITY=:city WHERE AGENT_ID=:id";
+        $sql = "UPDATE agents SET AGENT_NAME=:name,AGENT_ADDRESS=:address,AGENT_ADHAR_NO=:adharNumber,AGENT_PHONE_NUMBER=:phoneNumber,PASSWORD=:password,AGENT_FOR_CITY=:city WHERE AGENT_ID=:id";
         $stmt=$conn->prepare($sql);
         $stmt->bindParam("id",$agent_update_to_id);
         $stmt->bindParam("name",$agent_name_update);
@@ -63,6 +64,7 @@ if (isset($_POST["updateForm"])) {
         $stmt->bindParam("adharNumber",$agent_adhar_number_update);
         $stmt->bindParam("address",$agent_address_update); 
         $stmt->bindParam("city",$agent_city_update); 
+        $stmt->bindParam("password",md5($agentPasswordUpdate)); 
         
 
       if($stmt->execute())

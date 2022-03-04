@@ -1,5 +1,12 @@
 
+ALTER TABLE `agents` ADD `PASSWORD` VARCHAR(255) NULL DEFAULT NULL AFTER `AGENT_PHONE_NUMBER`;
+
+​//Query for adding password
+
+
  
+
+
 
              //EMI MANAGEMENT SYSTEM QUERYS 
  
