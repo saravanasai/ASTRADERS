@@ -9,9 +9,10 @@
  $agent_adhar_number=$_POST["agentAdharNumber"];
  $agent_address=$_POST["agentAddress"];
  $agent_city=$_POST["agentCity"];
+ $agent_password=$_POST["agentPassword"];
  
- $sql="INSERT INTO agents( AGENT_NAME,AGENT_ADDRESS,AGENT_ADHAR_NO,AGENT_PHONE_NUMBER,AGENT_FOR_CITY,AGENT_STATUS) 
-     VALUES (:name,:address,:adharNumber,:phoneNumber,:city,:status)" ;
+ $sql="INSERT INTO agents( AGENT_NAME,AGENT_ADDRESS,AGENT_ADHAR_NO,AGENT_PHONE_NUMBER,PASSWORD,AGENT_FOR_CITY,AGENT_STATUS) 
+     VALUES (:name,:address,:adharNumber,:phoneNumber,:password,:city,:status)" ;
 
  $stmt=$conn->prepare($sql);
  $stmt->bindParam("name",$agent_name);
@@ -20,6 +21,7 @@
  $stmt->bindParam("adharNumber",$agent_adhar_number);
  $stmt->bindParam("address",$agent_address);
  $stmt->bindParam("city",$agent_city);
+ $stmt->bindParam("password",md5($agent_password));
  
         if($stmt->execute())
         {
