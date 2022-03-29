@@ -111,8 +111,7 @@
                   <tr role="row">
                     <th>LN ID</th>
                     <th>NAME</th>
-                    <th>PRODUCT NAME</th>
-                    <th>QTY</th>
+                    <th>INVOICE NO</th>
                     <th>TOTAL</th>
                     <th>BALANCE</th>
                     <th>LN DATE</th>
