@@ -57,6 +57,11 @@
                         <td>'.$collection_list['COLLECTION_BALANCE_AMOUNT'].'</td>
                         <td>'.$collection_list['COLLECTION_ON_DATE'].'</td>
                         <td><span class="badge bg-'.$status.'">'.$unpaidFor.'</span></td>
+                        <td><button type="button" class="btn btn-sm btn-primary addRemarksToUnpaid" data-toggle="modal" id='.$collection_list['CUSTOMER_ID']. ' data-target="#modal-remark">
+                        <i class="fas fa-sticky-note px-1"></i>NOTE
+                        </button>
+                        </td>
+                        <td>'.$collection_list['CUSTOMER_REMARK'].'</td>
                         </tr>';
            
         }
