@@ -3,7 +3,7 @@ include_once("./assets/css_links.php");
 //adding a database config file
 include_once("./config.php");
 // SECTION TO FETCHING TOTAL TODAY SALES
-$sql_today_total_sales = "SELECT SUM(`TR_AMOUNT_PAID`) as totalSales FROM `loanTransaction` WHERE `TR_COMMIT_STATUS`=1 AND `TR_DONE_ON`!='ON STORE'" ;
+$sql_today_total_sales = "SELECT SUM(`TR_AMOUNT_PAID`) as totalSales FROM `loanTransaction` WHERE `TR_COMMIT_STATUS`=1" ;
 $stmt_to_today_sales = $conn->prepare($sql_today_total_sales);
 $stmt_to_today_sales->execute();
 $today_total_collection_amount_fetch = $stmt_to_today_sales->fetchAll(PDO::FETCH_ASSOC);
@@ -93,7 +93,7 @@ $today_total_collection_amount_fetch = $stmt_to_today_sales->fetchAll(PDO::FETCH
             <?php }else{?>
             <h3><?php echo 0 ?></h3>
             <?php }?>
-            <p>TODAY COLLECTION</p>
+            <p>TODAY TRANSACTIONS</p>
           </div>
           <div class="icon">
             <i class="ion ion-bag"></i>

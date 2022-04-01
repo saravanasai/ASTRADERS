@@ -25,7 +25,8 @@
                             This List Shows The Customer With Zero Balance Of Payment
                         </div>
                         <div class="col-md-3">
-                            <div class="float-right mt-3    ">
+                            <div class="float-right mt-3 ">
+                            <button type="button" id="zero_balance_list_select_all" class="btn btn-warning btn-sm "><i class="fa fa-minus-square px-1" aria-hidden="true"></i>SELECT ALL</button>
                             <button type="button" id="zero_balance_list_multiple_del" class="btn btn-danger btn-sm "><i class="fas fa-user-times px-1"></i>DELETE</button>
                             </div>  
                         </div>
