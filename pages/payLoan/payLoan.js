@@ -1,9 +1,29 @@
 $(function () {
   $("#payButton").hide();
-
   
 
-  
+  //section for field auto focus $ pay for enter key
+  $('#amountPaidNow').focus();
+  $('#amountPaidNow').keypress(function (e) {
+    var key = e.which;
+    if(key == 13)  // the enter key code
+     {
+       $('#loanPayUpdateButton').click();
+       return false;  
+     }
+   });   
+
+
+  $('#customerPhoneNumnber').focus();
+  $('#customerPhoneNumnber').keypress(function (e) {
+    var key = e.which;
+    if(key == 13)  // the enter key code
+     {
+       $('#getCustomerDetail').click();
+       return false;  
+     }
+   });   
+   //end section for field auto focus pay on enter key
 });
 
 

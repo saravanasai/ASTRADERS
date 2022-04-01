@@ -1,7 +1,12 @@
 
 $(function(){
-  //this initialization is done for ZeroBalanceList Table 
 
+   //global scope variables
+   var is_all_selected=true;
+
+
+  //this initialization is done for ZeroBalanceList Table 
+ 
   $('#ZeroBalanceListTable').DataTable({
     dom: 'Bfrtip',
     buttons: [
@@ -86,5 +91,44 @@ $(function(){
   
   });
   //end section to handle the mutiple delete button 
-   
+    
+
+  //section for select all inlist
+
+  $("body").on("click", "#zero_balance_list_select_all",function(){
+     
+
+    console.log(is_all_selected);
+
+    if(is_all_selected)
+    {
+      $("input:checkbox[name=zeroBalanceCustomerID]").each(function(){
+
+        $(this).prop('checked', true);
+        
+      });  
+         
+      $('#zero_balance_list_select_all').html('')
+      $('#zero_balance_list_select_all').html('<i class="fa fa-minus-square px-1" aria-hidden="true"></i>UN-SELECT ALL')
+      is_all_selected=false
+    }
+    else{
+      $("input:checkbox[name=zeroBalanceCustomerID]").each(function(){
+
+       $(this).prop('checked',false);
+        
+      });  
+      $('#zero_balance_list_select_all').html('')
+      $('#zero_balance_list_select_all').html('<i class="fa fa-minus-square px-1" aria-hidden="true"></i>SELECT ALL')
+     
+      
+      is_all_selected=true
+    }
+    
+
+
+  });
+  //end section for select all inlist 
+
+
 });

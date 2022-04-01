@@ -446,3 +446,30 @@ CREATE TABLE orderItemMaster (
     FOREIGN KEY (OR_OF_PR_ID) REFERENCES products(PRODUCT_ID),
     FOREIGN KEY (OR_TO_LN_ID) REFERENCES  loanMaster(LOAN_ID)
 );
+
+
+
+**************************changes done on new admin panel requirement 01-04-2022****************************************
+
+CREATE VIEW todayTransactionViewWithAgents AS
+                  SELECT 
+                   loanTransaction.TR_ID,
+                   loanTransaction.TR_LN_ID,
+                   loanTransaction.TR_AMOUNT_PAID,
+                   loanTransaction.TR_AMOUNT_BALANCE,
+                   loanTransaction.TR_COMMIT_STATUS,
+                   loanTransaction.TR_DATE,
+                   loanTransaction.TR_DONE_ON,
+                   customermaster.CUSTOMER_FIRST_NAME,
+                   customermaster.CUSTOMER_LAST_NAME,
+                   customermaster.CUSTOMER_PHONE_NUMBER,
+                   customermaster.CUSTOMER_ID,
+                   agents.AGENT_NAME,
+                   agents.AGENT_PHONE_NUMBER,
+                   districts.DISTRICT_NAME,
+                   areas.AREA_NAME
+                  FROM loanTransaction INNER JOIN customermaster on customermaster.CUSTOMER_ID=loanTransaction.TR_OF_CUSTOMER
+                  LEFT JOIN agents ON agents.AGENT_ID=loanTransaction.TR_DONE_ON,districts,areas  
+                  WHERE 
+                       	 districts.DISTRICT_ID=customermaster.CUSTOMER_DISTRICT 
+                         AND areas.AREA_ID=customermaster.CUSTOMER_CITY ;

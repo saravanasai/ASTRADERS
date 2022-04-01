@@ -41,9 +41,7 @@ $(function () {
     var old_amount = Number(old_amount_for_update);
     var new_balance = old_amount - new_amount;
 
-    if (
-      !$.isNumeric(new_amount)
-    ) {
+    if (!$.isNumeric(new_amount)) {
       $("#updatedNewAmount").addClass("is-invalid");
       $("#newBalance").val("0");
       $("#buttonUpdateTransaction").hide();
@@ -61,19 +59,47 @@ $(function () {
 $(".transactionViewModel").click(function () {
   let ln_id = $(this).attr("id");
   let customer_id = $(this).attr("data-id");
+  let transaction_id = $(this).attr("transaction-id");
 
-  //section for ajax
-  $.ajax({
-    type: "post",
-    url: "pages/todayTransaction/fetchSingleTransaction.php",
-    data: { customer_id: customer_id, ln_id: ln_id },
-    success: function (data) {
-      $(".modal-body").html(data);
-      $("#buttonUpdateTransaction").hide();
-    },
+  console.log(
+    "loan_id:" +
+      ln_id +
+      "\t customer_id:" +
+      customer_id +
+      "\t transaction_id:" +
+      transaction_id
+  );
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to roll Back!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      //section for ajax
+      $.ajax({
+        type: "post",
+        url: "pages/todayTransaction/deleteSingleTransaction.php",
+        data: { customer_id: customer_id, ln_id: ln_id ,transaction_id:transaction_id},
+        success: function (data) {
+          swal({
+            title: "PROCESS COMPLETED",
+            text: "Transaction Deleted Successfully",
+            icon: "info",
+            toast:true
+          }).then(()=>{
+
+             window.location.href="index.php?status=todayTransaction"
+
+          });
+        },
+      });
+      // end  ajax
+    } else {
+      swal("NO CHANGES HAD MADE!");
+    }
   });
-
-  // end  ajax
 });
 
 //end  section to fetch the transaction details from transaction table using transaction id

@@ -181,7 +181,7 @@ $(function () {
         } else {
           //section for showing success message
           swal("DONE!", "ADDED NEW LOAN", "success").then(() => {
-            window.location.href = "index.php?";
+            window.location.href = "index.php?status=addCustomer";
           });
         }
       },
