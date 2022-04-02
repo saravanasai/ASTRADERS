@@ -7,6 +7,7 @@
      $area_id=$_POST['area_id'];
      $sql="SELECT `LOAN_ID`,
      `CUSTOMER_FIRST_NAME`,
+     `CUSTOMER_ID`,
      `PRODUCT_NAME`,
      `LN_PRODUCT_QUANTITY`,
      `LN_TAB_TOTAL_AMOUNT`,
@@ -27,7 +28,7 @@
 
             $report.='
             <tr role="row">
-            <td>'.$reports["LOAN_ID"].'</td>
+            <td>'.$reports["CUSTOMER_ID"].'</td>
             <td>'.$reports["CUSTOMER_FIRST_NAME"].'</td>
             <td><button class="btn btn-sm btn-success  invoiceDetails"  id="'.$reports["LOAN_ID"].'"><i class="fas fa-binoculars px-1"></i>Invoice</button></td>    
             <td>'.$reports["LN_TAB_TOTAL_AMOUNT"].'</td>

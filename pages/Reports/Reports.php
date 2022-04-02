@@ -109,7 +109,7 @@
               <table class="table table-bordered table-striped" id="viewReportTable">
                 <thead>
                   <tr role="row">
-                    <th>LN ID</th>
+                    <th>CUS ID</th>
                     <th>NAME</th>
                     <th>INVOICE NO</th>
                     <th>TOTAL</th>
