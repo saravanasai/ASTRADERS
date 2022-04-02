@@ -81,17 +81,19 @@ $(".transactionViewModel").click(function () {
       $.ajax({
         type: "post",
         url: "pages/todayTransaction/deleteSingleTransaction.php",
-        data: { customer_id: customer_id, ln_id: ln_id ,transaction_id:transaction_id},
+        data: {
+          customer_id: customer_id,
+          ln_id: ln_id,
+          transaction_id: transaction_id,
+        },
         success: function (data) {
           swal({
             title: "PROCESS COMPLETED",
             text: "Transaction Deleted Successfully",
             icon: "info",
-            toast:true
-          }).then(()=>{
-
-             window.location.href="index.php?status=todayTransaction"
-
+            toast: true,
+          }).then(() => {
+            window.location.href = "index.php?status=todayTransaction";
           });
         },
       });

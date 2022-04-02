@@ -6,6 +6,7 @@ include_once "./config.php";
 $redirect_check = true;
 
 
+
 //SECTION TO FETCH THE LOAN DETAILS BY LOAN ID IF REDIRECTED FROM OTHER PAGES
 if (isset($_GET["LOAN_ID"])) {
 
@@ -72,7 +73,19 @@ if (isset($_GET["LOAN_ID"])) {
   <!-- END OF MAIN CONTAINER -->
   </div>
 
-<?php } else { ?>
+<?php } else {
+
+
+  //section to fetch districts form databse 
+  $sql = "SELECT * FROM agents";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+  $agent_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  //end section to fetch districts form databse 
+
+
+
+?>
   <!--end section view  only while direct loan pay by phone number -->
 
   <!-- section view  only while directed form other page  -->
@@ -91,7 +104,7 @@ if (isset($_GET["LOAN_ID"])) {
 
       <!-- section for first row -->
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">PAY LOAN FORM</h3>
@@ -108,10 +121,10 @@ if (isset($_GET["LOAN_ID"])) {
             <div class="card-body">
 
               <div class="position-relative p-3 bg-gray" style="height:300px">
-               
+
                 <div>
                   <div class="conatiner">
-                     <!-- DETIALS VIEW ROW START -->
+                    <!-- DETIALS VIEW ROW START -->
                     <div class="row">
                       <div class="col col-md-6">
                         <ul class="list-group list-group-bordered mb-3 text-danger">
@@ -132,47 +145,70 @@ if (isset($_GET["LOAN_ID"])) {
                           </li>
                         </ul>
                       </div>
-                         <!-- SECOND COLUMN -->
-                         <div class="col col-md-6">
+                      <!-- SECOND COLUMN -->
+                      <div class="col col-md-6">
                         <ul class="list-group list-group-bordered mb-3 text-danger">
+                          <li class="list-group-item bg-navy">
+                            <b>SELECT AGENT</b><a class="float-right">
+                              <select class="form-control " id="pay_to_agent" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                               
+                                <?php
+
+                                if (isset($_SESSION['PAY_TO_AGENT_ID']) && $_SESSION['PAY_TO_AGENT_ID'] != "0") {
+
+                                  $agent_id_on_session = $_SESSION['PAY_TO_AGENT_ID'];
+                                  $agent_array_index = $agent_id_on_session - 1;
+                                  echo '<option selected  value="' . $agent_list_fecthed[$agent_array_index]["AGENT_ID"] . '">' . $agent_list_fecthed[$agent_array_index]["AGENT_NAME"] . '--' . $agent_list_fecthed[$agent_array_index]["AGENT_PHONE_NUMBER"] . '</option>';
+                                  foreach ($agent_list_fecthed as $agent_list) {
+                                    echo '<option   value="' . $agent_list["AGENT_ID"] . '">' . $agent_list["AGENT_NAME"] . '--' . $agent_list["AGENT_PHONE_NUMBER"] . '</option>';
+                                  }
+
+                                  echo '<option value="0">ON STORE</option>';
+                                } else {
+                                   echo '<option selected value="0">ON STORE</option>';
+                                  foreach ($agent_list_fecthed as $agent_list) {
+                                    echo '<option   value="' . $agent_list["AGENT_ID"] . '">' . $agent_list["AGENT_NAME"] . '--' . $agent_list["AGENT_PHONE_NUMBER"] . '</option>';
+                                  }
+                                  
+                                }
+
+                                ?>
+                                
+                              </select>
+                            </a>
+                          </li>
                           <li class="list-group-item bg-navy">
                             <b>PAYMENT NOW</b><a class="float-right"><input type="number" class="form-control form-control-border" id="amountPaidNow" placeholder=""></a>
                           </li>
                           <li class="list-group-item bg-navy">
                             <b>BALANCE </b> <a class="float-right"><input type="number" class="form-control form-control-border" id="amountBalanceNow" placeholder="" disabled></a>
                           </li>
-                          
+
                         </ul>
                       </div>
-                         <!-- END OF SECNOND COLUMN -->
+                      <!-- END OF SECNOND COLUMN -->
                     </div>
-                   <!--END OF DETIALS VIEW ROW START -->
-
-
+                    <!--END OF DETIALS VIEW ROW START -->
                   </div>
-                  
-
-                
-                          
-
                 </div>
               </div>
 
             </div>
             <!-- /.card-body -->
-            <div class="card-footer">
-               <!-- //hidden feilds for geting the value and form to update loan master  -->
-              
-            <input type="hidden"  id="amountBalanceBefore" value="<?php echo $loan_details_fetched_by_loanid[0]['LN_TAB_BALANCE_AMOUNT']; ?>" >
-            <input type="hidden"  id="updateToCustomerId" value="<?php echo $loan_details_fetched_by_loanid[0]['CUSTOMER_ID']; ?>" >
-            <input type="hidden"  id="updateToLoanId" value="<?php echo $loan_details_fetched_by_loanid[0]['LOAN_ID']; ?>" >
-            <input type="hidden"  id="collectionListProductUpdate" value="<?php echo $loan_details_fetched_by_loanid[0]['LN_TO_PRODUCT']; ?>" >
-                    
-                <div class="float-right" id="payButton">
+            <div class="card-footer d-flex justify-content-end">
+              <!-- //hidden feilds for geting the value and form to update loan master  -->
+              <input type="hidden" id="amountBalanceBefore" value="<?php echo $loan_details_fetched_by_loanid[0]['LN_TAB_BALANCE_AMOUNT']; ?>">
+              <input type="hidden" id="updateToCustomerId" value="<?php echo $loan_details_fetched_by_loanid[0]['CUSTOMER_ID']; ?>">
+              <input type="hidden" id="updateToLoanId" value="<?php echo $loan_details_fetched_by_loanid[0]['LOAN_ID']; ?>">
+              <input type="hidden" id="collectionListProductUpdate" value="<?php echo $loan_details_fetched_by_loanid[0]['LN_TO_PRODUCT']; ?>">
+              <input type="hidden" id="due_payed_to_agent" value="<?php echo $_SESSION['PAY_TO_AGENT_ID']; ?>">
+              <div class="m-2" id="payButton">
                 <button type="submit" id="loanPayUpdateButton" class="btn btn-success">PAY</button>
               </div>
-              
-                  <!-- //hidden feilds for geting the value and form to update loan master  --> 
+              <div class="m-2">
+                <button type="button" id="payToAgentUpdateButton" class="btn btn-dark">UPDATE PAYMENT FROM</button>
+              </div>
+              <!-- //hidden feilds for geting the value and form to update loan master  -->
             </div>
             <!-- /.card-footer-->
           </div>

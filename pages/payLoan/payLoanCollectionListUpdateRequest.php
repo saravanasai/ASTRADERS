@@ -14,12 +14,17 @@ function updateCollectionList()
     $blanaceAmount = $_POST["balanceamount"];
     $loanId = $_POST["loanId"];
     $loan_status=$_POST["loanstatus"];
+    $due_paid_to=$_POST["due_paid_to"];
      
+    if($due_paid_to=="0")
+    {
+        $due_paid_to="ON STORE";
+    }
           
         
 
 
-    $sql = "UPDATE `collectionList` SET `COLLECTION_LAST_AMOUNT_PAID`=:amountPaid,`COLLECTION_BALANCE_AMOUNT`=:balance,`COLLECTION_ON_DATE`= DATE_ADD(`COLLECTION_ON_DATE`, INTERVAL 7 DAY),`COLLECTION_STATUS`=:clStatus,`PAID_ON`='ON STORE' WHERE COLLECTION_TO_CUSTOMER =:customerid AND  COLLECTION_LN_ID =:loanId";
+    $sql = "UPDATE `collectionList` SET `COLLECTION_LAST_AMOUNT_PAID`=:amountPaid,`COLLECTION_BALANCE_AMOUNT`=:balance,`COLLECTION_ON_DATE`= DATE_ADD(`COLLECTION_ON_DATE`, INTERVAL 7 DAY),`COLLECTION_STATUS`=:clStatus,`PAID_ON`=:paidTO WHERE COLLECTION_TO_CUSTOMER =:customerid AND  COLLECTION_LN_ID =:loanId";
 
     $stmt = $conn->prepare($sql);
     $stmt->bindParam("customerid",$customer_id);
@@ -27,6 +32,7 @@ function updateCollectionList()
     $stmt->bindParam("balance",$blanaceAmount);
     $stmt->bindParam("loanId",$loanId);
     $stmt->bindParam("clStatus",$loan_status);
+    $stmt->bindParam("paidTO",$due_paid_to);
 
     try {
 
