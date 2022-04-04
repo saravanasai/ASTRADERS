@@ -150,11 +150,13 @@ $(function () {
     let initizal_amount = $("#iniztialPayment").val();
     let discount = $("#productDiscount").val();
     let balance_amount = total_amount - initizal_amount - discount;
+    let total_amount_after_discount = total_amount - discount;
     let loan_status = 1;
 
     if (balance_amount == 0) {
       loan_status = 0;
     }
+
 
     //SECTION TO AJAX REQUEST TO LOAN TABLE AND SALES TABLE
     $.ajax({
@@ -165,7 +167,8 @@ $(function () {
         customerId: customer_id,
         productId: product_id,
         productQuantity: product_quantity,
-        totalLoanAmount: total_amount,
+        totalLoanAmount: total_amount_after_discount,
+        discountamount: discount,
         initizalLoanAmount: initizal_amount,
         balanceAmount: balance_amount,
         loanStatus: loan_status,

@@ -11,6 +11,7 @@ include "../../config.php";
         $product_id=$_POST["productId"];
         $product_quantity=$_POST["productQuantity"];
         $total_loan_amount=$_POST["totalLoanAmount"];
+        $discount_loan_amount=$_POST["discountamount"];
         $loan_initial_amount=$_POST["initizalLoanAmount"];
         $loan_balance_amount=$_POST["balanceAmount"];
         $loan_status=$_POST["loanStatus"];
@@ -23,6 +24,7 @@ include "../../config.php";
             LN_TO_PRODUCT,
             LN_PRODUCT_QUANTITY,
             LN_TAB_TOTAL_AMOUNT,
+            LN_TAB_DISCOUNT,
             LN_TAB_INITIAL_AMOUNT,
             LN_TAB_BALANCE_AMOUNT,
             LN_STATUS) 
@@ -31,6 +33,7 @@ include "../../config.php";
               :productid,
               :productquantity,
               :totalamount,
+              :discountamount,
               :initialamount,
               :balanceamount,
               :loanstatus
@@ -41,6 +44,7 @@ include "../../config.php";
         $stmt->bindParam("productid",$product_id);
         $stmt->bindParam("productquantity",$product_quantity);
         $stmt->bindParam("totalamount",$total_loan_amount);
+        $stmt->bindParam("discountamount",$discount_loan_amount);
         $stmt->bindParam("initialamount",$loan_initial_amount);
         $stmt->bindParam("balanceamount",$loan_balance_amount);
         $stmt->bindParam("loanstatus",$loan_status);
