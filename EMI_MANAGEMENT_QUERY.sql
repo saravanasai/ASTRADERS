@@ -473,3 +473,8 @@ CREATE VIEW todayTransactionViewWithAgents AS
                   WHERE 
                        	 districts.DISTRICT_ID=customermaster.CUSTOMER_DISTRICT 
                          AND areas.AREA_ID=customermaster.CUSTOMER_CITY ;
+
+
+********changes done in loan master table to add a discount infomation to table 
+
+ALTER TABLE `loanMaster` ADD `LN_TAB_DISCOUNT` BIGINT NULL DEFAULT NULL AFTER `LN_TAB_TOTAL_AMOUNT`;

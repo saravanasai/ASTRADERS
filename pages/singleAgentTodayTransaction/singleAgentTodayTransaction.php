@@ -101,7 +101,6 @@
                    <th>CUSTOMER NAME</th>
                    <th>DISTRICT</th>
                    <th>AREA</th>
-                   <th>PRODUCT NAME</th>
                    <th>TOTAL AMOUNT PAID</th>
                    <!-- <th>ACTION</th> -->
                  </tr>
@@ -118,8 +117,7 @@
                                  <td>' . $transaction_details["CUSTOMER_ID"] . '</td>
                                  <td>' . $transaction_details["CUSTOMER_FIRST_NAME"] . '</td>
                                  <td>' . $transaction_details["DISTRICT_NAME"] . '</td>
-                                 <td>' . $transaction_details["AREA_NAME"] . '</td>
-                                 <td>' . $transaction_details["PRODUCT_NAME"] . '</td>                        
+                                 <td>' . $transaction_details["AREA_NAME"] . '</td>                     
                                  <td>' . $transaction_details["TR_AMOUNT_PAID"] . '</td>
                                  </tr>';
 
