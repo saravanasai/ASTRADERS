@@ -49,6 +49,32 @@ $(function () {
   });
   //section updating the current session pay_to_agent details
 
+
+  //section updating the current session pay_on_date details
+  $('body').on('click','#payToDateUpdateButton',function()
+  { 
+       
+    var pay_to_date=$('#amountPaidOnDate').val();
+
+    $.ajax({
+      type: "post",
+      url: "pages/payLoan/lockDate.php",
+      data: {
+        LOCK_DATE: pay_to_date,
+      },
+      success: function (data) {
+        if (data == 1) {
+          swal("TRANSACTION DATE LOCKED", "TO CHANGE MAKE DATE EMPTY & UPDATE", "success").then(() => {
+             window.location.href=window.location.href;
+          });
+        }
+      },
+    });
+
+
+  });
+  //section updating the current session  pay_on_date details
+
 });
 
 //section for gettingb the amount paying by user
@@ -87,6 +113,7 @@ $("#amountPaidNow").keyup(function () {
 $("#loanPayUpdateButton").click(function () {
   let amount_paid = $("#amountPaidNow").val();
   let amount_balance_before_convert = $("#amountBalanceBefore").val();
+  let amountPaidOnDate = $("#amountPaidOnDate").val();
   let balance = amount_balance_before_convert - amount_paid;
 
   let loan_update_to_id = $("#updateToLoanId").val();
@@ -106,6 +133,7 @@ $("#loanPayUpdateButton").click(function () {
         amountPaid: loan_update_to_amountPaid,
         balanceamount: balance_amount_to_pay,
         due_paid_to:due_payed_to_agent,
+        amountPaidOnDate:amountPaidOnDate,
         loanstatus: "1",
       },
       success: function (data) {
@@ -127,6 +155,7 @@ $("#loanPayUpdateButton").click(function () {
         customerId: loan_update_to_cus_id,
         amountPaid: loan_update_to_amountPaid,
         balanceamount: balance_amount_to_pay,
+        amountPaidOnDate:amountPaidOnDate,
         due_paid_to:due_payed_to_agent,
         loanstatus: "0",
       },
