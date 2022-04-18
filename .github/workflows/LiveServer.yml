@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - main
-name: 🚀 Deploy App on Staging Server
+name: 🚀 Deploy App on Live  Server
 jobs:
   web-deploy:
     name: 🎉 Deploy
