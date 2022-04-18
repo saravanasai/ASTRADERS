@@ -126,7 +126,7 @@ if (isset($_GET["LOAN_ID"])) {
                   <div class="conatiner">
                     <!-- DETIALS VIEW ROW START -->
                     <div class="row">
-                      <div class="col col-md-6">
+                      <div class="col col-md-5">
                         <ul class="list-group list-group-bordered mb-3 text-danger">
                           <li class="list-group-item bg-navy">
                             <b>NAME</b> <a class="float-right"><?php echo $loan_details_fetched_by_loanid[0]['CUSTOMER_FIRST_NAME']; ?></a>
@@ -146,7 +146,7 @@ if (isset($_GET["LOAN_ID"])) {
                         </ul>
                       </div>
                       <!-- SECOND COLUMN -->
-                      <div class="col col-md-6">
+                      <div class="col col-md-7">
                         <ul class="list-group list-group-bordered mb-3 text-danger">
                           <li class="list-group-item bg-navy">
                             <b>SELECT AGENT</b><a class="float-right">
@@ -178,6 +178,10 @@ if (isset($_GET["LOAN_ID"])) {
                             </a>
                           </li>
                           <li class="list-group-item bg-navy">
+                            <b>TR DATE</b><a class="float-right">  
+                            <input type="date" class="form-control form-control-border"  id="amountPaidOnDate" value=<?php echo $_SESSION['PAY_ON_DATE'] ?>></a>
+                          </li>
+                          <li class="list-group-item bg-navy">
                             <b>PAYMENT NOW</b><a class="float-right"><input type="number" class="form-control form-control-border" id="amountPaidNow" placeholder=""></a>
                           </li>
                           <li class="list-group-item bg-navy">
@@ -207,6 +211,9 @@ if (isset($_GET["LOAN_ID"])) {
               </div>
               <div class="m-2">
                 <button type="button" id="payToAgentUpdateButton" class="btn btn-dark">UPDATE PAYMENT FROM</button>
+              </div>
+              <div class="m-2">
+                <button type="button" id="payToDateUpdateButton" class="btn btn-warning">UPDATE DATE FROM</button>
               </div>
               <!-- //hidden feilds for geting the value and form to update loan master  -->
             </div>

@@ -478,3 +478,28 @@ CREATE VIEW todayTransactionViewWithAgents AS
 ********changes done in loan master table to add a discount infomation to table 
 
 ALTER TABLE `loanMaster` ADD `LN_TAB_DISCOUNT` BIGINT NULL DEFAULT NULL AFTER `LN_TAB_TOTAL_AMOUNT`;
+
+**********TILL THI ALL ARE TESTED & ADDED WORKING PROPERLY ON LIVE************
+
+//Changes Done on Database level to add transaction date Custom 18/04/2022 --
+
+ALTER TABLE `collectionList` ADD `COLLECTED_ON_DATE` DATE NULL DEFAULT NULL AFTER `COLLECTION_ON_DATE`;
+
+
+modified trigger for update on collection list insert into loanTransaction
+INSERT INTO `loanTransaction`(
+`TR_LN_ID`,
+`TR_OF_CUSTOMER`, 
+`TR_TO_PRODUCT`,
+`TR_AMOUNT_PAID_INITIAL`,
+`TR_AMOUNT_PAID`, 
+`TR_AMOUNT_BALANCE`,
+`TR_DONE_ON`,
+`TR_DATE`
+) 
+VALUES (
+NEW.COLLECTION_LN_ID ,                        NEW.COLLECTION_TO_CUSTOMER,                    NEW.COLLECTION_TO_PRODUCT,
+NEW.COLLECTION_TOTAL_AMOUNT ,                  NEW.COLLECTION_LAST_AMOUNT_PAID,              NEW.COLLECTION_BALANCE_AMOUNT,
+NEW.PAID_ON,
+NEW.COLLECTED_ON_DATE
+)
