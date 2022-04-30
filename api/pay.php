@@ -46,14 +46,16 @@
                                     $stmt->execute();
                                     $response=$stmt->fetchAll(PDO::FETCH_ASSOC);
                                     if(count($response))
-                                    {
+                                    { 
+                                        $amount_Paid_On_Date=(new DateTime())->format('Y-m-d');
                                         //section on which the all are perfect to update 
-                                        $sql = "UPDATE `collectionList` SET `COLLECTION_LAST_AMOUNT_PAID`=:amountPaid,`COLLECTION_BALANCE_AMOUNT`=:balance,`COLLECTION_ON_DATE`= DATE_ADD(`COLLECTION_ON_DATE`, INTERVAL 7 DAY),`COLLECTION_STATUS`=:clStatus,`PAID_ON`=:paid_to WHERE COLLECTION_TO_CUSTOMER =:customerid AND COLLECTION_LN_ID =:loanId";
+                                        $sql = "UPDATE `collectionList` SET `COLLECTION_LAST_AMOUNT_PAID`=:amountPaid,`COLLECTION_BALANCE_AMOUNT`=:balance,`COLLECTION_ON_DATE`= DATE_ADD(`COLLECTION_ON_DATE`, INTERVAL 7 DAY),`COLLECTED_ON_DATE`=:onDate,`COLLECTION_STATUS`=:clStatus,`PAID_ON`=:paid_to WHERE COLLECTION_TO_CUSTOMER =:customerid AND COLLECTION_LN_ID =:loanId";
 
                                         $stmt = $conn->prepare($sql);
                                         $stmt->bindParam("customerid", $customer_id);
                                         $stmt->bindParam("amountPaid", $amountPaid);
                                         $stmt->bindParam("balance", $blanaceAmount);
+                                        $stmt->bindParam("onDate",$amount_Paid_On_Date);
                                         $stmt->bindParam("loanId", $loanId);
                                         $stmt->bindParam("clStatus", $loan_status);
                                         $stmt->bindParam("paid_to", $paid_to);
@@ -75,7 +77,7 @@
                                            
                                         } catch (PDOException $e) {
 
-                                            echo json_encode(["status"=>"200","message"=>"Something went Wrong"]);
+                                            echo json_encode(["status"=>"200","message"=>"Something went Wrong","error"=>$e]);
                                         }
                                        
                                     }
