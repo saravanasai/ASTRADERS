@@ -17,7 +17,7 @@ $customer_Master_view_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($_POST["customerupdateForm"])) {
 
-    $error = array("error_first_name" => "", "error_last_name" => "","error_phone_number" => "","error_district" => "","error_city" => "","error_address" => "");
+    $error = array("error_first_name" => "", "error_last_name" => "", "error_phone_number" => "", "error_district" => "", "error_city" => "", "error_address" => "");
     $validation_status = true;
     $customer_update_to_id = $_POST["cutomerUpdateId"];
     $customer_first_update_name = $_POST["customerFirstNameUpdate"];
@@ -59,7 +59,7 @@ if (isset($_POST["customerupdateForm"])) {
 
 
     //section for updating the area information to database
-     
+
 
     if ($validation_status) {
 
@@ -84,16 +84,16 @@ if (isset($_POST["customerupdateForm"])) {
         $stmt->bindParam("customerAddress", $customer_address_update);
 
         if (true) {
-             
-             
-          try {
-              //code...
-              $stmt->execute();
-          } catch (PDOException $Exception) {
-              
-             var_dump($Exception);
-          }
-             
+
+
+            try {
+                //code...
+                $stmt->execute();
+            } catch (PDOException $Exception) {
+
+                var_dump($Exception);
+            }
+
 
 
             echo '<script>
@@ -137,43 +137,52 @@ if (isset($_POST["customerupdateForm"])) {
     <!-- Main content -->
 
     <div class="container p-0">
-        <div class="" style="height:200px;">
-            <table class="table table-striped table-responsive table-head-fixed text-nowrap table-bordered" id="viewAreaTable">
-                <thead>
-                    <tr>
-                        <th style="width: 10px">S.NO</th>
-                        <th>CUSTOMER ID</th>
-                        <th>FIRST NAME</th>
-                        <th>LAST NAME</th>
-                        <!-- <th>PH NUMBER</th> -->
-                        <th>AREA NAME</th>
-                        <th>DISTRICT NAME</th>
-                        <th style="width: 40px">ACTION</th>
-                        <th style="width: 40px">DELETE</th>
-                        <th style="width: 40px">TRANSACTION</th>
-                        <th style="width: 40px">TAKE LOAN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <div class="card table-responsive">
-                        <?php
-                        foreach ($customer_Master_view_list_fecthed as $sno => $customer_Master_view_list) {
-                             
-                            $statusColor="danger";
-                            $statusText="DELETE";
-                            $takeloanbuttonstatus="";
-                            $deactivateRedirection="";
-                            if($customer_Master_view_list["CUSTOMER_STATUS"]==0)
-                            {
-                                $statusColor="info";
-                                $statusText="DISABLED";
-                                $takeloanbuttonstatus="disabled";
-                                $deactivateRedirection="no";
-                            }
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-danger card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
 
-                            echo '<tr>
+                            All Customers
+                        </h3>
+                    </div>
+                    <div class="card-body pad table-responsive">
+                        <table class="table table-striped table-responsive table-head-fixed text-nowrap table-bordered" id="viewAreaTable">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">S.NO</th>
+                                    <th>CUSTOMER ID</th>
+                                    <th>PHOTO</th>
+                                    <th>FIRST NAME</th>
+                                    <th>LAST NAME</th>
+                                    <!-- <th>PH NUMBER</th> -->
+                                    <th>AREA NAME</th>
+                                    <th>DISTRICT NAME</th>
+                                    <th style="width: 40px">ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <div class="card table-responsive">
+                                    <?php
+                                    foreach ($customer_Master_view_list_fecthed as $sno => $customer_Master_view_list) {
+
+                                        $statusColor = "danger";
+                                        $statusText = "DELETE";
+                                        $takeloanbuttonstatus = "";
+                                        $deactivateRedirection = "";
+                                        if ($customer_Master_view_list["CUSTOMER_STATUS"] == 0) {
+                                            $statusColor = "info";
+                                            $statusText = "DISABLED";
+                                            $takeloanbuttonstatus = "disabled";
+                                            $deactivateRedirection = "no";
+                                        }
+
+                                        echo '<tr>
                      <td>' . ++$sno . '</td>
                      <td>' . $customer_Master_view_list["CUSTOMER_ID"] . '</td>
+                     <td><div class="text-center">
+                     <img class="profile-user-img img-fluid img-circle" src="' . "uploads/" . $customer_Master_view_list["CUSTOMER_IMAGE"]. '" alt="user image">
+                     </div></td>
                      <td>' . $customer_Master_view_list["CUSTOMER_FIRST_NAME"] . '</td>
                      <td>
                        ' . $customer_Master_view_list["CUSTOMER_LAST_NAME"] . '
@@ -186,32 +195,48 @@ if (isset($_POST["customerupdateForm"])) {
                      ' . $customer_Master_view_list["DISTRICT_NAME"] . '
                      </td>
                      <td>
-                     <button type="button" class="btn btn-sm btn-warning customerViewModel" data-toggle="modal" id='.$customer_Master_view_list["CUSTOMER_ID"]. ' data-target="#modal-lg">
-                     <i class="far fa-edit"></i> EDIT
-                      
-                      </button>
-                     </td>
-                     <td>
-                     <button type="button" class="btn btn-sm btn-'.$statusColor.' deleteCustomer"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '> <i class="fas fa-trash-alt px-1"></i>'.$statusText.'
-                     </button>
-                     </td>
-                     <td>
-                     <button type="button" class="btn btn-sm btn-success loanTransaction"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '><i class="fas fa-download px-1"></i>TRANSACTION
-                     </button>
-                     </td>
-                     <td>
-                     <button type="button" class="btn btn-sm btn-success takeLoanRedirect'.$deactivateRedirection.' '.$takeloanbuttonstatus.'"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '><i class="fas fa-paper-plane px-1"></i>TAKE LOAN
-                     </button>
-                    
-                     </td>
-                   </tr>';
-                        }
-                        ?>
-                </tbody>
-                
-            </table>
-        
+                     <div class="btn-group">
+                                <button type="button" class="btn btn-success"><i class="fas fa-align-left px-2"></i>Action</button>
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu" role="menu">
+                                <li class="dropdown-item">
+                                <button type="button" class="btn btn-sm btn-warning customerViewModel" data-toggle="modal" id=' . $customer_Master_view_list["CUSTOMER_ID"] . ' data-target="#modal-lg">
+                                                    <i class="far fa-edit"></i> EDIT
+                                                    
+                                                    </button>
+                                </li>
+                                <li class="dropdown-item">
+                                <button type="button" class="btn btn-sm btn-' . $statusColor . ' deleteCustomer"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '> <i class="fas fa-trash-alt px-1"></i>' . $statusText . '
+                                </button>
+                                </li>
+                                <li class="dropdown-item">
+                                <button type="button" class="btn btn-sm btn-success loanTransaction"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '><i class="fas fa-download px-1"></i>TRANSACTION
+                                </button>
+                                </li>
+                                <div class="dropdown-divider"></div>
+                                <li class="dropdown-item">
+                                <button type="button" class="btn btn-sm btn-success takeLoanRedirect' . $deactivateRedirection . ' ' . $takeloanbuttonstatus . '"  id=' . $customer_Master_view_list["CUSTOMER_ID"]  . '><i class="fas fa-paper-plane px-1"></i>TAKE LOAN
+                                </button>
+                                </li>
+                                </div>
+                                </div>
+                                                    
+                                                    </td>
+                                                    
+                                                </tr>';
+                                    }
+                                    ?>
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
         </div>
+
         <!-- /.col -->
     </div>
     <!-- /.row -->
@@ -223,7 +248,7 @@ if (isset($_POST["customerupdateForm"])) {
 <!-- Modal -->
 <div id="model">
     <div class="modal fade" id="modal-lg" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">EDIT CUSTOMER DETAIL</h5>

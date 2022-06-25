@@ -1,8 +1,7 @@
-
-<!-- axios cdn  -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- axios JS  -->
+<script src="assets/plugins/axios/axios.js" defer></script>
 <!-- Alpine JS  -->
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="assets/plugins/alpine/alpine.js" defer></script>
 <!-- jQuery -->
 <script src="assets/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -16,7 +15,7 @@
 <!-- ChartJS -->
 <script src="assets/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
-<script src="assets/plugins/sparklines/sparkline.js"></script> 
+<script src="assets/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
 <script src="assets/plugins/jqvmap/jquery.vmap.min.js"></script>
 <script src="assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
@@ -72,7 +71,3 @@
 <script src="pages/unPaidListReport/unPaidListReport.js"></script>
 <script src="pages/zeroBalanceList/zeroBalanceList.js"></script>
 <script src="pages/monthlyAgentReport/monthlyAgentReport.js"></script>
-
-
-
-

@@ -1,22 +1,22 @@
-<?php 
-    include_once("./assets/css_links.php");
-    //adding a database config file
-    include_once ("./config.php");
+<?php
+include_once("./assets/css_links.php");
+//adding a database config file
+include_once("./config.php");
 
-  //SECTION FOR FETCHING THE DATA FROM AREAS TABLE
+//SECTION FOR FETCHING THE DATA FROM AREAS TABLE
 
-  $sql = "SELECT  * FROM districts";
-  $stmt = $conn->prepare($sql);
-  $stmt->execute();
-  $district_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$sql = "SELECT  * FROM districts";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$district_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 //end of the area list fetching
 
 
 
 
-   
- ?>
+
+?>
 <div class="content-wrapper" style="min-height: 1419.6px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -41,22 +41,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="customerFirstName">FIRST NAME*</label>
-                                    <input type="text" class="form-control" id="customerFirstName"
-                                        placeholder="Enter customer First Name">
+                                    <input type="text" class="form-control" id="customerFirstName" placeholder="Enter customer First Name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="customerLastName">LAST NAME*</label>
-                                    <input type="text" class="form-control" id="customerLastName"
-                                        placeholder="Enter customer Last Name">
+                                    <input type="text" class="form-control" id="customerLastName" placeholder="Enter customer Last Name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="customerPhoneNumber">PHONE NUMBER(optional)</label>
-                                    <input type="text" class="form-control" id="customerPhoneNumber"
-                                        placeholder="Enter customer Phone Number">
+                                    <input type="text" class="form-control" id="customerPhoneNumber" placeholder="Enter customer Phone Number">
                                 </div>
                             </div>
                         </div>
@@ -65,31 +62,27 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="customerEmail">EMAIL(optional)</label>
-                                    <input type="text" class="form-control" id="customerEmail"
-                                        placeholder="Enter customer Email">
+                                    <input type="text" class="form-control" id="customerEmail" placeholder="Enter customer Email">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="customerAdharNo">AADHAR NUMBER (optional)</label>
-                                    <input type="text" class="form-control" id="customerAdharNo"
-                                        placeholder="Enter customer Adhar Number">
+                                    <input type="text" class="form-control" id="customerAdharNo" placeholder="Enter customer Adhar Number">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>CUSTOMER CITY*</label>
-                                    <select class="form-control " id="customerDistrict" style="width: 100%;"
-                                        tabindex="-1" aria-hidden="true">
+                                    <select class="form-control " id="customerDistrict" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option selected="selected" value="0">CHOOSE THE CITY</option>
-                                        <?php 
-                      
-                      foreach($district_list_fecthed as $district_list)
-                      {
-                        echo '
-                        <option value="'.$district_list["DISTRICT_ID"].'">'.$district_list["DISTRICT_NAME"].'</option>';
-                      }
-                     ?>
+                                        <?php
+
+                                        foreach ($district_list_fecthed as $district_list) {
+                                            echo '
+                        <option value="' . $district_list["DISTRICT_ID"] . '">' . $district_list["DISTRICT_NAME"] . '</option>';
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -98,8 +91,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>CUSTOMER AREA*</label>
-                                    <select class="form-control  inputDisabled " id="customerArea" style="width: 100%;"
-                                        tabindex="-1" aria-hidden="true" disabled>
+                                    <select class="form-control  inputDisabled " id="customerArea" style="width: 100%;" tabindex="-1" aria-hidden="true" disabled>
                                         <option selected="selected" value="0">CHOOSE THE CITY</option>
                                     </select>
                                 </div>
@@ -110,15 +102,40 @@
                                     <textarea type="text" class="form-control" rows="3" id="customerAddress"></textarea>
                                 </div>
                             </div>
+                            <div class="col-md-4" x-data="{
+                                userProfileImage: '',
+                                fileChosen($el) {
+                                    let file = $el.target.files[0]
+                                    this.userProfileImage = file
+                                    reader = new FileReader()
+                                    reader.readAsDataURL(file)
+                                    reader.onload = (e) => {
+                                        this.userProfileImage = e.target.result
+                                    }
+                                },
+                            }">
+                                <div class="form-group">
+                                    <label for="customerPhoto">CUSTOMER PHOTO</label>
+                                    <div class="col-5 text-center" x-show="userProfileImage">
+                                        <img x-bind:src="userProfileImage" alt="user-avatar" class="img-circle img-fluid">
+                                    </div>
+                                    <div class="custom-file mt-2">
+                                        <input x-show="!userProfileImage" type="file" x-on:change="($el)=>fileChosen($el)" class="custom-file-input" id="customerPhoto">
+                                        <label x-show="!userProfileImage" class="custom-file-label" for="customerPhoto">Choose Image</label>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
 
                         <!-- /.card-body -->
 
                         <div class="card-footer ">
                             <div class="float-right">
-                                <button type="reset" class="btn btn-danger">Reset</button>
-                                <button type="submit" class="btn btn-success addcus">ADD CUSTOMER</button>
-                                <button type="submit" class="btn btn-warning" id="takeLoanBtn">ADD CUSTOMER & TAKE
+                                <button type="reset" class="btn btn-danger"><i class="fas fa-redo px-2"></i>Reset</button>
+                                <button type="submit" class="btn btn-success addcus"><i class="fas fa-plus px-2"></i>ADD
+                                    CUSTOMER</button>
+                                <button type="submit" class="btn btn-warning" id="takeLoanBtn"><i class="fas fa-arrows-alt-h px-2"></i>ADD CUSTOMER & TAKE
                                     LOAN</button>
                             </div>
                         </div>
@@ -130,5 +147,5 @@
     <!-- /.content -->
 </div>
 <?php
-  include_once("./assets/js_links.php");
+include_once("./assets/js_links.php");
 ?>

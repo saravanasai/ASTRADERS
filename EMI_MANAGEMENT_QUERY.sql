@@ -1,4 +1,37 @@
 
+
+
+//query need to be added in live 
+
+//adding one more column in customer master table
+ALTER TABLE `customermaster` ADD `CUSTOMER_IMAGE` VARCHAR(265) NULL DEFAULT NULL AFTER `CUSTOMER_STATUS`;
+
+
+
+//editing the customerMasterView view table 
+
+select `testemi`.`customermaster`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+`testemi`.`customermaster`.`CUSTOMER_FIRST_NAME` AS `CUSTOMER_FIRST_NAME`,
+`testemi`.`customermaster`.`CUSTOMER_IMAGE` AS `CUSTOMER_IMAGE`,
+`testemi`.`customermaster`.`CUSTOMER_LAST_NAME` AS `CUSTOMER_LAST_NAME`,`testemi`.`customermaster`.`CUSTOMER_PHONE_NUMBER` AS `CUSTOMER_PHONE_NUMBER`,`testemi`.`customermaster`.`CUSTOMER_EMAIL` AS `CUSTOMER_EMAIL`,`testemi`.`customermaster`.`CUSTOMER_ADHAR_NO` AS `CUSTOMER_ADHAR_NO`,`testemi`.`customermaster`.`CUSTOMER_DISTRICT` AS `CUSTOMER_DISTRICT`,`testemi`.`customermaster`.`CUSTOMER_CITY` AS `CUSTOMER_CITY`,`testemi`.`customermaster`.`CUSTOMER_ADDRESS` AS `CUSTOMER_ADDRESS`,`testemi`.`customermaster`.`CUSTOMER_REMARK` AS `CUSTOMER_REMARK`,`testemi`.`customermaster`.`CUSTOMER_STATUS` AS `CUSTOMER_STATUS`,`testemi`.`districts`.`DISTRICT_NAME` AS `DISTRICT_NAME`,`testemi`.`areas`.`AREA_NAME` AS `AREA_NAME`,`testemi`.`areas`.`AREA_ID` AS `AREA_ID`,`testemi`.`districts`.`DISTRICT_ID` AS `DISTRICT_ID` from ((`testemi`.`customermaster` join `testemi`.`districts`) join `testemi`.`areas`) where `testemi`.`districts`.`DISTRICT_ID` = `testemi`.`customermaster`.`CUSTOMER_DISTRICT` and `testemi`.`areas`.`AREA_ID` = `testemi`.`customermaster`.`CUSTOMER_CITY`
+
+//updating database column for default user image 
+
+UPDATE `customermaster` SET `CUSTOMER_IMAGE`='user.png' WHERE 1; 
+
+
+
+
+
+
+
+
+
+
+
+
+//this all are old querys modified the database 
+
 ALTER TABLE `agents` ADD `PASSWORD` VARCHAR(255) NULL DEFAULT NULL AFTER `AGENT_PHONE_NUMBER`;
 
 ​//Query for adding password

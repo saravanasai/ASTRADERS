@@ -84,7 +84,8 @@ $(function () {
   //section to handle the take loan button redirects to takeloan_page
 });
 
-//section for updating the customer details
+
+//section for fetching the customer details
 
 $(".customerViewModel").click(function () {
   let customer_id = $(this).attr("id");
@@ -98,4 +99,4 @@ $(".customerViewModel").click(function () {
     },
   });
 });
-// end section for updating the customer details
+// end section for fetching the customer details

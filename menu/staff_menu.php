@@ -199,6 +199,12 @@ include_once("./pages/commondata.php");
                       <p>EDIT PRODUTCS</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="<?php echo '?status=productReturn' ?>" class="nav-link">
+                      <i class="nav-icon fa fa-rocket"></i>
+                      <p>RETURN PRODUTCS</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
               <!-- end of a THIRD navigation section-->
@@ -460,5 +466,14 @@ elseif($chk=="monthlyAgentReport")
 {
   include_once "./pages/monthlyAgentReport/monthlyAgentReport.php";
 }
+elseif($chk=="stocksReport")
+{
+  include_once "./pages/stocksReport/stocksReport.php";
+}
+elseif($chk=="productReturn")
+{
+  include_once "./pages/productReturn/productReturn.php";
+}
+
 
 ?>
