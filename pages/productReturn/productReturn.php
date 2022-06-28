@@ -89,7 +89,17 @@ $district_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         this.transactions=e.data.data
                         this.loanData=e.data.loanInfo
+                            
+                        if(!e.data.loanInfo)
+                        {
+                            swal('NO LOAN ID EXISTS OR CLOSED', 'CHECKOUT IN CUSTOMER TRANSACTIONS', 'error')
+                            .then(e=>{
 
+                                location.reload();
+                            })
+
+                            
+                        }
 
                         if(this.transactions.length==0)
                         {
@@ -125,6 +135,7 @@ $district_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="row" x-show="tableShow">
                             <div class="col-6">
                                 <p class="lead">Note : Returning The Product is CPU intensive task use it wisely</p>
+                                <p class="lead text-danger">Notice : If the Bill has Completly Closed Refund the initial Amount Paid To the customer</p>
                             </div>
 
                             <div class="col-6">

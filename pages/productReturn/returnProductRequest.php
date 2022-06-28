@@ -40,13 +40,29 @@ if ($_POST['orderId']) {
                 $loanStatus = 0;
             }
 
-            $sql = "UPDATE `loanMaster` SET `LN_TAB_TOTAL_AMOUNT`=:balance ,`LN_STATUS`= :status WHERE `LOAN_ID`=:id";
 
-            $stmt = $conn->prepare($sql);
 
-            $stmt->bindParam("balance", $newTotalAmount);
-            $stmt->bindParam("status", $loanStatus);
-            $stmt->bindParam("id", $loanId);
+            if ($LoanInfo['LN_TAB_BALANCE_AMOUNT'] > $newTotalAmount) {
+
+                $sql = "UPDATE `loanMaster` SET `LN_TAB_TOTAL_AMOUNT`=:balance , `LN_TAB_BALANCE_AMOUNT`=:newtotal,`LN_STATUS`= :status WHERE `LOAN_ID`=:id";
+
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam("newtotal", $newTotalAmount);
+                $stmt->bindParam("balance", $newTotalAmount);
+                $stmt->bindParam("status", $loanStatus);
+                $stmt->bindParam("id", $loanId);
+            } else {
+                $sql = "UPDATE `loanMaster` SET `LN_TAB_TOTAL_AMOUNT`=:balance ,`LN_STATUS`= :status WHERE `LOAN_ID`=:id";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam("balance", $newTotalAmount);
+                $stmt->bindParam("status", $loanStatus);
+                $stmt->bindParam("id", $loanId);
+            }
+
+
+
+
+
 
             if ($stmt->execute()) {
 
