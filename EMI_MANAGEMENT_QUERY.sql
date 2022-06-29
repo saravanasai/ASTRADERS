@@ -10,16 +10,87 @@ ALTER TABLE `customermaster` ADD `CUSTOMER_IMAGE` VARCHAR(265) NULL DEFAULT NULL
 
 //editing the customerMasterView view table 
 
-select `testemi`.`customermaster`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
-`testemi`.`customermaster`.`CUSTOMER_FIRST_NAME` AS `CUSTOMER_FIRST_NAME`,
-`testemi`.`customermaster`.`CUSTOMER_IMAGE` AS `CUSTOMER_IMAGE`,
-`testemi`.`customermaster`.`CUSTOMER_LAST_NAME` AS `CUSTOMER_LAST_NAME`,`testemi`.`customermaster`.`CUSTOMER_PHONE_NUMBER` AS `CUSTOMER_PHONE_NUMBER`,`testemi`.`customermaster`.`CUSTOMER_EMAIL` AS `CUSTOMER_EMAIL`,`testemi`.`customermaster`.`CUSTOMER_ADHAR_NO` AS `CUSTOMER_ADHAR_NO`,`testemi`.`customermaster`.`CUSTOMER_DISTRICT` AS `CUSTOMER_DISTRICT`,`testemi`.`customermaster`.`CUSTOMER_CITY` AS `CUSTOMER_CITY`,`testemi`.`customermaster`.`CUSTOMER_ADDRESS` AS `CUSTOMER_ADDRESS`,`testemi`.`customermaster`.`CUSTOMER_REMARK` AS `CUSTOMER_REMARK`,`testemi`.`customermaster`.`CUSTOMER_STATUS` AS `CUSTOMER_STATUS`,`testemi`.`districts`.`DISTRICT_NAME` AS `DISTRICT_NAME`,`testemi`.`areas`.`AREA_NAME` AS `AREA_NAME`,`testemi`.`areas`.`AREA_ID` AS `AREA_ID`,`testemi`.`districts`.`DISTRICT_ID` AS `DISTRICT_ID` from ((`testemi`.`customermaster` join `testemi`.`districts`) join `testemi`.`areas`) where `testemi`.`districts`.`DISTRICT_ID` = `testemi`.`customermaster`.`CUSTOMER_DISTRICT` and `testemi`.`areas`.`AREA_ID` = `testemi`.`customermaster`.`CUSTOMER_CITY`
+//use this on live if you cannot edit views 
+CREATE VIEW customerMasterView AS SELECT customermaster.*, districts.DISTRICT_NAME, areas.AREA_NAME, areas.AREA_ID, districts.DISTRICT_ID FROM customermaster,districts,areas WHERE districts.DISTRICT_ID=customermaster.CUSTOMER_DISTRICT AND areas.AREA_ID=customermaster.CUSTOMER_CITY 
+
+
+
+SELECT
+    `testemi`.`areas`.`AREA_ID` AS `AREA_ID`,
+    `testemi`.`areas`.`AREA_NAME` AS `AREA_NAME`,
+    `testemi`.`areas`.`AREA_DISTRICT` AS `AREA_DISTRICT`,
+    `testemi`.`agents_to_area`.`AG_TO_AREA_ID` AS `AG_TO_AREA_ID`,
+    `testemi`.`agents_to_area`.`AREA_ID_AG` AS `AREA_ID_AG`,
+    `testemi`.`agents_to_area`.`AREA_TO_DISTRICT` AS `AREA_TO_DISTRICT`,
+    `testemi`.`agents_to_area`.`AREA_TO_AGENT` AS `AREA_TO_AGENT`,
+    `testemi`.`districts`.`DISTRICT_ID` AS `DISTRICT_ID`,
+    `testemi`.`districts`.`DISTRICT_NAME` AS `DISTRICT_NAME`,
+    `testemi`.`agents`.`AGENT_ID` AS `AGENT_ID`,
+    `testemi`.`agents`.`AGENT_NAME` AS `AGENT_NAME`,
+    `testemi`.`agents`.`AGENT_ADDRESS` AS `AGENT_ADDRESS`,
+    `testemi`.`agents`.`AGENT_ADHAR_NO` AS `AGENT_ADHAR_NO`,
+    `testemi`.`agents`.`AGENT_PHONE_NUMBER` AS `AGENT_PHONE_NUMBER`,
+    `testemi`.`agents`.`AGENT_FOR_CITY` AS `AGENT_FOR_CITY`,
+    `testemi`.`agents`.`AGENT_STATUS` AS `AGENT_STATUS`
+FROM
+    (
+        (
+            (
+                `testemi`.`areas`
+            JOIN `testemi`.`agents_to_area`
+            )
+        JOIN `testemi`.`districts`
+        )
+    JOIN `testemi`.`agents`
+    )
+WHERE
+    `testemi`.`areas`.`AREA_ID` = `testemi`.`agents_to_area`.`AREA_ID_AG` AND `testemi`.`areas`.`AREA_DISTRICT` = `testemi`.`agents_to_area`.`AREA_TO_DISTRICT` AND `testemi`.`agents_to_area`.`AREA_TO_DISTRICT` = `testemi`.`districts`.`DISTRICT_ID` AND `testemi`.`agents_to_area`.`AREA_TO_AGENT` = `testemi`.`agents`.`AGENT_ID`
 
 //updating database column for default user image 
 
 UPDATE `customermaster` SET `CUSTOMER_IMAGE`='user.png' WHERE 1; 
 
 
+//updating Collection List View to adding the CUSTOMER_IMAGE column 
+
+SELECT
+    `testemi`.`customermaster`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
+    `testemi`.`customermaster`.`CUSTOMER_IMAGE` AS `CUSTOMER_IMAGE`,
+    `testemi`.`loanMaster`.`LOAN_ID` AS `LOAN_ID`,
+    `testemi`.`customermaster`.`CUSTOMER_FIRST_NAME` AS `CUSTOMER_FIRST_NAME`,
+    `testemi`.`customermaster`.`CUSTOMER_PHONE_NUMBER` AS `CUSTOMER_PHONE_NUMBER`,
+    `testemi`.`customermaster`.`CUSTOMER_REMARK` AS `CUSTOMER_REMARK`,
+    `testemi`.`districts`.`DISTRICT_NAME` AS `DISTRICT_NAME`,
+    `testemi`.`products`.`PRODUCT_NAME` AS `PRODUCT_NAME`,
+    `testemi`.`loanMaster`.`LN_PRODUCT_QUANTITY` AS `LN_PRODUCT_QUANTITY`,
+    `testemi`.`loanMaster`.`LN_TAB_TOTAL_AMOUNT` AS `LN_TAB_TOTAL_AMOUNT`,
+    `testemi`.`loanMaster`.`LN_TAB_BALANCE_AMOUNT` AS `LN_TAB_BALANCE_AMOUNT`,
+    `testemi`.`loanMaster`.`LN_STATUS` AS `LN_STATUS`,
+    `testemi`.`loanMaster`.`LN_ON_DATE` AS `LN_ON_DATE`,
+    `testemi`.`collectionList`.`COLLECTION_BALANCE_AMOUNT` AS `COLLECTION_BALANCE_AMOUNT`,
+    `testemi`.`areas`.`AREA_NAME` AS `AREA_NAME`,
+    `testemi`.`areas`.`AREA_ID` AS `AREA_ID`,
+    `testemi`.`districts`.`DISTRICT_ID` AS `DISTRICT_ID`,
+    `testemi`.`collectionList`.`COLLECTION_ON_DATE` AS `COLLECTION_ON_DATE`
+FROM
+    (
+        (
+            (
+                (
+                    (
+                        `testemi`.`loanMaster`
+                    JOIN `testemi`.`districts`
+                    )
+                JOIN `testemi`.`customermaster`
+                )
+            JOIN `testemi`.`products`
+            )
+        JOIN `testemi`.`collectionList`
+        )
+    JOIN `testemi`.`areas`
+    )
+WHERE
+    `testemi`.`districts`.`DISTRICT_ID` = `testemi`.`customermaster`.`CUSTOMER_DISTRICT` AND `testemi`.`products`.`PRODUCT_ID` = `testemi`.`loanMaster`.`LN_TO_PRODUCT` AND `testemi`.`loanMaster`.`LN_TAB_BALANCE_AMOUNT` > 0 AND `testemi`.`loanMaster`.`LN_TO_CUSTOMER` = `testemi`.`customermaster`.`CUSTOMER_ID` AND `testemi`.`collectionList`.`COLLECTION_LN_ID` = `testemi`.`loanMaster`.`LOAN_ID` AND `testemi`.`areas`.`AREA_ID` = `testemi`.`customermaster`.`CUSTOMER_CITY`
 
 
 
@@ -30,7 +101,10 @@ UPDATE `customermaster` SET `CUSTOMER_IMAGE`='user.png' WHERE 1;
 
 
 
-//this all are old querys modified the database 
+
+
+
+//this all are old querys modified the database Completed
 
 ALTER TABLE `agents` ADD `PASSWORD` VARCHAR(255) NULL DEFAULT NULL AFTER `AGENT_PHONE_NUMBER`;
 
