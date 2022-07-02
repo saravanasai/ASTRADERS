@@ -2,6 +2,8 @@
 <script src="assets/plugins/axios/axios.js" defer></script>
 <!-- Alpine JS  -->
 <script src="assets/plugins/alpine/alpine.js" defer></script>
+<!-- Sweetalert JS  -->
+<script src="assets/plugins/sweetalert/sweetalert.js" defer></script>
 <!-- jQuery -->
 <script src="assets/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
