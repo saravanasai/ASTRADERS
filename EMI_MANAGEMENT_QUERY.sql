@@ -51,7 +51,7 @@ WHERE
 UPDATE `customermaster` SET `CUSTOMER_IMAGE`='user.png' WHERE 1; 
 
 
-//updating Collection List View to adding the CUSTOMER_IMAGE column 
+//updating CollectionListView to adding the CUSTOMER_IMAGE column 
 
 SELECT
     `testemi`.`customermaster`.`CUSTOMER_ID` AS `CUSTOMER_ID`,
@@ -247,6 +247,7 @@ ALTER TABLE `agents` ADD `PASSWORD` VARCHAR(255) NULL DEFAULT NULL AFTER `AGENT_
 CREATE VIEW collectionListView AS
                     SELECT 
                       customermaster.CUSTOMER_ID,
+                      customermaster.CUSTOMER_IMAGE,
                       loanMaster.LOAN_ID,
                       customermaster.CUSTOMER_FIRST_NAME,
                       customermaster.CUSTOMER_PHONE_NUMBER,
