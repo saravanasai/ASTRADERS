@@ -1,4 +1,13 @@
 $(function () {
+
+  $(function () {
+
+    $(document).ready(function () {
+      $(".select2").select2();
+    });
+  
+  });
+
   // DataTables initialisation
   $("#unpaidListReportTable").DataTable({
     dom: "Bfrtip",
@@ -10,7 +19,7 @@ $(function () {
     //ajax requesting to server
     $.ajax({
       type: "post",
-      url: "pages/Reports/areaFetchRequestForReports.php",
+      url: "pages/todayReport/getAreasByDistrictRequest.php",
       data: {
         districtId: district_id,
       },
@@ -85,7 +94,7 @@ $('body').on('click','#unpaid_get_report',function () {
      dataType: 'json',
      data: {
        district_id:district_id,
-       area_id:area_id
+       area_id:area_id.toString()
      },
      beforeSend: function() {
        // setting a loader tills teh request finish

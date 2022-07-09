@@ -1,5 +1,11 @@
 
-$(function () {});
+$(function () {
+
+  $(document).ready(function () {
+    $(".select2").select2();
+  });
+
+});
 
 //hidding things while loading the page 
 //resseting the  validation feilds 
@@ -15,7 +21,7 @@ $("#today_report_to_district").change(function () {
   //ajax requesting to server
   $.ajax({
     type: "post",
-    url: "pages/Reports/areaFetchRequestForReports.php",
+    url: "pages/todayReport/getAreasByDistrictRequest.php",
     data: {
       districtId: district_id,
     },
@@ -45,12 +51,7 @@ $('body').on('click','#get_today_report',function () {
           let district_id = $("select#today_report_to_district").val();
           let area_id = $("select#today_report_to_area").val();
           let report_date = $("#today_report_date").val();
-        let todayCollectionReoprtTable = $('#viewTodayCollectionReportTable').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-            'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5'
-                ]
-            });
+      
         
          
 
@@ -83,7 +84,7 @@ $('body').on('click','#get_today_report',function () {
               dataType: 'json',
               data: {
                 district_id:district_id,
-                area_id:area_id,
+                area_id:area_id.toString(),
                 report_date:report_date,
               },
               beforeSend: function() {
@@ -98,7 +99,7 @@ $('body').on('click','#get_today_report',function () {
               success: function (data) {
                 
                 // let response=JSON.parse(data);
-                todayCollectionReoprtTable.destroy();
+               
                 //data will be a html templete generated with data on server side
                 $('#report_insert').html(data.report);
                 $('#report_total').val(data.total);
