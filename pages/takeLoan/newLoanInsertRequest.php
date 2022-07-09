@@ -84,11 +84,6 @@ include "../../config.php";
 
 
     }
-
-
-
-
-
   //end section to handle loan creation
 
 

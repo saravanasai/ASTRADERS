@@ -66,42 +66,55 @@ if (isset($_POST["buttonUpdateTransaction"])) {
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h5>TODAY TRANSACTIONS</h5>
+                </div>
+                <div class="col-sm-6">
+                    <button type="button" class="btn btn-sm btn-primary float-right" id="dayClose"> <i class="fa fa-check-circle px-1" aria-hidden="true"></i>
+                        DAY CLOSE</button>
+                </div>
+            </div>
         </div><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
 
-    <div class="container p-0">
-        <button type="button" class="btn btn-primary float-right" id="dayClose">DAY CLOSE</button>
-        <div class="" style="height:200px;">
-            <table class="table table-striped table-head-fixed text-nowrap table-bordered " id="viewProductTable">
+    <section class="content">
+        <div class="container-fluid">
 
+            <div class="card">
+                <div class="card-header ui-sortable-handle" style="cursor: move;">
+                    <h3 class="card-title">
+                        <i class="fas fa-chart-pie mr-1"></i>
+                        ALL TRANSACTIONS DONE TODAY
+                    </h3>
+                    <div class="card-tools">
+                    </div>
+                </div>
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-striped table-head-fixed text-nowrap table-bordered p-2" id="viewProductTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">S.NO</th>
+                                <th>NAME</th>
+                                <th>CUSTOMER ID</th>
+                                <th>AREA</th>
+                                <th>DISRICT</th>
+                                <th>AMOUNT PAID</th>
+                                <th>BALANCE AMOUNT</th>
+                                <th>DATE</th>
+                                <th>PAID TO</th>
+                                <th style="width: 40px">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <div class="card table-responsive">
+                                <?php
+                                foreach ($today_collection_list_view_fetch as $sno => $today_collection_list) {
+                                    $transaction_done_by = $today_collection_list["TR_DONE_ON"] == 'ON STORE' ? $today_collection_list["TR_DONE_ON"] : $today_collection_list["AGENT_NAME"];
 
-                <thead>
-                    <tr>
-                        <th style="width: 10px">S.NO</th>
-                        <th>NAME</th>
-                        <th>CUSTOMER ID</th>
-                        <th>AREA</th>
-                        <th>DISRICT</th>
-                        <th>AMOUNT PAID</th>
-                        <th>BALANCE AMOUNT</th>
-                        <th>DATE</th>
-                        <th>PAID TO</th>
-                        <th style="width: 40px">ACTION</th>
-
-
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <div class="card table-responsive">
-                        <?php
-                        foreach ($today_collection_list_view_fetch as $sno => $today_collection_list) {
-                            $transaction_done_by=$today_collection_list["TR_DONE_ON"]=='ON STORE'?$today_collection_list["TR_DONE_ON"]:$today_collection_list["AGENT_NAME"] ;
-
-                            echo '<tr>
+                                    echo '<tr>
                                  <td>' . ++$sno . '</td>
                                  <td>' . $today_collection_list["CUSTOMER_FIRST_NAME"] . '</td>
                                  <td>' . $today_collection_list["CUSTOMER_ID"] . '</td>
@@ -110,25 +123,24 @@ if (isset($_POST["buttonUpdateTransaction"])) {
                                  <td>' . $today_collection_list["TR_AMOUNT_PAID"] . '</td>
                                  <td>' . $today_collection_list["TR_AMOUNT_BALANCE"] . '</td>
                                  <td>' . $today_collection_list["TR_DATE"] . '</td>
-                                 <td>'.$transaction_done_by.'</td>
+                                 <td>' . $transaction_done_by . '</td>
                                  <td> <button type="button" class="btn  btn-danger btn-sm  transactionViewModel"  id=' . $today_collection_list["TR_LN_ID"] . ' transaction-id="' . $today_collection_list["TR_ID"] . '"  data-id="' . $today_collection_list["CUSTOMER_ID"] . '">
                                  <i class="fas fa-trash-alt px-1"></i>DELETE
                                  </button></td>
                                  
                                  </tr>';
-                        }
-                        ?>
-                    </div>
-                </tbody>
-            </table>
-
+                                }
+                                ?>
+                            </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </div>
-    <!-- /.col -->
-</div>
-<!-- /.row -->
-</div>
-<!-- /.content -->
+        <!-- /.col -->
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
 </div>
 
 <!-- MODEL -->

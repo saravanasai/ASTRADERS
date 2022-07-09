@@ -73,3 +73,5 @@
 <script src="pages/unPaidListReport/unPaidListReport.js"></script>
 <script src="pages/zeroBalanceList/zeroBalanceList.js"></script>
 <script src="pages/monthlyAgentReport/monthlyAgentReport.js"></script>
+<script src="pages/todayReport/todayReport.js"></script>
+<script src="pages/reverseDayClose/reverseDayClose.js"></script>

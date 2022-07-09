@@ -1,11 +1,8 @@
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php
 include_once "./assets/css_links.php";
 //adding a database config file
 include_once "./config.php";
 
-
- 
 
 
     //SECTION FOR FETCHING THE DATA FROM agents_to_area_view by Agents id

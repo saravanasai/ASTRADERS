@@ -474,6 +474,14 @@ elseif($chk=="productReturn")
 {
   include_once "./pages/productReturn/productReturn.php";
 }
+elseif($chk=="todayReport")
+{
+  include_once "./pages/todayReport/todayReport.php";
+}
+elseif($chk=="reverseDayClose")
+{
+  include_once "./pages/reverseDayClose/reverseDayClose.php";
+}
 
 
 ?>

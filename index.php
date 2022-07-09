@@ -36,8 +36,6 @@
 ?>
 
 </body>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
  <script>
    var url = window.location;
     // for single sidebar menu

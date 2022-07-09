@@ -85,10 +85,20 @@ if ($_POST['orderId']) {
                     $stmt->bindParam("status", $status);
 
                     if ($stmt->execute()) {
-                        try {
-                            echo json_encode(["data" => 1]);
-                        } catch (PDOException $e) {
-                            echo $e;
+
+
+                        $sql = "DELETE FROM `sales` WHERE `SALE_ID`=:saleid";
+
+                        $stmt = $conn->prepare($sql);
+
+                        $stmt->bindParam("saleid", $loanId);
+
+                        if ($stmt->execute()) {
+                            try {
+                                echo json_encode(["data" => 1]);
+                            } catch (PDOException $e) {
+                                echo $e;
+                            }
                         }
                     }
                 }

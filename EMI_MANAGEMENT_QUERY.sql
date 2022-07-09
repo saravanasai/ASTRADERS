@@ -48,10 +48,41 @@ WHERE
 
 //updating database column for default user image 
 
-UPDATE `customermaster` SET `CUSTOMER_IMAGE`='user.png' WHERE 1; 
+    UPDATE `customermaster` SET `CUSTOMER_IMAGE`='user.png' WHERE 1; 
 
 
 //updating CollectionListView to adding the CUSTOMER_IMAGE column 
+
+-- on live 
+
+CREATE VIEW collectionListView AS
+                    SELECT 
+                      customermaster.CUSTOMER_ID,
+                      customermaster.CUSTOMER_IMAGE,
+                      loanMaster.LOAN_ID,
+                      customermaster.CUSTOMER_FIRST_NAME,
+                      customermaster.CUSTOMER_PHONE_NUMBER,
+                      customermaster.CUSTOMER_REMARK,
+                      districts.DISTRICT_NAME,
+                       products.PRODUCT_NAME,
+                      loanMaster.LN_PRODUCT_QUANTITY,
+                      loanMaster.LN_TAB_TOTAL_AMOUNT,
+                      loanMaster.LN_TAB_BALANCE_AMOUNT,
+                      loanMaster.LN_STATUS,
+                      loanMaster.LN_ON_DATE,
+                      collectionList.COLLECTION_BALANCE_AMOUNT,
+                      areas.AREA_NAME,
+                      areas.AREA_ID,
+                      districts.DISTRICT_ID,
+                      collectionList.COLLECTION_ON_DATE
+                      FROM loanMaster,districts,customermaster,products,collectionList,areas
+                    WHERE districts.DISTRICT_ID=customermaster.CUSTOMER_DISTRICT AND 
+                          products.PRODUCT_ID=loanMaster.LN_TO_PRODUCT AND
+                          loanMaster.LN_TAB_BALANCE_AMOUNT>0 AND
+                          loanMaster.LN_TO_CUSTOMER=customermaster.CUSTOMER_ID AND    collectionList.COLLECTION_LN_ID=loanMaster.LOAN_ID AND areas.AREA_ID=customermaster.CUSTOMER_CITY; 
+
+
+-- on local 
 
 SELECT
     `testemi`.`customermaster`.`CUSTOMER_ID` AS `CUSTOMER_ID`,

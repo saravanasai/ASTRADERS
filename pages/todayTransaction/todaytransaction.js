@@ -14,6 +14,16 @@ $(function () {
           type: "post",
           url: "pages/todayTransaction/todayTransactionRequestToCommit.php",
           data: { commit: "ok" },
+          beforeSend: function () {
+            // setting a loader tills teh request finish
+            swal({
+              title: "Day is Closeing...",
+              text: "Please wait......",
+              imageUrl: "images/ajaxloader.gif",
+              showConfirmButton: false,
+              allowOutsideClick: false,
+            });
+          },
           success: function (data) {
             swal("DAY CLOSED", "THANK YOU", "success").then(() => {
               window.location.href = "./index.php";
