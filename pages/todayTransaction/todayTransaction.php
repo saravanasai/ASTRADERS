@@ -1,16 +1,7 @@
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php
 include_once "./assets/css_links.php";
 //adding a database config file
 include_once "./config.php";
-
-
-
-
-
-
-
-
 
 //SECTION FOR FETCHING THE today collection list 
 $sql = "SELECT * FROM `todayTransactionViewWithAgents` WHERE `TR_COMMIT_STATUS`=1";
@@ -120,7 +111,6 @@ if (isset($_POST["buttonUpdateTransaction"])) {
                                  <td>' . $today_collection_list["CUSTOMER_ID"] . '</td>
                                  <td>' . $today_collection_list["AREA_NAME"] . '</td>
                                  <td>' . $today_collection_list["DISTRICT_NAME"] . '</td>
-                                 <td>' . $today_collection_list["CUSTOMER_ADDRESS"] . '</td>
                                  <td>' . $today_collection_list["TR_AMOUNT_PAID"] . '</td>
                                  <td>' . $today_collection_list["TR_AMOUNT_BALANCE"] . '</td>
                                  <td>' . $today_collection_list["TR_DATE"] . '</td>
