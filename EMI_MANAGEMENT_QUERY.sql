@@ -58,6 +58,7 @@ WHERE
 CREATE VIEW collectionListView AS
                     SELECT 
                       customermaster.CUSTOMER_ID,
+                      customermaster.CUSTOMER_ADDRESS,
                       customermaster.CUSTOMER_IMAGE,
                       loanMaster.LOAN_ID,
                       customermaster.CUSTOMER_FIRST_NAME,
@@ -80,6 +81,8 @@ CREATE VIEW collectionListView AS
                           products.PRODUCT_ID=loanMaster.LN_TO_PRODUCT AND
                           loanMaster.LN_TAB_BALANCE_AMOUNT>0 AND
                           loanMaster.LN_TO_CUSTOMER=customermaster.CUSTOMER_ID AND    collectionList.COLLECTION_LN_ID=loanMaster.LOAN_ID AND areas.AREA_ID=customermaster.CUSTOMER_CITY; 
+                          
+
 
 
 -- on local 

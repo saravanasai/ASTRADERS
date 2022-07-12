@@ -117,7 +117,7 @@ foreach ($collection_report_fecthed as $key => $collection) {
   <section class="content">
 <div class="container-fluid">
 
-<div class="card p-2">
+<div class="card table-responsive p-2">
 <div class="row">
       <div class="col-sm-12">
         <table class="table table-bordered table-striped" id="unpaidListReportTable">
@@ -128,6 +128,7 @@ foreach ($collection_report_fecthed as $key => $collection) {
               <th>F-NAME</th>
               <th>DISTRICT</th>
               <th>AREA</th>
+              <th>ADDRESS</th>
               <th>T-AMOUNT</th>
               <th>B-AMOUNT</th>
               <th>DUE DATE</th>
@@ -169,6 +170,7 @@ foreach ($collection_report_fecthed as $key => $collection) {
                         <td>' . $collection_list['CUSTOMER_FIRST_NAME'] . '</td>
                         <td>' . $collection_list['DISTRICT_NAME'] . '</td>
                         <td>' . $collection_list['AREA_NAME'] . '</td>
+                        <td>' . $collection_list['CUSTOMER_ADDRESS'] . '</td>
                         <td>' . $collection_list['LN_TAB_TOTAL_AMOUNT'] . '</td>
                         <td>' . $collection_list['COLLECTION_BALANCE_AMOUNT'] . '</td>
                         <td>' . $collection_list['COLLECTION_ON_DATE'] . '</td>

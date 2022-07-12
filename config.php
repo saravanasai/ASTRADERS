@@ -10,7 +10,6 @@ try {
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  
-  
 
 //   $sql="SET SESSION time_zone = '+5:30';";
 //  $stmt=$conn->prepare($sql);

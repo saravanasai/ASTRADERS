@@ -117,7 +117,7 @@ $district_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body table-responsive">
                             <table class="table table-bordered table-striped" id="viewTodayCollectionReportTable">
                                 <thead>
                                     <tr role="row">
@@ -125,6 +125,7 @@ $district_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <th>NAME</th>
                                         <th>DISTRICT</th>
                                         <th>AREA</th>
+                                        <th>ADDRESS</th>
                                         <th>TOTAL</th>
                                         <th>BALANCE</th>
                                         <th>LN DATE</th>
@@ -134,6 +135,7 @@ $district_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 </thead>
                                 <tbody id="report_insert">
                                     <tr id="loading_spinner_today_report">
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>

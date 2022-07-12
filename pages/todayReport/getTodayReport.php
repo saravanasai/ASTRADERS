@@ -33,6 +33,7 @@ if (isset($_POST["area_id"]) && isset($_POST['district_id'])) {
             <td>' . $reports["CUSTOMER_FIRST_NAME"] . '</td>   
             <td>' . $reports["DISTRICT_NAME"] . '</td>   
             <td>' . $reports["AREA_NAME"] . '</td>   
+            <td>' . $reports["CUSTOMER_ADDRESS"] . '</td>   
             <td>' . $reports["LN_TAB_TOTAL_AMOUNT"] . '</td>
             <td>' . $reports["LN_TAB_BALANCE_AMOUNT"] . '</td>
             <td>' . $reports["LN_ON_DATE"] . '</td>

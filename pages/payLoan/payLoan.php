@@ -151,7 +151,7 @@ if (isset($_GET["LOAN_ID"])) {
                           <li class="list-group-item bg-navy">
                             <b>SELECT AGENT</b><a class="float-right">
                               <select class="form-control " id="pay_to_agent" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                               
+
                                 <?php
 
                                 if (isset($_SESSION['PAY_TO_AGENT_ID']) && $_SESSION['PAY_TO_AGENT_ID'] != "0") {
@@ -165,21 +165,20 @@ if (isset($_GET["LOAN_ID"])) {
 
                                   echo '<option value="0">ON STORE</option>';
                                 } else {
-                                   echo '<option selected value="0">ON STORE</option>';
+                                  echo '<option selected value="0">ON STORE</option>';
                                   foreach ($agent_list_fecthed as $agent_list) {
                                     echo '<option   value="' . $agent_list["AGENT_ID"] . '">' . $agent_list["AGENT_NAME"] . '--' . $agent_list["AGENT_PHONE_NUMBER"] . '</option>';
                                   }
-                                  
                                 }
 
                                 ?>
-                                
+
                               </select>
                             </a>
                           </li>
                           <li class="list-group-item bg-navy">
-                            <b>TR DATE</b><a class="float-right">  
-                            <input type="date" class="form-control form-control-border"  id="amountPaidOnDate" value=<?php echo $_SESSION['PAY_ON_DATE'] ?>></a>
+                            <b>TR DATE</b><a class="float-right">
+                              <input type="date" class="form-control form-control-border" id="amountPaidOnDate" value=<?php echo $_SESSION['PAY_ON_DATE'] ?? date('Y-m-d') ?>></a>
                           </li>
                           <li class="list-group-item bg-navy">
                             <b>PAYMENT NOW</b><a class="float-right"><input type="number" class="form-control form-control-border" id="amountPaidNow" placeholder=""></a>

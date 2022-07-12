@@ -5,7 +5,7 @@ include_once "./assets/css_links.php";
 include_once "./config.php";
 //SECTION FOR FETCHING THE DATA FROM AREAS TABLE
 
-$sql = "SELECT * FROM `collectionListView` WHERE LN_TAB_BALANCE_AMOUNT>0";
+$sql = "SELECT * FROM `collectionListView` WHERE LN_TAB_BALANCE_AMOUNT>0 AND LN_TAB_TOTAL_AMOUNT>0";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);

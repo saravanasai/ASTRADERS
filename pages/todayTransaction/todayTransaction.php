@@ -120,6 +120,7 @@ if (isset($_POST["buttonUpdateTransaction"])) {
                                  <td>' . $today_collection_list["CUSTOMER_ID"] . '</td>
                                  <td>' . $today_collection_list["AREA_NAME"] . '</td>
                                  <td>' . $today_collection_list["DISTRICT_NAME"] . '</td>
+                                 <td>' . $today_collection_list["CUSTOMER_ADDRESS"] . '</td>
                                  <td>' . $today_collection_list["TR_AMOUNT_PAID"] . '</td>
                                  <td>' . $today_collection_list["TR_AMOUNT_BALANCE"] . '</td>
                                  <td>' . $today_collection_list["TR_DATE"] . '</td>

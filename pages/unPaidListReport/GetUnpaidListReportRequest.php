@@ -42,6 +42,7 @@ if (isset($_POST["area_id"]) && isset($_POST['district_id'])) {
                         <td>' . $collection_list['CUSTOMER_FIRST_NAME'] . '</td>
                         <td>' . $collection_list['DISTRICT_NAME'] . '</td>
                         <td>' . $collection_list['AREA_NAME'] . '</td>
+                        <td>' . $collection_list['CUSTOMER_ADDRESS'] . '</td>
                         <td>' . $collection_list['LN_TAB_TOTAL_AMOUNT'] . '</td>
                         <td>' . $collection_list['COLLECTION_BALANCE_AMOUNT'] . '</td>
                         <td>' . $collection_list['COLLECTION_ON_DATE'] . '</td>
