@@ -25,7 +25,7 @@ if (isset($_POST['district']) && isset($_POST['areas'])) {
         if (count($result_district) > 0) {
             //section for fecthing the collection list 
             //  $sql="SELECT * FROM `collectionListView` WHERE `LN_TAB_BALANCE_AMOUNT`>0  AND `DISTRICT_ID`=:district AND  `COLLECTION_ON_DATE`=CURRENT_DATE  AND  `AREA_ID`  IN (".$agent_areas.")";
-            $sql = "SELECT * FROM `collectionListView` WHERE `LN_TAB_BALANCE_AMOUNT`>0  AND `DISTRICT_ID`=:district  AND  `AREA_ID`  IN (" . $agent_areas . ")";
+            $sql = "SELECT * FROM `collectionListView` WHERE `LN_TAB_BALANCE_AMOUNT`>0 AND `LN_TAB_TOTAL_AMOUNT`>0 AND `LN_STATUS`=1  AND `DISTRICT_ID`=:district  AND  `AREA_ID`  IN (" . $agent_areas . ")";
 
             $stmt = $conn->prepare($sql);
             $stmt->bindParam("district", $agent_district);

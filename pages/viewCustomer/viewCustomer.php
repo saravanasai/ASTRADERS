@@ -1,4 +1,3 @@
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php
 include_once "./assets/css_links.php";
 //adding a database config file
@@ -130,58 +129,67 @@ if (isset($_POST["customerupdateForm"])) {
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">All Customer View</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="btn btn-sm btn-primary"><a class="text-white" href="<?php echo "index.php" ?>"><i class="fa fa-cubes px-1" aria-hidden="true"></i>
+                                Dashboard</a></li>
+                    </ol>
+                </div>
+            </div>
         </div><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-danger card-outline">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    
+                                </h3>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table table-striped table-responsive table-head-fixed text-nowrap table-bordered" id="viewAreaTable">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 10px">S.NO</th>
+                                            <th>CUSTOMER ID</th>
+                                            <th>PHOTO</th>
+                                            <th>FIRST NAME</th>
+                                            <th>LAST NAME</th>
+                                            <!-- <th>PH NUMBER</th> -->
+                                            <th>AREA NAME</th>
+                                            <th>DISTRICT NAME</th>
+                                            <th style="width: 40px">ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <div class="card table-responsive">
+                                            <?php
+                                            foreach ($customer_Master_view_list_fecthed as $sno => $customer_Master_view_list) {
 
-    <div class="container p-0">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-danger card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">
+                                                $statusColor = "danger";
+                                                $statusText = "DELETE";
+                                                $takeloanbuttonstatus = "";
+                                                $deactivateRedirection = "";
+                                                if ($customer_Master_view_list["CUSTOMER_STATUS"] == 0) {
+                                                    $statusColor = "info";
+                                                    $statusText = "DISABLED";
+                                                    $takeloanbuttonstatus = "disabled";
+                                                    $deactivateRedirection = "no";
+                                                }
 
-                            All Customers
-                        </h3>
-                    </div>
-                    <div class="card-body pad table-responsive">
-                        <table class="table table-striped table-responsive table-head-fixed text-nowrap table-bordered" id="viewAreaTable">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">S.NO</th>
-                                    <th>CUSTOMER ID</th>
-                                    <th>PHOTO</th>
-                                    <th>FIRST NAME</th>
-                                    <th>LAST NAME</th>
-                                    <!-- <th>PH NUMBER</th> -->
-                                    <th>AREA NAME</th>
-                                    <th>DISTRICT NAME</th>
-                                    <th style="width: 40px">ACTION</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <div class="card table-responsive">
-                                    <?php
-                                    foreach ($customer_Master_view_list_fecthed as $sno => $customer_Master_view_list) {
-
-                                        $statusColor = "danger";
-                                        $statusText = "DELETE";
-                                        $takeloanbuttonstatus = "";
-                                        $deactivateRedirection = "";
-                                        if ($customer_Master_view_list["CUSTOMER_STATUS"] == 0) {
-                                            $statusColor = "info";
-                                            $statusText = "DISABLED";
-                                            $takeloanbuttonstatus = "disabled";
-                                            $deactivateRedirection = "no";
-                                        }
-
-                                        echo '<tr>
+                                                echo '<tr>
                      <td>' . ++$sno . '</td>
                      <td>' . $customer_Master_view_list["CUSTOMER_ID"] . '</td>
                      <td><div class="text-center">
-                     <img class="profile-user-img img-fluid img-circle" src="' . "uploads/" . $customer_Master_view_list["CUSTOMER_IMAGE"]. '" alt="user image">
+                     <img class="profile-user-img img-fluid img-circle" src="' . "uploads/" . $customer_Master_view_list["CUSTOMER_IMAGE"] . '" alt="user image">
                      </div></td>
                      <td>' . $customer_Master_view_list["CUSTOMER_FIRST_NAME"] . '</td>
                      <td>
@@ -226,22 +234,21 @@ if (isset($_POST["customerupdateForm"])) {
                                                     </td>
                                                     
                                                 </tr>';
-                                    }
-                                    ?>
-                            </tbody>
+                                            }
+                                            ?>
+                                    </tbody>
 
-                        </table>
+                                </table>
+                            </div>
+
+                        </div>
                     </div>
-
                 </div>
+                <!-- /.col -->
             </div>
-        </div>
-
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
-</div>
-<!-- /.content -->
+            <!-- /.row -->
+    </section>
+        <!-- /.content -->
 </div>
 
 <!-- MODEL -->

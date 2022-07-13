@@ -110,20 +110,24 @@ $("#new_customer_creation").submit(function (event) {
   if (valid_form_details) {
     //ajax requesting to server
 
+    let data = new FormData();
+
+    data.append("customerFirstName", customer_first_name);
+    data.append("customerLastName", customer_last_name);
+    data.append("customerphoneNumber", customer_phone_number);
+    data.append("customerMail", customer_mail);
+    data.append("customerAdharNo", customer_adhar_no);
+    data.append("customerDistrict", customer_district);
+    data.append("customerArea", customer_area);
+    data.append("customerAddress", customer_address);
+    data.append("customerPhoto", customerPhoto);
+
     $.ajax({
       type: "post",
       url: "pages/addCustomer/addCustomerRequest.php",
-      data: {
-        customerFirstName: customer_first_name,
-        customerLastName: customer_last_name,
-        customerphoneNumber: customer_phone_number,
-        customerMail: customer_mail,
-        customerAdharNo: customer_adhar_no,
-        customerDistrict: customer_district,
-        customerArea: customer_area,
-        customerAddress: customer_address,
-        customerPhoto: customerPhoto,
-      },
+      data: data,
+      processData: false,
+      contentType: false,
       success: function (data) {
         //section for response of request
 
