@@ -27,7 +27,7 @@ if (isset($_POST["customer_id"])) {
 
    if ($amount_paid_on_transaction) {
       //query to update loanmaster table for adding payable amount on transaction deletion
-      $sql = "UPDATE `loanMaster` SET `LN_TAB_BALANCE_AMOUNT`= LN_TAB_BALANCE_AMOUNT + :amount WHERE `LOAN_ID`=:ln_id AND `LN_TO_CUSTOMER`=:cus_id";
+      $sql = "UPDATE `collectionList` SET `COLLECTION_BALANCE_AMOUNT`=COLLECTION_BALANCE_AMOUNT + :amount WHERE `COLLECTION_LN_ID` = :ln_id  AND `COLLECTION_TO_CUSTOMER`= :cus_id";
 
       $stmt = $conn->prepare($sql);
       $stmt->bindParam("amount", $amount_paid_on_transaction);

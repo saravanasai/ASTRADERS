@@ -1,7 +1,40 @@
 
+step 1: remove trigger `insert on update to transaction` on collection list table 
+
+step 2: make default null on loanTransaction Table 
+
+        ALTER TABLE `loanTransaction` CHANGE `TR_AMOUNT_PAID_INITIAL` `TR_AMOUNT_PAID_INITIAL` BIGINT(20) NULL DEFAULT NULL; 
+
+step 3 : update `todayTransactionView`
+
+       
+        CREATE VIEW todayTransactionView AS
+                  SELECT 
+                   loanTransaction.TR_ID,
+                   loanTransaction.TR_LN_ID,
+                   loanTransaction.TR_AMOUNT_PAID,
+                   loanTransaction.TR_AMOUNT_BALANCE,
+                   loanTransaction.TR_DATE,
+                   loanTransaction.TR_COMMIT_STATUS,
+                   customermaster.CUSTOMER_ID,
+                   customermaster.CUSTOMER_FIRST_NAME,
+                   customermaster.CUSTOMER_PHONE_NUMBER,
+                   districts.DISTRICT_NAME,
+                   areas.AREA_NAME,
+                   areas.AREA_ID,
+                   districts.DISTRICT_ID,
+                   loanTransaction.TR_TIME,
+                   loanTransaction.TR_DONE_ON
+                  
+                   
+                  FROM customermaster,loanTransaction,areas,districts
+                 WHERE 
+                         loanTransaction.TR_OF_CUSTOMER=customermaster.CUSTOMER_ID
+                         AND districts.DISTRICT_ID=customermaster.CUSTOMER_DISTRICT AND
+                         areas.AREA_ID=customermaster.CUSTOMER_CITY ;
 
 
-//query need to be added in live 
+//query need to be added to live  
 
 //adding one more column in customer master table
 ALTER TABLE `customermaster` ADD `CUSTOMER_IMAGE` VARCHAR(265) NULL DEFAULT NULL AFTER `CUSTOMER_STATUS`;
@@ -443,7 +476,7 @@ CREATE VIEW collectionListView AS
                  WHERE 
                          loanTransaction.TR_OF_CUSTOMER=customermaster.CUSTOMER_ID
                          AND districts.DISTRICT_ID=customermaster.CUSTOMER_DISTRICT AND
-                         areas.AREA_ID=customermaster.CUSTOMER_CITY AND products.PRODUCT_ID=loanTransaction.TR_TO_PRODUCT;
+                         areas.AREA_ID=customermaster.CUSTOMER_CITY ;
 
    
    //craeting the salesReportview 

@@ -34,7 +34,7 @@ $collection_list_view_fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="container-fluid">
             <div class="row">
                 <div class="card table-responsive p-3">
-                    <table class="table table-striped  table-responsive table-head-fixed text-nowrap table-bordered " id="viewProductTable">
+                    <table class="table table-striped text-nowrap table-bordered " id="viewProductTable">
                         <thead>
                             <tr>
                                 <th style="width: 10px">S.NO</th>

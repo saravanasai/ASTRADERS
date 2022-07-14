@@ -155,7 +155,7 @@ if (isset($_POST["customerupdateForm"])) {
                                 </h3>
                             </div>
                             <div class="card-body table-responsive">
-                                <table class="table table-striped table-responsive table-head-fixed text-nowrap table-bordered" id="viewAreaTable">
+                                <table class="table table-striped text-nowrap table-bordered " id="viewAreaTable">
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">S.NO</th>

@@ -163,7 +163,7 @@ if (isset($_GET["LOAN_ID"])) {
                                     echo '<option   value="' . $agent_list["AGENT_ID"] . '">' . $agent_list["AGENT_NAME"] . '--' . $agent_list["AGENT_PHONE_NUMBER"] . '</option>';
                                   }
 
-                                  echo '<option value="0">ON STORE</option>';
+                                  echo '<option  value="0">ON STORE</option>';
                                 } else {
                                   echo '<option selected value="0">ON STORE</option>';
                                   foreach ($agent_list_fecthed as $agent_list) {

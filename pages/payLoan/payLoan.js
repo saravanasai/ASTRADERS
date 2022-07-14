@@ -156,7 +156,7 @@ $("#loanPayUpdateButton").click(function () {
         amountPaid: loan_update_to_amountPaid,
         balanceamount: balance_amount_to_pay,
         amountPaidOnDate:amountPaidOnDate,
-        due_paid_to:due_payed_to_agent,
+        due_paid_to:due_payed_to_agent=="" ? 0 :due_payed_to_agent ,
         loanstatus: "0",
       },
       success: function (data) {
