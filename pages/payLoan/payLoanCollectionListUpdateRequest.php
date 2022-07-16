@@ -31,7 +31,7 @@ function updateCollectionList()
 
 
 
-    $sql = "UPDATE `collectionList` SET `COLLECTION_LAST_AMOUNT_PAID`=:amountPaid,`COLLECTION_BALANCE_AMOUNT`=:balance,`COLLECTION_ON_DATE`= DATE_ADD(`COLLECTION_ON_DATE`, INTERVAL 7 DAY),`COLLECTED_ON_DATE`=:onDate,`COLLECTION_STATUS`=:clStatus,`PAID_ON`=:paidTO WHERE COLLECTION_TO_CUSTOMER =:customerid AND  COLLECTION_LN_ID =:loanId";
+    $sql = "UPDATE `collectionList` SET `COLLECTION_LAST_AMOUNT_PAID`=:amountPaid,`COLLECTION_BALANCE_AMOUNT`=:balance,`COLLECTION_ON_DATE`= DATE_ADD(`COLLECTED_ON_DATE`, INTERVAL 7 DAY),`COLLECTED_ON_DATE`=:onDate,`COLLECTION_STATUS`=:clStatus,`PAID_ON`=:paidTO WHERE COLLECTION_TO_CUSTOMER =:customerid AND  COLLECTION_LN_ID =:loanId";
 
     $stmt = $conn->prepare($sql);
     $stmt->bindParam("customerid", $customer_id);

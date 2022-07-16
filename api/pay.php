@@ -41,7 +41,7 @@ if (isset($_POST['paid_to'])) {
                                 date_default_timezone_set('Asia/Kolkata');
                                 $amount_Paid_On_Date = (new DateTime())->format('Y-m-d');
                                 //section on which the all are perfect to update 
-                                $sql = "UPDATE `collectionList` SET `COLLECTION_LAST_AMOUNT_PAID`=:amountPaid,`COLLECTION_BALANCE_AMOUNT`=:balance,`COLLECTION_ON_DATE`= DATE_ADD(`COLLECTION_ON_DATE`, INTERVAL 7 DAY),`COLLECTED_ON_DATE`=:onDate,`COLLECTION_STATUS`=:clStatus,`PAID_ON`=:paid_to WHERE COLLECTION_TO_CUSTOMER =:customerid AND COLLECTION_LN_ID =:loanId";
+                                $sql = "UPDATE `collectionList` SET `COLLECTION_LAST_AMOUNT_PAID`=:amountPaid,`COLLECTION_BALANCE_AMOUNT`=:balance,`COLLECTION_ON_DATE`= DATE_ADD(`COLLECTED_ON_DATE`, INTERVAL 7 DAY),`COLLECTED_ON_DATE`=:onDate,`COLLECTION_STATUS`=:clStatus,`PAID_ON`=:paid_to WHERE COLLECTION_TO_CUSTOMER =:customerid AND COLLECTION_LN_ID =:loanId";
 
                                 $stmt = $conn->prepare($sql);
                                 $stmt->bindParam("customerid", $customer_id);

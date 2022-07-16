@@ -1,4 +1,10 @@
 
+
+
+
+
+//query updated on database till lived on new requirements 16-07-2022
+
 step 1: remove trigger `insert on update to transaction` on collection list table 
 
 step 2: make default null on loanTransaction Table 
@@ -34,7 +40,6 @@ step 3 : update `todayTransactionView`
                          areas.AREA_ID=customermaster.CUSTOMER_CITY ;
 
 
-//query need to be added to live  
 
 //adding one more column in customer master table
 ALTER TABLE `customermaster` ADD `CUSTOMER_IMAGE` VARCHAR(265) NULL DEFAULT NULL AFTER `CUSTOMER_STATUS`;

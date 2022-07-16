@@ -21,13 +21,23 @@ $district_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">ADD NEW CUSTOMER</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="btn btn-sm btn-primary"><a class="text-white" href="<?php echo "index.php" ?>"><i class="fa fa-cubes px-1" aria-hidden="true"></i>
+                                Dashboard</a></li>
+                    </ol>
+                </div>
+            </div>
         </div><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
-    <div class="container">
-        <div class="col-md-12">
+    <section class="content">
+        <div class="container-fluid">
             <!-- general form elements -->
             <div class="card card-danger">
                 <div class="card-header">
@@ -143,8 +153,8 @@ $district_list_fecthed = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <!-- /.card -->
         </div>
-    </div>
-    <!-- /.content -->
+    </section>
+<!-- /.content -->
 </div>
 <?php
 include_once("./assets/js_links.php");
